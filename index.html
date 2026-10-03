@@ -760,6 +760,27 @@ button {
         linear-gradient(135deg, #171d25, #0d1118 60%, #12171e);
 }
 
+.video-card-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .72;
+    transition: transform .35s ease;
+}
+
+.video-card-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8,11,16,.05) 5%, rgba(8,11,16,.25) 42%, rgba(8,11,16,.94) 100%);
+}
+
+.video-card:hover .video-card-bg img {
+    transform: scale(1.04);
+}
+
 .video-card:nth-child(2) .video-card-bg {
     background:
         linear-gradient(135deg, rgba(255,255,255,.06), rgba(8,11,16,.86) 70%),
@@ -1691,6 +1712,29 @@ footer {
     min-height: 90px;
 }
 
+.admin-video-thumbnail-preview {
+    display: block;
+    width: 100%;
+    max-height: 180px;
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    background: #090d15;
+}
+
+.admin-video-thumbnail-preview[hidden] {
+    display: none;
+}
+
+.admin-upload-help {
+    margin-top: 8px;
+    color: #8995aa;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
 .admin-field input:focus,
 .admin-field textarea:focus {
     border-color: var(--red);
@@ -2453,6 +2497,7 @@ footer {
 
                     <img
                         class="big-a"
+                        id="heroCardPhoto"
                         src="channels4_profile.jpg"
                         alt="Ali overlooking Erbil at night"
                     >
@@ -2603,9 +2648,12 @@ footer {
             target="_blank"
             rel="noopener noreferrer"
             class="video-card reveal"
+            id="videoCard1"
         >
 
-            <div class="video-card-bg"></div>
+            <div class="video-card-bg">
+                <img id="videoThumbnail1" alt="" hidden>
+            </div>
 
             <div class="video-content">
 
@@ -2643,9 +2691,12 @@ footer {
             target="_blank"
             rel="noopener noreferrer"
             class="video-card reveal"
+            id="videoCard2"
         >
 
-            <div class="video-card-bg"></div>
+            <div class="video-card-bg">
+                <img id="videoThumbnail2" alt="" hidden>
+            </div>
 
             <div class="video-content">
 
@@ -2683,9 +2734,12 @@ footer {
             target="_blank"
             rel="noopener noreferrer"
             class="video-card reveal"
+            id="videoCard3"
         >
 
-            <div class="video-card-bg"></div>
+            <div class="video-card-bg">
+                <img id="videoThumbnail3" alt="" hidden>
+            </div>
 
             <div class="video-content">
 
@@ -3397,6 +3451,24 @@ footer {
 
                 </div>
 
+                <div class="admin-field">
+                    <label for="adminHeroPhotoUpload">HERO CARD PHOTO</label>
+                    <input
+                        type="file"
+                        id="adminHeroPhotoUpload"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+                    <p class="admin-upload-help">
+                        Upload a JPG, PNG, or WebP image (max 5 MB). The photo uploads to Supabase Storage.
+                    </p>
+                    <img
+                        class="admin-video-thumbnail-preview"
+                        id="adminHeroPhotoPreview"
+                        alt="Hero photo preview"
+                        hidden
+                    >
+                </div>
+
 
                 <div class="admin-field">
 
@@ -3548,7 +3620,7 @@ footer {
                 </h3>
 
                 <p>
-                    Edit the first video card.
+                    Set the title, description, and video link. YouTube links load a thumbnail automatically.
                 </p>
 
 
@@ -3579,6 +3651,12 @@ footer {
 
                 </div>
 
+                <div class="admin-field">
+                    <label for="adminVideoUrl1">YOUTUBE VIDEO LINK</label>
+                    <input type="url" id="adminVideoUrl1" placeholder="https://www.youtube.com/watch?v=...">
+                    <img class="admin-video-thumbnail-preview" id="adminVideoThumbnailPreview1" alt="Video thumbnail preview" hidden>
+                </div>
+
             </div>
 
 
@@ -3591,7 +3669,7 @@ footer {
                 </h3>
 
                 <p>
-                    Edit the second video card.
+                    Set the title, description, and video link. YouTube links load a thumbnail automatically.
                 </p>
 
 
@@ -3622,6 +3700,12 @@ footer {
 
                 </div>
 
+                <div class="admin-field">
+                    <label for="adminVideoUrl2">YOUTUBE VIDEO LINK</label>
+                    <input type="url" id="adminVideoUrl2" placeholder="https://www.youtube.com/watch?v=...">
+                    <img class="admin-video-thumbnail-preview" id="adminVideoThumbnailPreview2" alt="Video thumbnail preview" hidden>
+                </div>
+
             </div>
 
 
@@ -3634,7 +3718,7 @@ footer {
                 </h3>
 
                 <p>
-                    Edit the third video card.
+                    Set the title, description, and video link. YouTube links load a thumbnail automatically.
                 </p>
 
 
@@ -3663,6 +3747,12 @@ footer {
                         id="adminVideoDesc3"
                     >
 
+                </div>
+
+                <div class="admin-field">
+                    <label for="adminVideoUrl3">YOUTUBE VIDEO LINK</label>
+                    <input type="url" id="adminVideoUrl3" placeholder="https://www.youtube.com/watch?v=...">
+                    <img class="admin-video-thumbnail-preview" id="adminVideoThumbnailPreview3" alt="Video thumbnail preview" hidden>
                 </div>
 
             </div>
@@ -4056,6 +4146,7 @@ const defaultData = {
 
     logoImage: "",
     logoText: "ALI",
+    heroPhotoUrl: "channels4_profile.jpg",
 
     firstName: "ALI",
 
@@ -4087,17 +4178,23 @@ const defaultData = {
     videoDesc1:
         "Watch the newest uploads",
 
+    videoUrl1: "",
+
     videoTitle2:
         "Challenges",
 
     videoDesc2:
         "Crazy ideas. Real reactions.",
 
+    videoUrl2: "",
+
     videoTitle3:
         "Cars & More",
 
     videoDesc3:
         "Automotive content and entertainment",
+
+    videoUrl3: "",
 
     subscribeLabel: "OFFICIAL CHANNEL",
     subscribeStrong: "Subscribe to Ali Zewar on YouTube",
@@ -4190,13 +4287,82 @@ function loadData() {
 }
 
 let hasRemoteSiteData = false;
+let pendingHeroPhoto = null;
+let temporaryHeroPhotoUrl = "";
+
+function revokeTemporaryHeroPhotoUrl() {
+    if (temporaryHeroPhotoUrl) {
+        URL.revokeObjectURL(temporaryHeroPhotoUrl);
+        temporaryHeroPhotoUrl = "";
+    }
+}
+
+function showHeroPhotoPreview(source) {
+    const preview = document.getElementById("adminHeroPhotoPreview");
+
+    revokeTemporaryHeroPhotoUrl();
+
+    if (!source) {
+        preview.hidden = true;
+        preview.removeAttribute("src");
+        return;
+    }
+
+    preview.src = source;
+    preview.hidden = false;
+}
+
+async function uploadHeroPhoto(file) {
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+    const maxFileSize = 5 * 1024 * 1024;
+
+    if (!allowedTypes.includes(file.type)) {
+        throw new Error("Choose a JPG, PNG, or WebP image.");
+    }
+
+    if (file.size > maxFileSize) {
+        throw new Error("The photo must be 5 MB or smaller.");
+    }
+
+    if (!supabaseClient) {
+        throw new Error("Supabase is not configured, so photo uploads are unavailable.");
+    }
+
+    const extensionByType = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp"
+    };
+    const filePath = `hero-photo.${extensionByType[file.type]}`;
+    const { data, error } = await supabaseClient.storage
+        .from("site-assets")
+        .upload(filePath, file, {
+            upsert: true,
+            contentType: file.type,
+            cacheControl: "3600"
+        });
+
+    if (error) {
+        throw error;
+    }
+
+    const { data: publicUrlData } = supabaseClient.storage
+        .from("site-assets")
+        .getPublicUrl(data.path);
+
+    if (!publicUrlData.publicUrl) {
+        throw new Error("Supabase uploaded the photo but did not return a public URL.");
+    }
+
+    return `${publicUrlData.publicUrl}?updated=${Date.now()}`;
+}
 
 async function loadRemoteWebsiteData() {
     const storageNote = document.getElementById("storageNote");
 
     if (!SUPABASE_CONFIGURED) {
         storageNote.textContent =
-            "Add your Supabase URL, publishable key, and admin email in this file to enable cloud sync.";
+            "Add your Supabase URL and publishable key in this file to enable cloud sync.";
         return;
     }
 
@@ -4248,6 +4414,106 @@ async function loadRemoteWebsiteData() {
 let siteData = loadData();
 
 
+function getYouTubeThumbnailUrl(videoUrl) {
+    if (!videoUrl) {
+        return "";
+    }
+
+    let parsedUrl;
+
+    try {
+        parsedUrl = new URL(videoUrl);
+    } catch (error) {
+        return "";
+    }
+
+    const hostname = parsedUrl.hostname.toLowerCase();
+    if (!["youtube.com", "www.youtube.com", "m.youtube.com", "youtu.be", "www.youtube-nocookie.com", "youtube-nocookie.com"].includes(hostname)) {
+        return "";
+    }
+
+    let videoId = "";
+
+    if (hostname === "youtu.be") {
+        videoId = parsedUrl.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (parsedUrl.pathname === "/watch") {
+        videoId = parsedUrl.searchParams.get("v") || "";
+    } else {
+        const match = parsedUrl.pathname.match(/^\/(?:shorts|embed|live)\/([^/?]+)/);
+        videoId = match ? match[1] : "";
+    }
+
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+        return "";
+    }
+
+    return `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+}
+
+function setVideoThumbnail(image, videoUrl, altText) {
+    const thumbnailUrl = getYouTubeThumbnailUrl(videoUrl);
+
+    image.onerror = null;
+    image.alt = altText || "";
+
+    if (!thumbnailUrl) {
+        image.hidden = true;
+        image.removeAttribute("src");
+        return;
+    }
+
+    image.onerror = function() {
+        if (!image.dataset.fallbackTried) {
+            image.dataset.fallbackTried = "true";
+            image.src = thumbnailUrl.replace("/maxresdefault.jpg", "/hqdefault.jpg");
+            return;
+        }
+
+        image.hidden = true;
+        image.removeAttribute("src");
+    };
+
+    image.dataset.fallbackTried = "";
+    image.src = thumbnailUrl;
+    image.hidden = false;
+}
+
+function updateVideoThumbnailPreview(index) {
+    const input = document.getElementById(`adminVideoUrl${index}`);
+    const preview = document.getElementById(`adminVideoThumbnailPreview${index}`);
+
+    if (input && preview) {
+        setVideoThumbnail(
+            preview,
+            input.value.trim(),
+            `Video ${index} thumbnail preview`
+        );
+    }
+}
+
+function validateVideoUrl(value, index) {
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue) {
+        return "";
+    }
+
+    let parsedUrl;
+
+    try {
+        parsedUrl = new URL(trimmedValue);
+    } catch (error) {
+        throw new Error(`Video ${index} link must be a valid URL.`);
+    }
+
+    if (parsedUrl.protocol !== "https:" && parsedUrl.protocol !== "http:") {
+        throw new Error(`Video ${index} link must start with http:// or https://.`);
+    }
+
+    return parsedUrl.href;
+}
+
+
 /* =========================================================
    APPLY WEBSITE DATA
 ========================================================= */
@@ -4283,6 +4549,9 @@ function applyData() {
 
     document.getElementById("cardName").textContent =
         `${siteData.firstName} ${siteData.lastName}`;
+
+    document.getElementById("heroCardPhoto").src =
+        siteData.heroPhotoUrl || defaultData.heroPhotoUrl;
 
     document.getElementById("aboutName").textContent =
         siteData.firstName + ".";
@@ -4329,6 +4598,16 @@ function applyData() {
 
     document.getElementById("videoDesc3").textContent =
         siteData.videoDesc3;
+
+    [1, 2, 3].forEach(function(index) {
+        const videoUrl = siteData[`videoUrl${index}`] || siteData.youtubeUrl;
+        const videoCard = document.getElementById(`videoCard${index}`);
+        const videoThumbnail = document.getElementById(`videoThumbnail${index}`);
+        const videoTitle = siteData[`videoTitle${index}`] || `Video ${index}`;
+
+        videoCard.href = videoUrl;
+        setVideoThumbnail(videoThumbnail, siteData[`videoUrl${index}`], videoTitle);
+    });
 
     document.getElementById("subscribeLabel").textContent =
         siteData.subscribeLabel;
@@ -4417,6 +4696,10 @@ function fillAdminInputs() {
     document.getElementById("adminLogoImage").value =
         siteData.logoImage || "";
 
+    document.getElementById("adminHeroPhotoUpload").value = "";
+    pendingHeroPhoto = null;
+    showHeroPhotoPreview(siteData.heroPhotoUrl || defaultData.heroPhotoUrl);
+
     document.getElementById("adminLogoText").value =
         siteData.logoText || "ALI";
 
@@ -4451,17 +4734,28 @@ function fillAdminInputs() {
     document.getElementById("adminVideoDesc1").value =
         siteData.videoDesc1;
 
+    document.getElementById("adminVideoUrl1").value =
+        siteData.videoUrl1 || "";
+
     document.getElementById("adminVideoTitle2").value =
         siteData.videoTitle2;
 
     document.getElementById("adminVideoDesc2").value =
         siteData.videoDesc2;
 
+    document.getElementById("adminVideoUrl2").value =
+        siteData.videoUrl2 || "";
+
     document.getElementById("adminVideoTitle3").value =
         siteData.videoTitle3;
 
     document.getElementById("adminVideoDesc3").value =
         siteData.videoDesc3;
+
+    document.getElementById("adminVideoUrl3").value =
+        siteData.videoUrl3 || "";
+
+    [1, 2, 3].forEach(updateVideoThumbnailPreview);
 
     document.getElementById("adminSubscribeLabel").value =
         siteData.subscribeLabel;
@@ -4548,6 +4842,9 @@ function readAdminInputs() {
                 "adminLogoImage"
             ).value.trim(),
 
+        heroPhotoUrl:
+            siteData.heroPhotoUrl || defaultData.heroPhotoUrl,
+
         logoText:
             document.getElementById(
                 "adminLogoText"
@@ -4624,6 +4921,12 @@ function readAdminInputs() {
                 "adminVideoDesc1"
             ).value.trim(),
 
+        videoUrl1:
+            validateVideoUrl(
+                document.getElementById("adminVideoUrl1").value,
+                1
+            ),
+
         videoTitle2:
             document.getElementById(
                 "adminVideoTitle2"
@@ -4634,6 +4937,12 @@ function readAdminInputs() {
                 "adminVideoDesc2"
             ).value.trim(),
 
+        videoUrl2:
+            validateVideoUrl(
+                document.getElementById("adminVideoUrl2").value,
+                2
+            ),
+
         videoTitle3:
             document.getElementById(
                 "adminVideoTitle3"
@@ -4643,6 +4952,12 @@ function readAdminInputs() {
             document.getElementById(
                 "adminVideoDesc3"
             ).value.trim(),
+
+        videoUrl3:
+            validateVideoUrl(
+                document.getElementById("adminVideoUrl3").value,
+                3
+            ),
 
         subscribeLabel:
             document.getElementById(
@@ -4763,6 +5078,9 @@ const logoutAdmin =
 const saveChanges =
     document.getElementById("saveChanges");
 
+const heroPhotoUpload =
+    document.getElementById("adminHeroPhotoUpload");
+
 const adminStatus =
     document.getElementById("adminStatus");
 
@@ -4778,6 +5096,36 @@ function showAdminStatus(message, isError) {
         adminStatus.classList.remove("show");
     }, 4500);
 }
+
+heroPhotoUpload.addEventListener("change", function() {
+    const file = heroPhotoUpload.files[0];
+
+    if (!file) {
+        pendingHeroPhoto = null;
+        showHeroPhotoPreview(siteData.heroPhotoUrl || defaultData.heroPhotoUrl);
+        return;
+    }
+
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(file.type) || file.size > 5 * 1024 * 1024) {
+        heroPhotoUpload.value = "";
+        pendingHeroPhoto = null;
+        showHeroPhotoPreview(siteData.heroPhotoUrl || defaultData.heroPhotoUrl);
+        showAdminStatus(
+            file.size > 5 * 1024 * 1024
+                ? "The photo must be 5 MB or smaller."
+                : "Choose a JPG, PNG, or WebP image.",
+            true
+        );
+        return;
+    }
+
+    pendingHeroPhoto = file;
+    revokeTemporaryHeroPhotoUrl();
+    temporaryHeroPhotoUrl = URL.createObjectURL(file);
+    document.getElementById("adminHeroPhotoPreview").src = temporaryHeroPhotoUrl;
+    document.getElementById("adminHeroPhotoPreview").hidden = false;
+});
 
 const adminViewButtons =
     document.querySelectorAll("[data-admin-view]");
@@ -4851,6 +5199,15 @@ adminViewButtons.forEach(function(button) {
     button.addEventListener("click", function() {
         setAdminView(button.dataset.adminView);
     });
+});
+
+[1, 2, 3].forEach(function(index) {
+    document.getElementById(`adminVideoUrl${index}`).addEventListener(
+        "input",
+        function() {
+            updateVideoThumbnailPreview(index);
+        }
+    );
 });
 
 
@@ -5030,6 +5387,10 @@ saveChanges.addEventListener(
 
             readAdminInputs();
 
+            if (pendingHeroPhoto) {
+                siteData.heroPhotoUrl = await uploadHeroPhoto(pendingHeroPhoto);
+            }
+
             const { data, error } = await supabaseClient
                 .from("site_content")
                 .update({
@@ -5051,6 +5412,9 @@ saveChanges.addEventListener(
             }
 
             hasRemoteSiteData = true;
+            pendingHeroPhoto = null;
+            heroPhotoUpload.value = "";
+            showHeroPhotoPreview(siteData.heroPhotoUrl);
             applyData();
             document.getElementById("storageNote").textContent =
                 "Website content is synced from Supabase.";
