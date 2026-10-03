@@ -4032,12 +4032,13 @@ footer {
    SUPABASE CONFIGURATION
 ========================================================= */
 
-const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
-const ADMIN_EMAIL = "YOUR_ADMIN_EMAIL";
+const SUPABASE_URL = "https://xgqlbrjjczgzpsnzjgav.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_PX20XcPHUc8cO8vZFNp7Tg_o2H3S_Fi";
+const ADMIN_EMAIL = "lowdva999@gmail.com";
 const SUPABASE_CONFIGURED =
     !SUPABASE_URL.includes("YOUR_PROJECT_ID") &&
-    !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_PUBLISHABLE_KEY") &&
+    !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_PUBLISHABLE_KEY");
+const ADMIN_EMAIL_CONFIGURED =
     !ADMIN_EMAIL.includes("YOUR_ADMIN_EMAIL");
 const supabaseClient =
     SUPABASE_CONFIGURED && window.supabase
@@ -4900,8 +4901,8 @@ loginForm.addEventListener(
         submitButton.disabled = true;
 
         try {
-            if (!SUPABASE_CONFIGURED || !supabaseClient) {
-                throw new Error("Add the Supabase URL, publishable key, and admin email to index.html first.");
+            if (!SUPABASE_CONFIGURED || !supabaseClient || !ADMIN_EMAIL_CONFIGURED) {
+                throw new Error("Add the Supabase admin email to index.html before signing in.");
             }
 
             const { data, error } =
