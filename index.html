@@ -200,9 +200,10 @@ button {
 
 .site-logo {
     display: none;
-    max-height: 34px;
-    max-width: 170px;
-    object-fit: contain;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
     filter: none;
 }
 
@@ -3440,14 +3441,17 @@ footer {
                 <div class="admin-field">
 
                     <label>
-                        LOGO IMAGE URL
+                        PROFILE / LOGO IMAGE URL
                     </label>
 
                     <input
                         type="url"
                         id="adminLogoImage"
-                        placeholder="https://example.com/logo.png"
+                        placeholder="https://example.com/profile-photo.jpg"
                     >
+                    <p class="admin-upload-help">
+                        This image is shared by your hero profile card and header. The ALI text stays beside it.
+                    </p>
 
                 </div>
 
@@ -4522,18 +4526,13 @@ function applyData() {
 
     const logoImg = document.getElementById("siteLogo");
     const brandWordmark = document.getElementById("brandWordmark");
+    const profileImage = siteData.heroPhotoUrl || siteData.logoImage || defaultData.heroPhotoUrl;
 
-    if (siteData.logoImage && siteData.logoImage.trim()) {
-        logoImg.src = siteData.logoImage.trim();
-        logoImg.alt = siteData.logoText || "Brand logo";
-        logoImg.classList.add("visible");
-        brandWordmark.style.display = "none";
-    } else {
-        logoImg.src = "";
-        logoImg.classList.remove("visible");
-        brandWordmark.style.display = "inline-flex";
-        brandWordmark.innerHTML = (siteData.logoText || "ALI") + "<span>.</span>";
-    }
+    logoImg.src = profileImage;
+    logoImg.alt = `${siteData.logoText || "ALI"} profile photo`;
+    logoImg.classList.add("visible");
+    brandWordmark.style.display = "inline-flex";
+    brandWordmark.innerHTML = (siteData.logoText || "ALI") + "<span>.</span>";
 
     document.getElementById("heroFirstName").textContent =
         siteData.firstName;
@@ -4551,7 +4550,7 @@ function applyData() {
         `${siteData.firstName} ${siteData.lastName}`;
 
     document.getElementById("heroCardPhoto").src =
-        siteData.heroPhotoUrl || defaultData.heroPhotoUrl;
+        profileImage;
 
     document.getElementById("aboutName").textContent =
         siteData.firstName + ".";
@@ -4694,7 +4693,7 @@ function fillAdminInputs() {
         siteData.siteTitle;
 
     document.getElementById("adminLogoImage").value =
-        siteData.logoImage || "";
+        siteData.logoImage || siteData.heroPhotoUrl || "";
 
     document.getElementById("adminHeroPhotoUpload").value = "";
     pendingHeroPhoto = null;
@@ -4838,12 +4837,12 @@ function readAdminInputs() {
             ).value.trim() || "ALI ZEWAR — Official",
 
         logoImage:
-            document.getElementById(
-                "adminLogoImage"
-            ).value.trim(),
+            document.getElementById("adminLogoImage").value.trim(),
 
         heroPhotoUrl:
-            siteData.heroPhotoUrl || defaultData.heroPhotoUrl,
+            document.getElementById("adminLogoImage").value.trim() ||
+            siteData.heroPhotoUrl ||
+            defaultData.heroPhotoUrl,
 
         logoText:
             document.getElementById(
@@ -5389,6 +5388,7 @@ saveChanges.addEventListener(
 
             if (pendingHeroPhoto) {
                 siteData.heroPhotoUrl = await uploadHeroPhoto(pendingHeroPhoto);
+                siteData.logoImage = siteData.heroPhotoUrl;
             }
 
             const { data, error } = await supabaseClient
