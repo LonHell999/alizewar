@@ -5045,7 +5045,9 @@ saveChanges.addEventListener(
             }
 
             if (!data) {
-                throw new Error("Supabase did not update the site content row. Check the admin email and row-level security policy.");
+                throw new Error(
+                    "Supabase blocked the update. In your Supabase SQL Editor, run the latest supabase-schema.sql, confirm it uses your admin email, then sign out and sign in again."
+                );
             }
 
             hasRemoteSiteData = true;
