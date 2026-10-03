@@ -5444,6 +5444,27 @@ saveChanges.addEventListener(
    ADMIN SHORTCUT AND ESC CLOSE
 ========================================================= */
 
+const homeLogo = document.querySelector(".navbar .logo");
+let logoAdminTapCount = 0;
+let logoAdminTapTimeout;
+
+homeLogo.addEventListener("click", function(event) {
+    logoAdminTapCount += 1;
+    clearTimeout(logoAdminTapTimeout);
+
+    if (logoAdminTapCount >= 5) {
+        event.preventDefault();
+        logoAdminTapCount = 0;
+        loginOverlay.classList.add("active");
+        document.getElementById("loginUsername").focus();
+        return;
+    }
+
+    logoAdminTapTimeout = setTimeout(function() {
+        logoAdminTapCount = 0;
+    }, 2500);
+});
+
 window.addEventListener(
     "keydown",
     function(event) {
