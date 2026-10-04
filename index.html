@@ -5916,14 +5916,14 @@ img.daily-post-media {
         <section id="dailyPostLogin" class="daily-post-card daily-post-login daily-post-hidden">
             <h2 id="dailyPostAuthTitle">Welcome to Daily Post</h2>
             <p id="dailyPostAuthDescription">Sign in or create an account to follow people and share your posts.</p>
-            <form id="dailyPostLoginForm">
+            <form id="dailyPostLoginForm" novalidate>
                 <input id="dailyPostUsername" class="daily-post-hidden" type="text" autocomplete="username" placeholder="Username (3–24 letters, numbers, _)" aria-label="Username" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]{3,24}">
                 <input id="dailyPostDisplayName" class="daily-post-hidden" type="text" autocomplete="name" placeholder="Display name" aria-label="Display name" maxlength="60">
                 <input id="dailyPostEmail" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
-                <input id="dailyPostPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" minlength="8" required>
+                <input id="dailyPostPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>
                 <input id="dailyPostConfirmPassword" class="daily-post-hidden" type="password" autocomplete="new-password" placeholder="Confirm password" aria-label="Confirm password">
                 <button class="daily-post-button primary" type="submit">SIGN IN</button>
-                <div id="dailyPostLoginError" class="daily-post-error" role="alert"></div>
+                <div id="dailyPostLoginError" class="daily-post-error" role="alert" tabindex="-1"></div>
             </form>
             <div class="daily-post-action-row">
                 <button id="dailyPostToggleAuth" class="daily-post-button" type="button">Create account</button>
@@ -10591,6 +10591,7 @@ function setDailyPostAuthMode(mode) {
     dailyPostElements.loginEmail.required = !isRecovery;
     dailyPostElements.loginPassword.autocomplete = isRecovery ? "new-password" : "current-password";
     dailyPostElements.loginPassword.placeholder = isRecovery ? "New password" : "Password";
+    dailyPostElements.loginPassword.minLength = isSignup || isRecovery ? 8 : -1;
     dailyPostElements.confirmPassword.classList.toggle("daily-post-hidden", !isSignup && !isRecovery);
     dailyPostElements.usernameInput.required = isSignup;
     dailyPostElements.displayNameInput.required = isSignup;
@@ -10615,6 +10616,16 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
             throw new Error("The sign-in service is unavailable. Refresh the page and try again.");
         }
         const password = dailyPostElements.loginPassword.value;
+        const email = dailyPostElements.loginEmail.value.trim();
+        if (dailyPostAuthMode !== "recovery" && !email) {
+            throw new Error("Enter your email address.");
+        }
+        if (dailyPostAuthMode !== "recovery" && !dailyPostElements.loginEmail.validity.valid) {
+            throw new Error("Enter a valid email address.");
+        }
+        if (!password) {
+            throw new Error(dailyPostAuthMode === "recovery" ? "Enter your new password." : "Enter your password.");
+        }
         let data;
         if (dailyPostAuthMode === "recovery") {
             if (password.length < 8) throw new Error("Password must be at least 8 characters.");
@@ -10632,7 +10643,6 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
             return;
         }
 
-        const email = dailyPostElements.loginEmail.value.trim();
         if (dailyPostAuthMode === "signup") {
             const username = dailyPostElements.usernameInput.value.trim().toLowerCase();
             const displayName = dailyPostElements.displayNameInput.value.trim();
@@ -10695,7 +10705,12 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
     } catch (error) {
         console.error("Daily Post authentication failed.", error);
         const authErrorText = String(error.code || "") + " " + String(error.message || "");
-        if (dailyPostUser && dailyPostUser.id) {
+        if (error.message === "Enter your email address." ||
+            error.message === "Enter a valid email address." ||
+            error.message === "Enter your password." ||
+            error.message === "Enter your new password.") {
+            dailyPostElements.loginError.textContent = error.message;
+        } else if (dailyPostUser && dailyPostUser.id) {
             dailyPostElements.login.classList.remove("daily-post-hidden");
             dailyPostElements.loginError.textContent =
                 "Your email and password were accepted, but your account profile could not finish loading. The Supabase profile setup needs repair; refresh after applying the latest schema.";
@@ -10717,6 +10732,8 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
             dailyPostElements.loginError.textContent =
                 error.message || "Could not authenticate. Check your details and try again.";
         }
+            dailyPostElements.loginError.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            dailyPostElements.loginError.focus({ preventScroll: true });
     } finally {
         button.disabled = false;
         button.textContent = dailyPostAuthMode === "signup"
