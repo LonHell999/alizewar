@@ -4293,6 +4293,741 @@ img.daily-post-media {
     }
 }
 
+/* Daily Post application polish */
+.daily-post-page {
+    --dp-bg: #090b0e;
+    --dp-surface: #111419;
+    --dp-surface-raised: #181d23;
+    --dp-line: rgba(255,255,255,.09);
+    --dp-text: #f4f5f7;
+    --dp-muted: #9299a3;
+    background:
+        radial-gradient(ellipse at 50% -22%, rgba(195,54,82,.12), transparent 42%),
+        var(--dp-bg);
+}
+
+.daily-post-page button,
+.daily-post-page input,
+.daily-post-page textarea,
+.daily-post-page select {
+    font-family: inherit;
+}
+
+.daily-post-page [hidden] {
+    display: none !important;
+}
+
+.daily-post-topbar {
+    height: 66px;
+    padding-inline: max(5%, calc((100vw - 1480px) / 2));
+    background: rgba(9,11,14,.88);
+    box-shadow: 0 1px 0 rgba(255,255,255,.035);
+}
+
+.daily-post-brand {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 29px;
+    letter-spacing: .04em;
+}
+
+.daily-post-back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--dp-line);
+    border-radius: 999px;
+    color: #c8cbd1;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+.daily-post-back:hover {
+    border-color: rgba(255,255,255,.22);
+    background: rgba(255,255,255,.045);
+}
+
+.daily-post-main {
+    width: min(1480px, 94%);
+    margin: 26px auto 90px;
+}
+
+.daily-post-layout {
+    grid-template-columns: 224px minmax(0, 640px) 290px;
+    justify-content: center;
+    gap: clamp(22px, 3.2vw, 50px);
+}
+
+.daily-post-sidebar {
+    top: 84px;
+    gap: 5px;
+    padding: 14px 8px;
+}
+
+.daily-post-sidebar button {
+    min-height: 48px;
+    border-radius: 12px;
+    color: #b8bdc5;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.daily-post-sidebar button:hover,
+.daily-post-sidebar button.active {
+    border-color: transparent;
+    background: rgba(255,255,255,.065);
+    color: var(--dp-text);
+}
+
+.daily-post-sidebar button.active {
+    box-shadow: inset 3px 0 #d74461;
+}
+
+.daily-post-intro {
+    align-items: center;
+    padding: 8px 0 24px;
+    border-bottom: 0;
+}
+
+.daily-post-main .daily-post-intro {
+    margin-bottom: 12px;
+}
+
+.daily-post-eyebrow {
+    margin-bottom: 7px;
+    color: #e27082;
+    font-size: 10px;
+    letter-spacing: .18em;
+}
+
+.daily-post-intro h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(38px, 5vw, 52px);
+    font-weight: 400;
+    letter-spacing: .015em;
+}
+
+.daily-post-intro > p {
+    max-width: 260px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.daily-post-card {
+    border: 1px solid var(--dp-line);
+    border-radius: 16px;
+    background: linear-gradient(155deg, rgba(22,26,32,.98), rgba(16,19,24,.98));
+    box-shadow: 0 12px 34px rgba(0,0,0,.13);
+}
+
+.daily-post-notice {
+    margin-bottom: 14px;
+    padding: 12px 15px;
+    border: 1px solid rgba(231,116,126,.26);
+    border-radius: 12px;
+    background: rgba(176,50,67,.1);
+    color: #f3bdc1;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.daily-post-search {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.daily-post-search input {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--dp-line);
+    border-radius: 12px;
+    background: rgba(255,255,255,.035);
+    color: var(--dp-text);
+    font-size: 12px;
+}
+
+.daily-post-search .daily-post-button {
+    min-height: 44px;
+    border-radius: 12px;
+}
+
+.daily-post-stories {
+    margin-bottom: 14px;
+    padding: 18px 20px 16px;
+}
+
+.daily-post-heading {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -.015em;
+}
+
+.daily-post-heading small {
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.daily-post-story-list {
+    gap: 19px;
+    overflow-x: auto;
+    padding: 3px 2px 5px;
+    scrollbar-width: thin;
+}
+
+.daily-post-story {
+    flex-basis: 74px;
+    width: 74px;
+}
+
+.daily-post-story-ring {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 9px;
+    padding: 2px;
+    outline: 0;
+    background:
+        linear-gradient(var(--dp-surface), var(--dp-surface)) padding-box,
+        linear-gradient(145deg, #f1a340, #df405e 52%, #9948bd) border-box;
+}
+
+.daily-post-story-ring.read {
+    background:
+        linear-gradient(var(--dp-surface), var(--dp-surface)) padding-box,
+        linear-gradient(145deg, #4d545e, #373c44) border-box;
+}
+
+.daily-post-story-ring img,
+.daily-post-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+}
+
+.daily-post-add-story .daily-post-story-ring {
+    border: 1px solid rgba(255,255,255,.09);
+    background: linear-gradient(145deg, #252a31, #171a1f);
+    color: #f3a0ad;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.daily-post-story-label {
+    max-width: 74px;
+    overflow: hidden;
+    color: #d0d2d7;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.daily-post-composer-launch {
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 16px 18px;
+    border-top: 1px solid var(--dp-line);
+}
+
+.daily-post-composer-launch .daily-post-avatar {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+}
+
+.daily-post-composer-launch-main > button {
+    min-height: 43px;
+    padding: 0 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.045);
+    font-size: 13px;
+}
+
+.daily-post-composer-launch-actions {
+    margin-top: 10px;
+}
+
+.daily-post-composer-launch-actions span {
+    font-size: 9px;
+    letter-spacing: .06em;
+}
+
+.daily-post-composer-launch-actions button {
+    padding: 7px 11px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(215,68,97,.12);
+    color: #f08b9c;
+    font-size: 10px;
+}
+
+.daily-post-feed-tabs {
+    display: flex;
+    gap: 24px;
+    margin: 0 0 14px;
+    border-bottom: 1px solid var(--dp-line);
+}
+
+.daily-post-feed-tabs button {
+    position: relative;
+    min-height: 42px;
+    padding: 0 2px;
+    border: 0;
+    background: transparent;
+    color: var(--dp-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.daily-post-feed-tabs button.active {
+    color: var(--dp-text);
+}
+
+.daily-post-feed-tabs button.active::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #e05b72;
+    content: "";
+}
+
+.daily-post-section-title {
+    margin: 19px 0 12px;
+    color: #b7bdc6;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.daily-post-composer,
+.daily-post-item {
+    margin-bottom: 14px;
+    padding: 19px;
+}
+
+.daily-post-item {
+    overflow: hidden;
+}
+
+.daily-post-row {
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.daily-post-avatar,
+.daily-post-avatar-image {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    border-radius: 50%;
+}
+
+.daily-post-author {
+    color: #f3f4f6;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.daily-post-time,
+.daily-post-subtitle {
+    margin-top: 3px;
+    color: #9097a1;
+    font-size: 11px;
+}
+
+.daily-post-item-copy {
+    margin: 0 0 13px;
+    color: #e4e6e9;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.daily-post-media-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3px;
+    margin: 12px -19px 14px;
+    overflow: hidden;
+    background: #090b0e;
+}
+
+.daily-post-media-gallery:has(> :only-child) {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.daily-post-media-gallery .daily-post-media {
+    display: block;
+    width: 100%;
+    max-height: 560px;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 0;
+    background: #0b0d10;
+    object-fit: cover;
+}
+
+.daily-post-media-gallery .daily-post-media:nth-child(n+5) {
+    display: none;
+}
+
+.daily-post-media-gallery:has(> :only-child) .daily-post-media {
+    max-height: 640px;
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
+.daily-post-media-gallery:has(audio) {
+    display: block;
+    padding: 14px 19px;
+}
+
+.daily-post-media-gallery audio {
+    width: 100%;
+}
+
+.daily-post-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.daily-post-action-row .daily-post-button,
+.daily-post-button {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--dp-line);
+    border-radius: 10px;
+    background: rgba(255,255,255,.035);
+    color: #cbd0d7;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.daily-post-action-row .daily-post-button:hover,
+.daily-post-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,.2);
+    background: rgba(255,255,255,.075);
+    color: white;
+}
+
+.daily-post-button.primary {
+    border-color: transparent;
+    background: linear-gradient(115deg, #e25370, #c63455);
+    color: #fff;
+}
+
+.daily-post-button.active {
+    border-color: rgba(224,91,114,.5);
+    background: rgba(224,91,114,.13);
+    color: #f49aaa;
+}
+
+.daily-post-delete {
+    margin: 8px 7px 0 0;
+    padding: 5px 0;
+    border: 0;
+    background: transparent;
+    color: #9299a3;
+    font: inherit;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.daily-post-delete:hover {
+    color: #f18d9b;
+}
+
+.daily-post-recommendations {
+    top: 88px;
+    padding: 18px 16px;
+    border: 1px solid var(--dp-line);
+    border-radius: 16px;
+    background: rgba(17,20,25,.76);
+}
+
+.daily-post-recommendation {
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.055);
+}
+
+.daily-post-recommendation:last-child {
+    border-bottom: 0;
+}
+
+.daily-post-recommendation .daily-post-avatar,
+.daily-post-recommendation .daily-post-avatar-image {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+}
+
+.daily-post-recommendation .daily-post-button {
+    min-height: 30px;
+    padding-inline: 10px;
+    border-color: transparent;
+    background: rgba(215,68,97,.12);
+    color: #f08b9c;
+    font-size: 9px;
+}
+
+.daily-post-empty {
+    padding: 16px 14px;
+    border: 1px dashed rgba(255,255,255,.12);
+    border-radius: 12px;
+    color: var(--dp-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.daily-post-login {
+    padding: 22px;
+}
+
+.daily-post-login h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.daily-post-login p {
+    color: var(--dp-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.daily-post-form textarea,
+.daily-post-center select,
+.daily-post-profile-form input,
+.daily-post-profile-form textarea,
+#dailyPostProfileForm input:not([type="file"]),
+#dailyPostProfileForm textarea,
+#dailyPostSettingsForm input:not([type="checkbox"]),
+.daily-post-login input {
+    min-height: 42px;
+    padding: 11px 13px;
+    border: 1px solid var(--dp-line);
+    border-radius: 11px;
+    background: rgba(7,9,12,.65);
+    color: var(--dp-text);
+    font-size: 13px;
+}
+
+.daily-post-form textarea {
+    min-height: 125px;
+    resize: vertical;
+}
+
+.daily-post-controls {
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--dp-line);
+}
+
+.daily-post-modal-card {
+    border: 1px solid var(--dp-line);
+    border-radius: 18px;
+    background: #111419;
+}
+
+.daily-post-mobile-nav {
+    border-top: 1px solid var(--dp-line);
+    background: rgba(12,14,18,.94);
+    backdrop-filter: blur(18px);
+}
+
+.daily-post-mobile-nav button {
+    min-width: 56px;
+    border-radius: 10px;
+    color: #a5abb4;
+    font-size: 10px;
+}
+
+.daily-post-mobile-nav button.active {
+    color: #f4a0ad;
+    box-shadow: inset 0 2px #df536d;
+}
+
+.daily-post-page.light .daily-post-feed-tabs button.active,
+.daily-post-page.light .daily-post-item-copy {
+    color: #20242a;
+}
+
+.daily-post-page.light .daily-post-recommendations {
+    background: rgba(255,255,255,.88);
+}
+
+@media (max-width: 1180px) {
+    .daily-post-layout {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 25px;
+    }
+
+    .daily-post-sidebar {
+        padding-inline: 0;
+    }
+
+    .daily-post-sidebar button {
+        width: 50px;
+        overflow: hidden;
+        padding-inline: 15px;
+        font-size: 0;
+    }
+
+    .daily-post-sidebar button::first-letter {
+        font-size: 18px;
+    }
+
+    .daily-post-right-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .daily-post-topbar {
+        height: 58px;
+        padding-inline: 16px;
+    }
+
+    .daily-post-brand {
+        font-size: 25px;
+    }
+
+    .daily-post-back {
+        min-height: 32px;
+        padding-inline: 10px;
+        font-size: 9px;
+    }
+
+    .daily-post-main {
+        width: 100%;
+        margin: 10px auto 0;
+        padding: 0 12px calc(116px + env(safe-area-inset-bottom));
+    }
+
+    .daily-post-center {
+        width: 100%;
+    }
+
+    .daily-post-intro {
+        align-items: flex-start;
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px 3px 17px;
+    }
+
+    .daily-post-intro h1 {
+        font-size: 39px;
+    }
+
+    .daily-post-intro > p {
+        max-width: 150px;
+        font-size: 10px;
+    }
+
+    .daily-post-search {
+        gap: 6px;
+    }
+
+    .daily-post-search input {
+        min-width: 0;
+    }
+
+    .daily-post-stories {
+        padding: 15px 13px 12px;
+        border-radius: 14px;
+    }
+
+    .daily-post-composer-launch {
+        padding: 13px;
+        border-radius: 14px;
+    }
+
+    .daily-post-composer-launch-actions span {
+        font-size: 8px;
+    }
+
+    .daily-post-composer-launch-actions button {
+        padding-inline: 8px;
+        font-size: 9px;
+    }
+
+    .daily-post-composer,
+    .daily-post-item {
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .daily-post-media-gallery {
+        margin-inline: -15px;
+    }
+
+    .daily-post-media-gallery:has(> :only-child) .daily-post-media {
+        max-height: min(72vh, 620px);
+    }
+
+    .daily-post-mobile-nav {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 3px 2px;
+        padding: 7px 6px calc(7px + env(safe-area-inset-bottom));
+    }
+
+    .daily-post-mobile-nav button {
+        display: flex;
+        min-width: 0;
+        min-height: 42px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        padding: 3px 1px;
+        border: 0;
+        border-radius: 9px;
+        font-size: inherit;
+        line-height: 1;
+    }
+
+    .daily-post-mobile-nav button > span {
+        font-size: 17px;
+        line-height: 1;
+    }
+
+    .daily-post-mobile-nav button > small {
+        font-size: 8px;
+        font-weight: 650;
+        letter-spacing: .025em;
+        white-space: nowrap;
+    }
+
+    .daily-post-toast {
+        right: 12px;
+        bottom: calc(112px + env(safe-area-inset-bottom));
+        left: 12px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .daily-post-intro > p {
+        max-width: 120px;
+    }
+
+    .daily-post-story-list {
+        gap: 13px;
+    }
+
+    .daily-post-composer-launch-actions span {
+        letter-spacing: 0;
+    }
+}
+
 </style>
 
 </head>
@@ -5172,10 +5907,10 @@ img.daily-post-media {
         <div class="daily-post-center">
         <section class="daily-post-intro">
             <div>
-                <p class="daily-post-eyebrow">YOUR DAILY CREATOR FEED</p>
+                <p class="daily-post-eyebrow">A CREATOR COMMUNITY</p>
                 <h1>DAILY POST</h1>
             </div>
-            <p>Little moments, new music, photos, and updates — straight from me.</p>
+            <p>Share your moments, discover creators, and keep up with the people you follow.</p>
         </section>
         <div id="dailyPostNotice" class="daily-post-notice daily-post-hidden" role="status"></div>
         <section id="dailyPostLogin" class="daily-post-card daily-post-login daily-post-hidden">
@@ -5199,11 +5934,11 @@ img.daily-post-media {
         <div id="dailyPostFeed" class="daily-post-hidden">
             <form id="dailyPostSearchForm" class="daily-post-search">
                 <input id="dailyPostSearch" type="search" autocomplete="off" placeholder="Search people and posts…" aria-label="Search people and posts">
-                <button class="daily-post-button" type="submit">SEARCH</button>
+                <button class="daily-post-button" type="submit">Search</button>
             </form>
             <div id="dailyPostSearchResults" class="daily-post-search-results"></div>
             <section class="daily-post-card daily-post-stories">
-                <h2 class="daily-post-heading">STORIES <small>Disappear after 24 hours</small></h2>
+                <h2 class="daily-post-heading">Stories <small>Gone after 24 hours</small></h2>
                 <div id="dailyPostStoryList" class="daily-post-story-list"></div>
                 <div id="dailyPostEmptyStories" class="daily-post-empty daily-post-hidden">No active stories right now. Check back soon.</div>
             </section>
@@ -5212,11 +5947,15 @@ img.daily-post-media {
                 <div class="daily-post-composer-launch-main">
                     <button type="button" data-daily-view="create" aria-label="Write a post">What would you like to share?</button>
                     <div class="daily-post-composer-launch-actions">
-                        <span>PHOTO · VIDEO · MUSIC · STORY</span>
+                        <span>PHOTO · VIDEO · AUDIO · STORY</span>
                         <button type="button" data-daily-view="create">CREATE POST</button>
                     </div>
                 </div>
             </section>
+            <div class="daily-post-feed-tabs" role="group" aria-label="Choose feed">
+                <button type="button" class="active" data-feed-mode="for-you" aria-pressed="true">For you</button>
+                <button type="button" data-feed-mode="following" aria-pressed="false">Following</button>
+            </div>
             <section id="dailyPostComposer" class="daily-post-card daily-post-composer daily-post-hidden" role="dialog" aria-modal="true" aria-labelledby="dailyPostComposerTitle" aria-hidden="true">
                 <button id="dailyPostCloseComposer" class="daily-post-close-composer" type="button" aria-label="Close create post">×</button>
                 <div class="daily-post-row">
@@ -5246,7 +5985,7 @@ img.daily-post-media {
                     </div>
                 </form>
             </section>
-            <h2 class="daily-post-heading">LATEST POSTS</h2>
+            <h2 class="daily-post-heading daily-post-section-title">Latest posts</h2>
             <div id="dailyPostList"></div>
             <div id="dailyPostEmpty" class="daily-post-empty daily-post-hidden">No posts yet. New updates will show up here.</div>
 
@@ -5328,17 +6067,21 @@ img.daily-post-media {
         </div>
         </div>
         <aside class="daily-post-card daily-post-recommendations daily-post-right-sidebar">
-            <h2 class="daily-post-heading">PEOPLE TO FOLLOW</h2>
+            <h2 class="daily-post-heading">People to discover</h2>
             <div id="dailyPostRecommendedUsers" class="daily-post-empty">Sign in to discover people.</div>
         </aside>
       </div>
     </main>
     <nav class="daily-post-mobile-nav" aria-label="Social navigation">
-        <button type="button" data-daily-view="home">HOME</button>
-        <button type="button" data-daily-view="explore">EXPLORE</button>
-        <button type="button" data-daily-view="create">CREATE</button>
-        <button type="button" data-daily-view="notifications">ALERTS</button>
-        <button type="button" data-daily-view="profile">PROFILE</button>
+        <button type="button" data-daily-view="home" class="active" aria-label="Home"><span aria-hidden="true">⌂</span><small>HOME</small></button>
+        <button type="button" data-daily-view="explore" aria-label="Explore"><span aria-hidden="true">⌕</span><small>EXPLORE</small></button>
+        <button type="button" data-daily-view="create" aria-label="Create post"><span aria-hidden="true">＋</span><small>CREATE</small></button>
+        <button type="button" data-daily-view="notifications" aria-label="Notifications"><span aria-hidden="true">♡</span><small>ALERTS</small></button>
+        <button type="button" data-daily-view="messages" aria-label="Messages"><span aria-hidden="true">✉</span><small>INBOX</small></button>
+        <button type="button" data-daily-view="saved" aria-label="Saved posts"><span aria-hidden="true">▣</span><small>SAVED</small></button>
+        <button type="button" data-daily-view="profile" aria-label="Profile"><span aria-hidden="true">◉</span><small>PROFILE</small></button>
+        <button type="button" data-daily-view="settings" aria-label="Settings"><span aria-hidden="true">⚙</span><small>SETTINGS</small></button>
+        <button type="button" data-daily-action="signout" class="daily-post-hidden" aria-label="Log out"><span aria-hidden="true">↪</span><small>LOG OUT</small></button>
     </nav>
     <div id="dailyPostStoryModal" class="daily-post-modal daily-post-hidden" role="dialog" aria-modal="true" aria-label="Story">
         <div id="dailyPostModalCard" class="daily-post-modal-card">
@@ -8032,6 +8775,7 @@ const dailyPostElements = {
     forgotPassword: document.getElementById("dailyPostForgotPassword"),
     resendVerification: document.getElementById("dailyPostResendVerification"),
     signOut: document.getElementById("dailyPostSignOut"),
+    mobileSignOut: document.querySelector('.daily-post-mobile-nav [data-daily-action="signout"]'),
     currentUser: document.getElementById("dailyPostCurrentUser"),
     searchForm: document.getElementById("dailyPostSearchForm"),
     searchInput: document.getElementById("dailyPostSearch"),
@@ -8040,6 +8784,9 @@ const dailyPostElements = {
     composer: document.getElementById("dailyPostComposer"),
     closeComposer: document.getElementById("dailyPostCloseComposer"),
     subtitle: document.getElementById("dailyPostSubtitle"),
+    composerAvatar: document.getElementById("dailyPostComposerAvatar"),
+    composerLaunch: document.querySelector(".daily-post-composer-launch"),
+    feedTabs: document.querySelector(".daily-post-feed-tabs"),
     postForm: document.getElementById("dailyPostForm"),
     text: document.getElementById("dailyPostText"),
     mediaInput: document.getElementById("dailyPostMediaInput"),
@@ -8133,7 +8880,10 @@ let dailyPostRealtimeChannel = null;
 let dailyPostConversationId = null;
 let dailyPostConversationProfile = null;
 let dailyPostCurrentView = "home";
+let dailyPostFeedMode = "for-you";
 let dailyPostComposerTrigger = null;
+let dailyPostSessionTask = null;
+let dailyPostSessionTaskUserId = null;
 
 function setDailyPostPage(isOpen) {
     dailyPostPage.classList.toggle("active", isOpen);
@@ -8193,7 +8943,7 @@ function createDailyPostMedia(post) {
     let media;
     if (post.media_type === "image") {
         media = document.createElement("img");
-        media.alt = "Photo shared by Ali";
+        media.alt = "Photo shared on Daily Post";
     } else if (post.media_type === "video") {
         media = document.createElement("video");
         media.controls = true;
@@ -8254,16 +9004,21 @@ function createDailyPostCard(post, isStory) {
         text.textContent = post.text_content;
         article.append(text);
     }
-    (post.post_media || []).forEach(function(mediaData) {
-        const media = createDailyPostMedia(mediaData);
-        if (media) article.append(media);
-    });
+    const mediaItems = (post.post_media || []).slice();
     if (post.legacy_media_url && post.legacy_media_type) {
-        const legacyMedia = createDailyPostMedia({
+        mediaItems.push({
             media_url: post.legacy_media_url,
             media_type: post.legacy_media_type
         });
-        if (legacyMedia) article.append(legacyMedia);
+    }
+    if (mediaItems.length) {
+        const gallery = document.createElement("div");
+        gallery.className = "daily-post-media-gallery";
+        mediaItems.forEach(function(mediaData) {
+            const media = createDailyPostMedia(mediaData);
+            if (media) gallery.append(media);
+        });
+        if (gallery.childElementCount) article.append(gallery);
     }
     if (!isStory) {
         const actions = document.createElement("div");
@@ -8271,28 +9026,31 @@ function createDailyPostCard(post, isStory) {
         const like = document.createElement("button");
         like.type = "button";
         like.className = "daily-post-button";
-        like.textContent = (post.viewer_liked ? "♥ " : "♡ ") + (post.like_count || 0) + " likes";
+        like.setAttribute("aria-pressed", String(Boolean(post.viewer_liked)));
+        like.textContent = (post.viewer_liked ? "♥  " : "♡  ") + (post.like_count || 0);
+        like.setAttribute("aria-label", (post.viewer_liked ? "Unlike" : "Like") +
+            " post, " + (post.like_count || 0) + " likes");
         like.addEventListener("click", function() {
             toggleDailyPostLike(post, like);
         });
         const comments = document.createElement("button");
         comments.type = "button";
         comments.className = "daily-post-button";
-        comments.textContent = "💬 " + (post.comment_count || 0) + " comments";
+        comments.textContent = "Comment · " + (post.comment_count || 0);
         comments.addEventListener("click", function() {
             toggleDailyPostComments(post, article);
         });
         const save = document.createElement("button");
         save.type = "button";
         save.className = "daily-post-button";
-        save.textContent = post.viewer_saved ? "SAVED" : "SAVE";
+        save.textContent = post.viewer_saved ? "Saved" : "Save";
         save.addEventListener("click", function() {
             toggleDailyPostSave(post, save);
         });
         const share = document.createElement("button");
         share.type = "button";
         share.className = "daily-post-button";
-        share.textContent = "↗ SHARE";
+        share.textContent = "Share";
         share.addEventListener("click", function() {
             shareDailyPost(post);
         });
@@ -8388,8 +9146,26 @@ function showAdjacentDailyPostStory(direction) {
 function renderDailyPostStories(stories) {
     dailyPostStories = stories;
     dailyPostElements.storyList.replaceChildren();
-    dailyPostElements.emptyStories.classList.toggle("daily-post-hidden", stories.length > 0);
-    dailyPostElements.storyList.classList.toggle("daily-post-hidden", stories.length === 0);
+    dailyPostElements.emptyStories.classList.toggle("daily-post-hidden", stories.length > 0 || Boolean(dailyPostUser));
+    dailyPostElements.storyList.classList.toggle("daily-post-hidden", stories.length === 0 && !dailyPostUser);
+    if (dailyPostUser) {
+        const addStory = document.createElement("button");
+        addStory.type = "button";
+        addStory.className = "daily-post-story daily-post-add-story";
+        addStory.setAttribute("aria-label", "Create a story that disappears after 24 hours");
+        const ring = document.createElement("span");
+        ring.className = "daily-post-story-ring";
+        ring.textContent = "+";
+        const label = document.createElement("span");
+        label.className = "daily-post-story-label";
+        label.textContent = "Your story";
+        addStory.append(ring, label);
+        addStory.addEventListener("click", function() {
+            openDailyPostComposer();
+            setDailyPostStoryMode(true);
+        });
+        dailyPostElements.storyList.append(addStory);
+    }
     stories.forEach(function(story) {
         const button = document.createElement("button");
         button.type = "button";
@@ -8404,7 +9180,7 @@ function renderDailyPostStories(stories) {
             image.alt = "";
             ring.append(image);
         } else {
-            ring.textContent = "A";
+            ring.textContent = (story.author ? story.author.display_name : "D").slice(0, 1).toUpperCase();
         }
         const label = document.createElement("span");
         label.className = "daily-post-story-label";
@@ -8421,17 +9197,32 @@ function renderDailyPostStories(stories) {
 }
 
 async function loadDailyPostFeed() {
-    const [postsResult, storiesResult] = await Promise.all([
-        supabaseClient.from("posts")
-            .select("id, author_id, text_content, visibility, legacy_media_url, legacy_media_type, created_at, author:profiles!posts_author_id_fkey(id,username,display_name,avatar_path), post_media(id,storage_bucket,storage_path,media_type,position)")
-            .order("created_at", { ascending: false }).limit(50),
+    const followsRequest = dailyPostUser
+        ? supabaseClient.from("follows").select("followed_id").eq("follower_id", dailyPostUser.id)
+        : Promise.resolve({ data: [], error: null });
+    const [followsResult, storiesResult] = await Promise.all([
+        followsRequest,
         supabaseClient.from("stories")
             .select("id, author_id, text_content, storage_bucket, storage_path, media_type, created_at, expires_at, author:profiles!stories_author_id_fkey(id,username,display_name,avatar_path)")
             .gt("expires_at", new Date().toISOString())
             .order("created_at", { ascending: true }).limit(100)
     ]);
-    if (postsResult.error) throw postsResult.error;
+    if (followsResult.error) throw followsResult.error;
     if (storiesResult.error) throw storiesResult.error;
+    const followedIds = new Set((followsResult.data || []).map(function(row) {
+        return row.followed_id;
+    }));
+    let postsQuery = supabaseClient.from("posts")
+            .select("id, author_id, text_content, visibility, legacy_media_url, legacy_media_type, created_at, author:profiles!posts_author_id_fkey(id,username,display_name,avatar_path), post_media(id,storage_bucket,storage_path,media_type,position)")
+            .order("created_at", { ascending: false }).limit(50);
+    if (dailyPostFeedMode === "following") {
+        postsQuery = postsQuery.in("author_id", Array.from(followedIds).concat(dailyPostUser ? [dailyPostUser.id] : []));
+    }
+    const hasFollowingAuthors = followedIds.size > 0 || Boolean(dailyPostUser);
+    const postsResult = dailyPostFeedMode === "following" && !hasFollowingAuthors
+        ? { data: [], error: null }
+        : await postsQuery;
+    if (postsResult.error) throw postsResult.error;
     const posts = postsResult.data || [];
     const postIds = posts.map(function(post) { return post.id; });
     let likes = [];
@@ -8487,7 +9278,9 @@ async function loadDailyPostFeed() {
     dailyPostElements.postList.replaceChildren();
     dailyPostElements.emptyPosts.classList.toggle("daily-post-hidden", posts.length > 0);
     dailyPostElements.emptyPosts.textContent = dailyPostUser
-        ? "Your feed is empty. Follow people to start seeing posts here."
+        ? dailyPostFeedMode === "following"
+            ? "Posts from people you follow will appear here. Discover creators to get started."
+            : "There are no posts here yet. Explore the community and discover creators."
         : "Sign in or create an account to join the conversation.";
     await Promise.all(posts.map(async function(post) {
         post.like_count = likes.filter(function(row) { return row.post_id === post.id; }).length;
@@ -8519,13 +9312,6 @@ async function loadDailyPostFeed() {
             .order("created_at", { ascending: false }).limit(6)
     ]);
     if (suggestionResult.error) throw suggestionResult.error;
-    const followedIds = new Set();
-    if (dailyPostUser) {
-        const { data: followed, error } = await supabaseClient.from("follows")
-            .select("followed_id").eq("follower_id", dailyPostUser.id);
-        if (error) throw error;
-        (followed || []).forEach(function(row) { followedIds.add(row.followed_id); });
-    }
     renderDailyPostSuggestions((suggestionResult.data || []).filter(function(profile) {
         return profile.id !== (dailyPostUser && dailyPostUser.id) && !followedIds.has(profile.id);
     }));
@@ -8557,10 +9343,16 @@ async function publishDailyPost(kind) {
         showDailyPostToast(kind === "story" ? "A story can include one photo or video." : "Choose up to 10 photos or videos.");
         return;
     }
+    if (kind === "story" && files.some(function(file) {
+        return !file.type.startsWith("image/") && !file.type.startsWith("video/");
+    })) {
+        showDailyPostToast("Stories support one photo or video. Share audio as a regular post.");
+        return;
+    }
     if (files.some(function(file) {
         return !DAILY_POST_ALLOWED_TYPES.has(file.type) || file.size > DAILY_POST_MAX_MEDIA_SIZE;
     })) {
-        showDailyPostToast("Choose supported image/video files up to 50 MB each.");
+        showDailyPostToast("Choose supported photo, video, or audio files up to 50 MB each.");
         return;
     }
     try {
@@ -8643,9 +9435,7 @@ async function publishDailyPost(kind) {
         dailyPostElements.fileName.classList.add("daily-post-hidden");
         dailyPostElements.clearMedia.classList.add("daily-post-hidden");
         dailyPostElements.preview.replaceChildren();
-        dailyPostStoryMode = false;
-        dailyPostElements.publish.textContent = "POST";
-        dailyPostElements.subtitle.textContent = "Your update will be shared with everyone.";
+        setDailyPostStoryMode(false);
         await loadDailyPostFeed();
         showDailyPostToast(kind === "story"
             ? "Story shared — it will disappear in 24 hours."
@@ -8663,8 +9453,12 @@ async function publishDailyPost(kind) {
                 if (cleanupError) console.error("Could not clean up uploaded media.", cleanupError);
             }
         }
+        const isPostsPolicyError = error && error.code === "42501" &&
+            /row-level security policy.*posts|posts.*row-level security policy/i.test(error.message || "");
         showDailyPostToast(postCommitted
             ? "Your post was shared, but the feed could not refresh. Reload the page."
+            : isPostsPolicyError
+                ? "Supabase blocked this post. Run daily-post-publishing-repair.sql in the Supabase SQL Editor, then refresh; do not disable RLS."
             : (error.message || "Could not share your post. Please try again."));
     } finally {
         dailyPostElements.publish.disabled = false;
@@ -8723,6 +9517,8 @@ function setDailyPostView(view) {
         return;
     }
     dailyPostElements.storyList.closest(".daily-post-stories").hidden = view !== "home";
+    dailyPostElements.composerLaunch.hidden = view !== "home";
+    dailyPostElements.feedTabs.hidden = view !== "home";
     dailyPostElements.composer.hidden = true;
     dailyPostElements.postList.hidden = view !== "home";
     dailyPostElements.emptyPosts.hidden = view !== "home";
@@ -8743,6 +9539,17 @@ function setDailyPostView(view) {
     if (view === "admin") loadDailyPostAdmin();
 }
 
+function setDailyPostStoryMode(isStory) {
+    dailyPostStoryMode = isStory;
+    dailyPostElements.visibility.hidden = isStory;
+    dailyPostElements.storyButton.classList.toggle("active", isStory);
+    dailyPostElements.storyButton.setAttribute("aria-pressed", String(isStory));
+    dailyPostElements.subtitle.textContent = isStory
+        ? "Your story is visible to " + (dailyPostProfile && dailyPostProfile.is_private ? "your followers" : "everyone") + " and expires after 24 hours."
+        : "Your update will be shared with your selected audience.";
+    dailyPostElements.publish.textContent = isStory ? "SHARE STORY" : "POST";
+}
+
 function navigateDailyPostProfile(profile) {
     if (!profile) return;
     dailyPostProfileTarget = profile;
@@ -8756,6 +9563,7 @@ function navigateDailyPostProfile(profile) {
 function openDailyPostComposer() {
     dailyPostComposerTrigger = document.activeElement;
     setDailyPostView("home");
+    setDailyPostStoryMode(false);
     dailyPostElements.composer.hidden = false;
     dailyPostElements.composer.classList.remove("daily-post-hidden");
     dailyPostElements.composer.setAttribute("aria-hidden", "false");
@@ -8768,6 +9576,7 @@ function openDailyPostComposer() {
 }
 
 function closeDailyPostComposer(restoreFocus) {
+    setDailyPostStoryMode(false);
     dailyPostPage.classList.remove("composer-open");
     dailyPostElements.composer.setAttribute("aria-hidden", "true");
     dailyPostElements.composer.hidden = true;
@@ -9468,7 +10277,7 @@ async function initializeDailyPost() {
                     setDailyPostAuthMode("recovery");
                     dailyPostElements.login.classList.remove("daily-post-hidden");
                 } else if (event === "SIGNED_OUT") {
-                    setDailyPostSession(null).catch(function(error) {
+                    syncDailyPostSession(null).catch(function(error) {
                         console.error("Could not clear the Daily Post session.", error);
                     });
                 } else if (session && session.user) {
@@ -9481,7 +10290,7 @@ async function initializeDailyPost() {
                         });
                         return;
                     }
-                    setDailyPostSession(session.user).catch(function(error) {
+                    syncDailyPostSession(session.user).catch(function(error) {
                         console.error("Could not load the signed-in Daily Post account.", error);
                         showDailyPostNotice(
                             "You are signed in, but your Daily Post profile could not load. Confirm that the latest Supabase schema has been applied.",
@@ -9509,7 +10318,7 @@ async function initializeDailyPost() {
             dailyPostElements.loginError.textContent =
                 "Verify your email address from the confirmation email before signing in.";
         } else {
-            await setDailyPostSession(data.user);
+            await syncDailyPostSession(data.user);
         }
         if (dailyPostAuthMode === "recovery") {
             dailyPostElements.login.classList.remove("daily-post-hidden");
@@ -9529,6 +10338,55 @@ async function initializeDailyPost() {
     }
 }
 
+function updateDailyPostComposerAvatars() {
+    const avatarUrl = dailyPostProfile && dailyPostProfile.avatar_path
+        ? supabaseClient.storage.from(DAILY_PROFILE_BUCKET).getPublicUrl(dailyPostProfile.avatar_path).data.publicUrl
+        : null;
+    [dailyPostElements.composerAvatar, dailyPostElements.composerLaunch.querySelector(".daily-post-avatar")]
+        .forEach(function(avatar) {
+            avatar.replaceChildren();
+            if (avatarUrl) {
+                const image = document.createElement("img");
+                image.src = avatarUrl;
+                image.alt = "";
+                avatar.append(image);
+            } else {
+                avatar.textContent = dailyPostUser && dailyPostProfile
+                    ? dailyPostProfile.display_name.slice(0, 1).toUpperCase()
+                    : "+";
+            }
+        });
+}
+
+async function getOrCreateDailyPostProfile(user) {
+        const { data: profile, error: profileError } = await supabaseClient.from("profiles")
+            .select("*").eq("id", user.id).maybeSingle();
+        if (profileError) throw profileError;
+        if (profile) return profile;
+
+        const metadata = user.user_metadata || {};
+        const requestedUsername = String(metadata.username || "").toLowerCase()
+            .replace(/[^a-z0-9_]/g, "").slice(0, 24);
+        const fallbackUsername = "user_" + user.id.replace(/-/g, "").slice(0, 19);
+        const displayName = String(metadata.display_name || (user.email || "").split("@")[0] || "Daily Post member")
+            .trim().slice(0, 60) || "Daily Post member";
+        let username = requestedUsername.length >= 3 ? requestedUsername : fallbackUsername;
+        let { data: createdProfile, error: createError } = await supabaseClient.from("profiles")
+            .insert({ id: user.id, username: username, display_name: displayName })
+            .select("*").single();
+
+        if (createError && createError.code === "23505" && username !== fallbackUsername) {
+            username = fallbackUsername;
+            const retry = await supabaseClient.from("profiles")
+                .insert({ id: user.id, username: username, display_name: displayName })
+                .select("*").single();
+            createdProfile = retry.data;
+            createError = retry.error;
+        }
+        if (createError) throw createError;
+        return createdProfile;
+}
+
 async function setDailyPostSession(user) {
     dailyPostUser = user || null;
     dailyPostProfile = null;
@@ -9538,8 +10396,16 @@ async function setDailyPostSession(user) {
     dailyPostElements.login.classList.toggle("daily-post-hidden", Boolean(user));
     dailyPostElements.composer.classList.toggle("daily-post-hidden", !user);
     dailyPostElements.signOut.classList.toggle("daily-post-hidden", !user);
+    dailyPostElements.mobileSignOut.classList.toggle("daily-post-hidden", !user);
     dailyPostElements.feed.classList.remove("daily-post-hidden");
     dailyPostElements.recommended.textContent = user ? "Loading suggestions…" : "Sign in to discover people.";
+    if (!user && dailyPostFeedMode === "following") dailyPostFeedMode = "for-you";
+    document.querySelectorAll("[data-feed-mode]").forEach(function(button) {
+        const isActive = button.dataset.feedMode === dailyPostFeedMode;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+    });
+    updateDailyPostComposerAvatars();
 
     if (!user) {
         dailyPostElements.login.classList.toggle("daily-post-hidden", dailyPostAuthMode !== "login");
@@ -9558,14 +10424,21 @@ async function setDailyPostSession(user) {
         return;
     }
 
-    const [profileResult, adminResult] = await Promise.all([
-        supabaseClient.from("profiles").select("*").eq("id", user.id).single(),
-        supabaseClient.from("admin_profiles").select("user_id").eq("user_id", user.id).maybeSingle()
-    ]);
-    if (profileResult.error) throw profileResult.error;
-    if (adminResult.error) throw adminResult.error;
-    dailyPostProfile = profileResult.data;
-    dailyPostIsAdmin = Boolean(adminResult.data);
+    dailyPostProfile = await getOrCreateDailyPostProfile(user);
+    try {
+        const { data: admin, error: adminError } = await supabaseClient.from("admin_profiles")
+            .select("user_id").eq("user_id", user.id).maybeSingle();
+        if (adminError) throw adminError;
+        dailyPostIsAdmin = Boolean(admin);
+    } catch (error) {
+        dailyPostIsAdmin = false;
+        console.error("Could not check Daily Post admin access; continuing as a regular member.", error);
+        showDailyPostNotice(
+            "You are signed in. Admin-only tools are unavailable until the social database setup is complete.",
+            true
+        );
+    }
+    updateDailyPostComposerAvatars();
     dailyPostElements.currentUser.textContent = "@" + dailyPostProfile.username;
     dailyPostElements.login.classList.add("daily-post-hidden");
     dailyPostElements.composer.classList.remove("daily-post-hidden");
@@ -9611,7 +10484,15 @@ async function setDailyPostSession(user) {
                 }
             });
     }
-    await loadDailyPostFeed();
+    try {
+        await loadDailyPostFeed();
+    } catch (error) {
+        console.error("Could not load the feed after sign-in.", error);
+        showDailyPostNotice(
+            "You are signed in, but the feed could not load. Refresh the page or check the Supabase database setup.",
+            true
+        );
+    }
     if (dailyPostIsAdmin && !document.getElementById("dailyPostAdminNav")) {
         const adminButton = document.createElement("button");
         adminButton.id = "dailyPostAdminNav";
@@ -9621,8 +10502,41 @@ async function setDailyPostSession(user) {
         document.querySelector(".daily-post-left-sidebar").append(adminButton);
         adminButton.addEventListener("click", function() { setDailyPostView("admin"); });
     }
+    if (dailyPostIsAdmin && !document.getElementById("dailyPostAdminMobileNav")) {
+        const adminButton = document.createElement("button");
+        adminButton.id = "dailyPostAdminMobileNav";
+        adminButton.type = "button";
+        adminButton.dataset.dailyView = "admin";
+        adminButton.setAttribute("aria-label", "Admin");
+        adminButton.innerHTML = '<span aria-hidden="true">⚑</span><small>ADMIN</small>';
+        document.querySelector(".daily-post-mobile-nav").append(adminButton);
+    }
     const adminButton = document.getElementById("dailyPostAdminNav");
     if (adminButton) adminButton.classList.toggle("daily-post-hidden", !dailyPostIsAdmin);
+    const mobileAdminButton = document.getElementById("dailyPostAdminMobileNav");
+    if (mobileAdminButton) mobileAdminButton.classList.toggle("daily-post-hidden", !dailyPostIsAdmin);
+}
+
+function syncDailyPostSession(user) {
+    const userId = user ? user.id : null;
+    if (dailyPostSessionTask && dailyPostSessionTaskUserId === userId) {
+        return dailyPostSessionTask;
+    }
+    const task = setDailyPostSession(user);
+    dailyPostSessionTask = task;
+    dailyPostSessionTaskUserId = userId;
+    task.then(function() {
+        if (dailyPostSessionTask === task) {
+            dailyPostSessionTask = null;
+            dailyPostSessionTaskUserId = null;
+        }
+    }, function() {
+        if (dailyPostSessionTask === task) {
+            dailyPostSessionTask = null;
+            dailyPostSessionTaskUserId = null;
+        }
+    });
+    return task;
 }
 
 function setDailyPostAuthMode(mode) {
@@ -9661,7 +10575,11 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
     dailyPostElements.loginError.textContent = "";
     const button = dailyPostElements.loginForm.querySelector("button[type='submit']");
     button.disabled = true;
+    button.textContent = "PLEASE WAIT…";
     try {
+        if (!supabaseClient) {
+            throw new Error("The sign-in service is unavailable. Refresh the page and try again.");
+        }
         const password = dailyPostElements.loginPassword.value;
         let data;
         if (dailyPostAuthMode === "recovery") {
@@ -9738,18 +10656,33 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
         const didSignup = dailyPostAuthMode === "signup";
         dailyPostElements.loginForm.reset();
         setDailyPostAuthMode("login");
-        await setDailyPostSession(data.user);
+        await syncDailyPostSession(data.user);
         showDailyPostToast(didSignup ? "Your account is ready." : "Signed in.");
     } catch (error) {
         console.error("Daily Post authentication failed.", error);
-        dailyPostElements.loginError.textContent =
-            error.message || "Could not authenticate. Check your details and try again.";
         const authErrorText = String(error.code || "") + " " + String(error.message || "");
         if (/email_not_confirmed|email not confirmed/i.test(authErrorText)) {
+            dailyPostElements.loginError.textContent =
+                "This email is not verified yet. Open the confirmation email, then try signing in again.";
             dailyPostElements.resendVerification.classList.remove("daily-post-hidden");
+        } else if (/invalid_credentials|invalid login credentials/i.test(authErrorText)) {
+            dailyPostElements.loginError.textContent =
+                "Email or password is incorrect. Check both fields or use “Forgot password?” to reset it.";
+        } else if (/failed to fetch|networkerror|load failed/i.test(authErrorText)) {
+            dailyPostElements.loginError.textContent =
+                "Could not reach the sign-in service. Check your internet connection and try again.";
+        } else if (error.code === "42501" && /profiles/i.test(error.message || "")) {
+            dailyPostElements.loginError.textContent =
+                "Your password was accepted, but account setup is blocked by the database. Apply the latest Supabase schema, then try again.";
+        } else {
+            dailyPostElements.loginError.textContent =
+                error.message || "Could not authenticate. Check your details and try again.";
         }
     } finally {
         button.disabled = false;
+        button.textContent = dailyPostAuthMode === "signup"
+            ? "CREATE ACCOUNT"
+            : dailyPostAuthMode === "recovery" ? "SAVE NEW PASSWORD" : "SIGN IN";
     }
 });
 
@@ -9865,11 +10798,7 @@ dailyPostElements.clearMedia.addEventListener("click", function() {
 });
 
 dailyPostElements.storyButton.addEventListener("click", function() {
-    dailyPostStoryMode = !dailyPostStoryMode;
-    dailyPostElements.subtitle.textContent = dailyPostStoryMode
-        ? "Stories are public and disappear after 24 hours."
-        : "Your update will be shared with everyone.";
-    dailyPostElements.publish.textContent = dailyPostStoryMode ? "SHARE STORY" : "POST";
+    setDailyPostStoryMode(!dailyPostStoryMode);
     dailyPostElements.text.focus();
 });
 
@@ -9904,6 +10833,32 @@ document.querySelectorAll("[data-daily-view]").forEach(function(button) {
         } else {
             setDailyPostView(button.dataset.dailyView);
         }
+    });
+});
+
+dailyPostElements.mobileSignOut.addEventListener("click", function() {
+    dailyPostElements.signOut.click();
+});
+
+document.querySelectorAll("[data-feed-mode]").forEach(function(button) {
+    button.addEventListener("click", function() {
+        const nextMode = button.dataset.feedMode;
+        if (nextMode === "following" && !dailyPostUser) {
+            showDailyPostToast("Sign in to see posts from people you follow.");
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+            return;
+        }
+        if (nextMode === dailyPostFeedMode) return;
+        dailyPostFeedMode = nextMode;
+        document.querySelectorAll("[data-feed-mode]").forEach(function(tab) {
+            const isActive = tab.dataset.feedMode === dailyPostFeedMode;
+            tab.classList.toggle("active", isActive);
+            tab.setAttribute("aria-pressed", String(isActive));
+        });
+        loadDailyPostFeed().catch(function(error) {
+            console.error("Could not load selected Daily Post feed.", error);
+            showDailyPostToast(error.message || "Could not load this feed.");
+        });
     });
 });
 
