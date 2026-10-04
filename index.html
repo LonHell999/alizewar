@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ckb" dir="rtl">
 <head>
 
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Ink:wght@100..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Ink:wght@100..900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -231,6 +231,41 @@ button {
 
 .nav-links a:hover {
     color: white;
+}
+
+.site-preference-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.site-preference-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #aab2bc;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    white-space: nowrap;
+}
+
+.site-preference-control select {
+    min-height: 34px;
+    max-width: 118px;
+    padding: 0 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: rgba(10,13,17,.85);
+    color: #f3f5f7;
+    font: inherit;
+    letter-spacing: normal;
+    cursor: pointer;
+}
+
+.site-preference-control select:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
 }
 
 .nav-links a:not(.nav-youtube):not(.admin-nav)::after {
@@ -460,6 +495,96 @@ button {
     border-color: rgba(198,40,61,.5);
 }
 
+.daily-feed-hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: min(100%, 490px);
+    min-height: 78px;
+    margin-top: 20px;
+    padding: 13px 17px;
+    border: 1px solid rgba(224,68,94,.52);
+    border-left: 4px solid var(--red2);
+    border-radius: 4px;
+    background:
+        linear-gradient(105deg, rgba(181,31,55,.21), rgba(16,20,25,.92) 66%);
+    box-shadow: 0 12px 34px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.035);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.daily-feed-hero-cta:hover {
+    transform: translateY(-3px);
+    border-color: var(--red2);
+    background:
+        linear-gradient(105deg, rgba(181,31,55,.34), rgba(16,20,25,.96) 72%);
+    box-shadow: 0 16px 38px rgba(0,0,0,.3), 0 0 22px rgba(224,68,94,.1);
+}
+
+.daily-feed-hero-cta:focus-visible {
+    outline-color: #fff;
+}
+
+.daily-feed-hero-icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 4px;
+    background: rgba(181,31,55,.38);
+    color: #fff;
+}
+
+.daily-feed-hero-icon svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+}
+
+.daily-feed-hero-icon svg circle {
+    fill: currentColor;
+    stroke: none;
+}
+
+.daily-feed-hero-copy {
+    display: grid;
+    min-width: 0;
+    gap: 5px;
+}
+
+.daily-feed-hero-copy strong {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.daily-feed-hero-copy strong span {
+    color: #f08091;
+}
+
+.daily-feed-hero-copy small {
+    color: #b5bdc6;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.daily-feed-hero-arrow {
+    margin-left: auto;
+    color: #f08091;
+    font-size: 21px;
+    transition: transform .2s ease;
+}
+
+.daily-feed-hero-cta:hover .daily-feed-hero-arrow {
+    transform: translateX(4px);
+}
+
 /* =========================================================
    HERO CARD
 ========================================================= */
@@ -549,6 +674,51 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.daily-feed-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 34px;
+    margin-left: auto;
+    margin-right: 18px;
+    padding: 0 11px;
+    border: 1px solid rgba(225,75,93,.45);
+    border-radius: 999px;
+    background: rgba(10,13,19,.72);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.daily-feed-card-link:hover,
+.daily-feed-card-link:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--red2);
+    background: rgba(198,40,61,.24);
+}
+
+.daily-feed-card-link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+.daily-feed-card-link svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+}
+
+.daily-feed-card-link svg circle {
+    fill: currentColor;
+    stroke: none;
 }
 
 .card-tag {
@@ -2099,6 +2269,8 @@ footer {
 
     .hero-content {
         width: 100%;
+        min-width: 0;
+        align-self: stretch;
     }
 
     .hero-visual {
@@ -2160,6 +2332,26 @@ footer {
 
     .nav-links a {
         padding: 13px 5px;
+    }
+
+    .site-preference-controls {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 9px;
+        padding: 10px 5px 4px;
+        border-top: 1px solid var(--border);
+    }
+
+    .site-preference-control {
+        justify-content: space-between;
+        min-height: 36px;
+        font-size: 10px;
+    }
+
+    .site-preference-control select {
+        width: 60%;
+        max-width: none;
+        min-height: 38px;
     }
 
     .nav-youtube,
@@ -2402,6 +2594,24 @@ footer {
     border-bottom: 1px solid var(--border);
     background: rgba(10,13,19,.92);
     backdrop-filter: blur(16px);
+}
+
+.daily-post-preference-controls {
+    gap: 6px;
+    margin-inline-start: auto;
+    margin-inline-end: 16px;
+}
+
+.daily-post-preference-controls .site-preference-control {
+    gap: 4px;
+    font-size: 9px;
+    letter-spacing: 0;
+}
+
+.daily-post-preference-controls .site-preference-control select {
+    min-height: 32px;
+    max-width: 105px;
+    background: rgba(7,10,15,.8);
 }
 
 .daily-post-brand {
@@ -4142,6 +4352,10 @@ img.daily-post-media {
         width: 100%;
     }
 
+    .daily-feed-hero-cta {
+        width: min(88vw, 490px);
+    }
+
     .hero h1 {
         font-size: clamp(68px, 17vw, 104px);
     }
@@ -4201,6 +4415,27 @@ img.daily-post-media {
     .daily-post-topbar {
         height: 58px;
         padding-inline: 5%;
+    }
+
+    .daily-post-preference-controls {
+        align-items: center;
+        flex-direction: row;
+        gap: 4px;
+        margin-inline-end: 8px;
+        padding: 0;
+        border-top: 0;
+    }
+
+    .daily-post-preference-controls .site-preference-control span {
+        display: none;
+    }
+
+    .daily-post-preference-controls .site-preference-control select {
+        width: auto;
+        min-height: 30px;
+        max-width: 80px;
+        padding-inline: 4px;
+        font-size: 9px;
     }
 
     .daily-post-back {
@@ -4265,6 +4500,22 @@ img.daily-post-media {
     .hero-buttons .btn {
         flex: 1;
         padding-inline: 12px;
+        font-size: 9px;
+    }
+
+    .daily-feed-hero-cta {
+        gap: 11px;
+        min-height: 72px;
+        padding: 11px 12px;
+    }
+
+    .daily-feed-hero-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+    }
+
+    .daily-feed-hero-copy small {
         font-size: 9px;
     }
 
@@ -5028,6 +5279,485 @@ img.daily-post-media {
     }
 }
 
+.daily-post-row {
+    align-items: center;
+}
+
+.daily-post-post-menu {
+    position: relative;
+    margin-left: auto;
+}
+
+.daily-post-post-menu summary {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--dp-muted);
+    cursor: pointer;
+    font-size: 17px;
+    list-style: none;
+}
+
+.daily-post-post-menu summary::-webkit-details-marker {
+    display: none;
+}
+
+.daily-post-post-menu summary:hover,
+.daily-post-post-menu[open] summary {
+    background: rgba(255,255,255,.07);
+    color: var(--dp-text);
+}
+
+.daily-post-post-menu-items {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 4px);
+    right: 0;
+    display: grid;
+    min-width: 150px;
+    padding: 5px;
+    border: 1px solid var(--dp-line);
+    border-radius: 11px;
+    background: var(--dp-surface);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+.daily-post-post-menu-items button {
+    min-height: 38px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--dp-text);
+    cursor: pointer;
+    font-size: 12px;
+    text-align: left;
+}
+
+.daily-post-post-menu-items button:hover {
+    background: rgba(255,255,255,.07);
+}
+
+.daily-post-carousel {
+    position: relative;
+    margin: 12px -19px 14px;
+    overflow: hidden;
+    background: #090b0e;
+}
+
+.daily-post-carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+}
+
+.daily-post-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.daily-post-carousel-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    max-height: min(72vh, 640px);
+    scroll-snap-align: start;
+}
+
+.daily-post-carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.daily-post-carousel-arrow {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    display: grid;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    place-items: center;
+    transform: translateY(-50%);
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 50%;
+    background: rgba(12,14,18,.72);
+    color: white;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: 1;
+}
+
+.daily-post-carousel-arrow:disabled {
+    opacity: .38;
+    cursor: default;
+}
+
+.daily-post-carousel-arrow.previous {
+    left: 12px;
+}
+
+.daily-post-carousel-arrow.next {
+    right: 12px;
+}
+
+.daily-post-carousel-dots {
+    position: absolute;
+    right: 0;
+    bottom: 11px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    pointer-events: none;
+}
+
+.daily-post-carousel-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.55);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.daily-post-carousel-dot[aria-current="true"] {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+@media (max-width: 700px) {
+    .daily-post-carousel {
+        margin-inline: -15px;
+    }
+}
+
+html[data-site-theme="arctic"] {
+    --red: #087e9b;
+    --red2: #27b5d3;
+    --cyan: #75d8ef;
+    --cyan2: #b4eff8;
+    --violet: #80b8d6;
+    --glow: rgba(39,181,211,.15);
+}
+
+html[data-site-theme="emerald"] {
+    --red: #138260;
+    --red2: #36c995;
+    --cyan: #82e0bc;
+    --cyan2: #c0f5df;
+    --violet: #71bfa0;
+    --glow: rgba(54,201,149,.14);
+}
+
+html[data-site-theme="violet"] {
+    --red: #7541b4;
+    --red2: #ae7bf2;
+    --cyan: #c1a0fa;
+    --cyan2: #e0d0ff;
+    --violet: #ae7bf2;
+    --glow: rgba(174,123,242,.15);
+}
+
+html[data-site-theme="porcelain"] {
+    --red: #a51f39;
+    --red2: #c83b55;
+    --cyan: #2b7f96;
+    --cyan2: #1e6679;
+    --violet: #7551a8;
+    --dark: #f1f3f6;
+    --dark2: #e7ebef;
+    --card: #fff;
+    --gray: #58616b;
+    --border: rgba(42,55,68,.16);
+    --glow: rgba(43,127,150,.1);
+}
+
+html[data-site-theme="arctic"] body {
+    background:
+        radial-gradient(ellipse at 77% 4%, rgba(39,181,211,.09), transparent 30%),
+        linear-gradient(180deg, #071015 0%, #0a141a 54%, #071015 100%);
+}
+
+html[data-site-theme="emerald"] body {
+    background:
+        radial-gradient(ellipse at 77% 4%, rgba(54,201,149,.08), transparent 30%),
+        linear-gradient(180deg, #07100d 0%, #0a1511 54%, #07100d 100%);
+}
+
+html[data-site-theme="violet"] body {
+    background:
+        radial-gradient(ellipse at 77% 4%, rgba(174,123,242,.09), transparent 30%),
+        linear-gradient(180deg, #0d0913 0%, #120d1a 54%, #0d0913 100%);
+}
+
+html[data-site-theme="porcelain"] body {
+    background:
+        radial-gradient(ellipse at 77% 4%, rgba(43,127,150,.08), transparent 30%),
+        linear-gradient(180deg, #f7f8fa 0%, #eef1f4 54%, #f7f8fa 100%);
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .navbar,
+html[data-site-theme="porcelain"] .navbar.scrolled {
+    background: rgba(250,251,252,.94);
+    border-color: rgba(42,55,68,.14);
+}
+
+html[data-site-theme="porcelain"] .nav-links a,
+html[data-site-theme="porcelain"] .site-preference-control {
+    color: #45515d;
+}
+
+html[data-site-theme="porcelain"] .site-preference-control select {
+    border-color: rgba(42,55,68,.2);
+    background: #fff;
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .hero::after {
+    border-color: rgba(42,55,68,.1);
+    background: linear-gradient(112deg, rgba(255,255,255,.52), transparent 52%, rgba(43,127,150,.035));
+}
+
+html[data-site-theme="porcelain"] .hero-description,
+html[data-site-theme="porcelain"] .section-description {
+    color: #56616d;
+}
+
+html[data-site-theme="porcelain"] .hero-small,
+html[data-site-theme="porcelain"] .daily-feed-hero-cta {
+    background: rgba(255,255,255,.82);
+    color: #394651;
+}
+
+html[data-site-theme="porcelain"] .daily-feed-hero-copy strong {
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-feed-hero-copy small {
+    color: #56616d;
+}
+
+html[data-site-theme="porcelain"] .videos,
+html[data-site-theme="porcelain"] .socials,
+html[data-site-theme="porcelain"] .ticker {
+    background-color: #edf0f3;
+}
+
+html[data-site-theme="porcelain"] .video-card,
+html[data-site-theme="porcelain"] .social,
+html[data-site-theme="porcelain"] .subscribe,
+html[data-site-theme="porcelain"] .cta {
+    border-color: rgba(42,55,68,.15);
+    background: linear-gradient(145deg, #fff, #f0f3f6);
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .video-info h3,
+html[data-site-theme="porcelain"] .social strong,
+html[data-site-theme="porcelain"] .subscribe strong {
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .video-info p,
+html[data-site-theme="porcelain"] .social small {
+    color: #58616b;
+}
+
+html[data-site-theme="porcelain"] .hero h1 span:last-child,
+html[data-site-theme="porcelain"] .about-big {
+    color: #202832;
+    -webkit-text-stroke-color: rgba(32,40,50,.36);
+}
+
+html[data-site-theme="porcelain"] .hero-small,
+html[data-site-theme="porcelain"] .btn-secondary {
+    border-color: rgba(42,55,68,.2);
+    background: rgba(255,255,255,.84);
+    color: #394651;
+}
+
+html[data-site-theme="porcelain"] .daily-feed-hero-icon {
+    border-color: rgba(165,31,57,.22);
+    background: rgba(165,31,57,.12);
+    color: #8d1930;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page {
+    --dp-bg: #f1f3f6;
+    --dp-surface: #fff;
+    --dp-surface-raised: #f7f8fa;
+    --dp-line: rgba(42,55,68,.16);
+    --dp-text: #202832;
+    --dp-muted: #58616b;
+    background: linear-gradient(180deg, #f7f8fa 0%, #eef1f4 54%, #f7f8fa 100%);
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-topbar,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-mobile-nav {
+    border-color: rgba(42,55,68,.16);
+    background: rgba(250,251,252,.96);
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-card,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-modal-card,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-recommendations {
+    border-color: rgba(42,55,68,.16);
+    background: #fff;
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-sidebar button,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-mobile-nav button,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-back,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-author,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-item-copy,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-button:not(.primary),
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-comment-line,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-login > p,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-section-title,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-empty,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-message-preview {
+    color: #34414d;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-sidebar button:hover,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-sidebar button.active,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-mobile-nav button.active {
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-feed-tabs button,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-time,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-subtitle,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-delete {
+    color: #58616b;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-story-label {
+    color: #45515d;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-form textarea,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-center select,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-profile-form input,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-profile-form textarea,
+html[data-site-theme="porcelain"] .daily-post-page #dailyPostProfileForm input:not([type="file"]),
+html[data-site-theme="porcelain"] .daily-post-page #dailyPostProfileForm textarea,
+html[data-site-theme="porcelain"] .daily-post-page #dailyPostSettingsForm input:not([type="checkbox"]),
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-login input,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-search input,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-composer-launch-main > button {
+    border-color: rgba(42,55,68,.2);
+    background: #f6f8fa;
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-button:not(.primary) {
+    border-color: rgba(42,55,68,.2);
+    background: #f6f8fa;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-button:not(.primary):hover {
+    border-color: rgba(42,55,68,.34);
+    background: #eef1f4;
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-button.primary {
+    color: #fff;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-feed-tabs button.active {
+    color: #202832;
+}
+
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-composer-launch-actions button,
+html[data-site-theme="porcelain"] .daily-post-page .daily-post-recommendation .daily-post-button {
+    color: #8d1930;
+}
+
+html[data-site-theme="arctic"] .daily-post-page {
+    --dp-bg: #071015;
+    --dp-surface: #101a20;
+    --dp-surface-raised: #17252c;
+    --dp-line: rgba(117,216,239,.15);
+    background:
+        radial-gradient(circle at 78% 8%, rgba(39,181,211,.09), transparent 28%),
+        linear-gradient(180deg, #071015 0%, #0a141a 48%, #071015 100%);
+}
+
+html[data-site-theme="emerald"] .daily-post-page {
+    --dp-bg: #07100d;
+    --dp-surface: #101b16;
+    --dp-surface-raised: #17251e;
+    --dp-line: rgba(130,224,188,.14);
+    background:
+        radial-gradient(circle at 78% 8%, rgba(54,201,149,.08), transparent 28%),
+        linear-gradient(180deg, #07100d 0%, #0a1511 48%, #07100d 100%);
+}
+
+html[data-site-theme="violet"] .daily-post-page {
+    --dp-bg: #0d0913;
+    --dp-surface: #191321;
+    --dp-surface-raised: #211a2b;
+    --dp-line: rgba(193,160,250,.15);
+    background:
+        radial-gradient(circle at 78% 8%, rgba(174,123,242,.09), transparent 28%),
+        linear-gradient(180deg, #0d0913 0%, #120d1a 48%, #0d0913 100%);
+}
+
+html[data-site-theme="arctic"] .btn-primary,
+html[data-site-theme="arctic"] .daily-post-page .daily-post-button.primary {
+    background: linear-gradient(110deg, #087e9b, #075c78);
+}
+
+html[data-site-theme="emerald"] .btn-primary,
+html[data-site-theme="emerald"] .daily-post-page .daily-post-button.primary {
+    background: linear-gradient(110deg, #138260, #0b6349);
+}
+
+html[data-site-theme="violet"] .btn-primary,
+html[data-site-theme="violet"] .daily-post-page .daily-post-button.primary {
+    background: linear-gradient(110deg, #7541b4, #542d8e);
+}
+
+html[dir="rtl"] .daily-post-sidebar button,
+html[dir="rtl"] .daily-post-post-menu-items button {
+    text-align: right;
+}
+
+html[dir="rtl"] body,
+html[dir="rtl"] .daily-post-page {
+    font-family: "Noto Sans Arabic", "Inter", sans-serif;
+}
+
+html[dir="rtl"] .daily-post-post-menu-items {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .daily-feed-hero-cta {
+    border-right: 4px solid var(--red2);
+    border-left: 1px solid rgba(224,68,94,.52);
+}
+
+html[dir="rtl"] .daily-feed-hero-arrow {
+    margin-right: auto;
+    margin-left: 0;
+    transform: scaleX(-1);
+}
+
 </style>
 
 </head>
@@ -5074,6 +5804,27 @@ img.daily-post-media {
         <a href="#daily-post">
             DAILY POST
         </a>
+
+        <div class="site-preference-controls" aria-label="Website preferences">
+            <label class="site-preference-control">
+                <span data-i18n="Language">Language</span>
+                <select class="site-language-select" aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="ku">Kurdish (Sorani)</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </label>
+            <label class="site-preference-control">
+                <span data-i18n="Theme">Theme</span>
+                <select class="site-theme-select" aria-label="Theme">
+                    <option value="crimson">Crimson</option>
+                    <option value="arctic">Arctic</option>
+                    <option value="emerald">Emerald</option>
+                    <option value="violet">Violet</option>
+                    <option value="porcelain">Porcelain</option>
+                </select>
+            </label>
+        </div>
 
         <a
             href="https://www.youtube.com/@Aliziwar/videos"
@@ -5159,6 +5910,21 @@ img.daily-post-media {
 
         </div>
 
+        <a class="daily-feed-hero-cta reveal" href="#daily-post">
+            <span class="daily-feed-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.2"></circle>
+                    <path d="m5 17 4.5-4.5 3.2 3.2 2.2-2.2L19 17"></path>
+                </svg>
+            </span>
+            <span class="daily-feed-hero-copy">
+                <strong>DAILY POST <span>↗</span></strong>
+                <small>See the feed · Share photos, stories, music &amp; more</small>
+            </span>
+            <span class="daily-feed-hero-arrow" aria-hidden="true">→</span>
+        </a>
+
     </div>
 
 
@@ -5176,6 +5942,15 @@ img.daily-post-media {
                     <div class="card-tag">
                         OFFICIAL CREATOR
                     </div>
+
+                    <a class="daily-feed-card-link" href="#daily-post" aria-label="Open Daily Post feed">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.2"></circle>
+                            <path d="m5 17 4.5-4.5 3.2 3.2 2.2-2.2L19 17"></path>
+                        </svg>
+                        <span>DAILY FEED</span>
+                    </a>
 
                     <div class="card-number">
                         01
@@ -5889,6 +6664,26 @@ img.daily-post-media {
     <header class="daily-post-topbar">
         <a class="daily-post-brand" href="#home">ALI<span>.</span></a>
         <span id="dailyPostCurrentUser" class="daily-post-author"></span>
+        <div class="site-preference-controls daily-post-preference-controls" aria-label="Website preferences">
+            <label class="site-preference-control">
+                <span data-i18n="Language">Language</span>
+                <select class="site-language-select" aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="ku">Kurdish (Sorani)</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </label>
+            <label class="site-preference-control">
+                <span data-i18n="Theme">Theme</span>
+                <select class="site-theme-select" aria-label="Theme">
+                    <option value="crimson">Crimson</option>
+                    <option value="arctic">Arctic</option>
+                    <option value="emerald">Emerald</option>
+                    <option value="violet">Violet</option>
+                    <option value="porcelain">Porcelain</option>
+                </select>
+            </label>
+        </div>
         <a class="daily-post-back" id="dailyPostBack" href="#home">← BACK TO WEBSITE</a>
     </header>
     <main class="daily-post-main">
@@ -7620,8 +8415,9 @@ function applyData() {
     });
 
 
-    document.title =
-        siteData.siteTitle || `${siteData.firstName} ${siteData.lastName} — Official`;
+    document.title = siteLanguage === "en"
+        ? (siteData.siteTitle || `${siteData.firstName} ${siteData.lastName} — Official`)
+        : SITE_PAGE_METADATA[siteLanguage].title;
 
 }
 
@@ -8884,6 +9680,704 @@ let dailyPostFeedMode = "for-you";
 let dailyPostComposerTrigger = null;
 let dailyPostSessionTask = null;
 let dailyPostSessionTaskUserId = null;
+let dailyPostPublishInProgress = false;
+let dailyPostMessageInProgress = false;
+let dailyPostStoryDeleteInProgress = false;
+
+const SITE_TRANSLATIONS = {
+    ku: {
+        "Language": "زمان",
+        "Theme": "ڕووکار",
+        "Kurdish (Sorani)": "کوردی (سۆرانی)",
+        "Crimson": "سووری تۆخ",
+        "Arctic": "سەهۆڵی",
+        "Emerald": "زەمرەدی",
+        "Violet": "مۆر",
+        "Porcelain": "پۆرسەلین",
+        "HOME": "ماڵەوە",
+        "VIDEOS": "ڤیدیۆکان",
+        "ABOUT": "دەربارە",
+        "SOCIALS": "تۆڕە کۆمەڵایەتییەکان",
+        "DAILY POST": "پۆستی ڕۆژانە",
+        "WATCH VIDEOS ↗": "بینینی ڤیدیۆکان ↗",
+        "FOLLOW ME": "شوێنم بکەوە",
+        "KURDISH CREATOR • ERBIL": "دروستکەری کورد • هەولێر",
+        "Challenges, cars, entertainment and crazy ideas. Welcome to the official world of Ali Zewar.": "تەحەدا، ئۆتۆمبێل، کات‌بەسەربردن و بیرۆکەی شێتانە. بەخێربێن بۆ جیهانی فەرمی عەلی زێوار.",
+        "OFFICIAL CREATOR": "دروستکەری فەرمی",
+        "DAILY FEED": "فیدی ڕۆژانە",
+        "See the feed · Share photos, stories, music & more": "فیدەکە ببینە · وێنە، چیرۆک، میوزیک و زیاتر بڵاو بکەرەوە",
+        "CHANNEL": "کەناڵ",
+        "CONTENT": "ناوەڕۆک",
+        "LATEST CONTENT": "نوێترین ناوەڕۆک",
+        "WATCH": "سەیر بکە",
+        "SOMETHING.": "شتێک.",
+        "Explore the latest videos, challenges, cars, entertainment and everything happening on the Ali Zewar channel.": "نوێترین ڤیدیۆ، تەحەدا، ئۆتۆمبێل و هەموو ئەو شتانە ببینە کە لە کەناڵی عەلی زێوار ڕوودەدەن.",
+        "Latest Videos": "نوێترین ڤیدیۆکان",
+        "Watch the newest uploads": "نوێترین بڵاوکراوەکان ببینە",
+        "Crazy ideas. Real reactions.": "بیرۆکەی شێتانە. کاردانەوەی ڕاستەقینە.",
+        "Automotive content and entertainment": "ناوەڕۆکی ئۆتۆمبێل و کات‌بەسەربردن",
+        "OFFICIAL CHANNEL": "کەناڵی فەرمی",
+        "Subscribe to Ali Zewar on YouTube": "لە یوتیوب بەدوای عەلی زێواردا بکەوە",
+        "SUBSCRIBE ↗": "بەشداربە ↗",
+        "THIS": "ئەمە",
+        "IS": "ـە",
+        "ALI.": "عەلی.",
+        "I'm Ali Zewar, a Kurdish creator focused on building entertaining videos, challenges, automotive content and ideas that people actually want to watch.": "من عەلی زێوارم، دروستکەرێکی کورد کە گرنگی بە ڤیدیۆی خۆش، تەحەدا، ناوەڕۆکی ئۆتۆمبێل و بیرۆکەی سەرنجڕاکێش دەدەم.",
+        "The goal is simple: create bigger videos, bigger ideas and unforgettable moments while building a community along the way.": "ئامانجەکە سادەیە: دروستکردنی ڤیدیۆی گەورەتر، بیرۆکەی گەورەتر و ساتی لەبیرنەکراو، لەگەڵ بنیاتنانی کۆمەڵگایەک.",
+        "YOUTUBE SUBSCRIBERS": "بەشداربووانی یوتیوب",
+        "TIKTOK FOLLOWERS": "شوێنکەوتووانی تیکتۆک",
+        "INSTAGRAM FOLLOWERS": "شوێنکەوتووانی ئینستاگرام",
+        "CREATE": "دروست بکە",
+        "DREAM": "خەون ببینە",
+        "REPEAT": "دووبارەی بکەرەوە",
+        "CHALLENGES": "تەحەداکان",
+        "CARS": "ئۆتۆمبێلەکان",
+        "ENTERTAINMENT": "کات‌بەسەربردن",
+        "KURDISTAN": "کوردستان",
+        "LATEST CONTENT": "نوێترین ناوەڕۆک",
+        "Cars & More": "ئۆتۆمبێل و زیاتر",
+        "FIND ME": "لەوێدا بمبینەوە",
+        "FOLLOW": "شوێنکەوتن",
+        "THE JOURNEY.": "ڕێگاکە.",
+        "Follow Ali Zewar across social media and stay connected with new videos, clips and updates.": "لە تۆڕە کۆمەڵایەتییەکان شوێنی عەلی زێوار بکەوە و لەگەڵ ڤیدیۆ و نوێکارییەکان بەردەوام بە.",
+        "READY?": "ئامادەیت؟",
+        "LET'S": "با",
+        "GO.": "بڕۆین.",
+        "New videos. Bigger challenges.": "ڤیدیۆی نوێ. تەحەدای گەورەتر.",
+        "More crazy ideas.": "بیرۆکەی شێتانەی زیاتر.",
+        "WATCH ON YOUTUBE ↗": "لە یوتیوب سەیری بکە ↗",
+        "All rights reserved.": "هەموو مافەکان پارێزراون.",
+        "← BACK TO WEBSITE": "← گەڕانەوە بۆ ماڵپەڕ",
+        "Home": "ماڵەوە",
+        "Explore": "گەڕان",
+        "Notifications": "ئاگادارکردنەوەکان",
+        "Messages": "نامەکان",
+        "Saved": "پاشەکەوتکراوەکان",
+        "Create post": "دروستکردنی پۆست",
+        "Profile": "پرۆفایل",
+        "Settings": "ڕێکخستنەکان",
+        "Log out": "چوونەدەرەوە",
+        "A CREATOR COMMUNITY": "کۆمەڵگای دروستکەران",
+        "Share your moments, discover creators, and keep up with the people you follow.": "ساتەکانت بڵاو بکەرەوە، دروستکەران بدۆزەرەوە و ئاگاداری ئەوانە بە کە شوێنیان دەکەویت.",
+        "Welcome to Daily Post": "بەخێربێیت بۆ پۆستی ڕۆژانە",
+        "Sign in or create an account to follow people and share your posts.": "بچۆ ژوورەوە یان هەژمارێک دروست بکە بۆ شوێنکەوتنی خەڵک و بڵاوکردنەوەی پۆستەکانت.",
+        "Username (3–24 letters, numbers, _)": "ناوی بەکارهێنەر (٣–٢٤ پیت، ژمارە، _)",
+        "Display name": "ناوی پیشاندراو",
+        "Email address": "ناونیشانی ئیمەیڵ",
+        "Password": "وشەی نهێنی",
+        "Confirm password": "دووبارە وشەی نهێنی",
+        "SIGN IN": "چوونەژوورەوە",
+        "Create account": "دروستکردنی هەژمار",
+        "Forgot password?": "وشەی نهێنیت لەبیرچووە؟",
+        "Resend verification email": "دووبارە ناردنی ئیمەیڵی پشتڕاستکردنەوە",
+        "Search people and posts…": "گەڕان بۆ خەڵک و پۆست…",
+        "Search": "گەڕان",
+        "Stories": "چیرۆکەکان",
+        "Gone after 24 hours": "دوای ٢٤ کاتژمێر دەسڕێتەوە",
+        "No active stories right now. Check back soon.": "ئێستا هیچ چیرۆکێکی چالاک نییە. دواتر سەردان بکە.",
+        "What would you like to share?": "دەتەوێت چی بڵاو بکەیتەوە؟",
+        "PHOTO · VIDEO · AUDIO · STORY": "وێنە · ڤیدیۆ · دەنگ · چیرۆک",
+        "CREATE POST": "دروستکردنی پۆست",
+        "For you": "بۆ تۆ",
+        "Following": "شوێنکەوتووان",
+        "Share something new": "شتێکی نوێ بڵاو بکەرەوە",
+        "Your update will be shared with everyone.": "نوێکارییەکەت لەگەڵ هەمووان هاوبەش دەکرێت.",
+        "What’s on your mind?": "چی لە مێشکتدایە؟",
+        "REMOVE SELECTED MEDIA": "لابردنی میدیای هەڵبژێردراو",
+        "Public": "گشتی",
+        "Followers only": "تەنها شوێنکەوتووان",
+        "Only me": "تەنها من",
+        "＋ Add photos, video, or music": "＋ زیادکردنی وێنە، ڤیدیۆ یان میوزیک",
+        "＋ STORY · 24H": "＋ چیرۆک · ٢٤ کاتژمێر",
+        "POST": "پۆست",
+        "Latest posts": "نوێترین پۆستەکان",
+        "No posts yet. New updates will show up here.": "هێشتا هیچ پۆستێک نییە. نوێکارییەکان لێرە دەردەکەون.",
+        "EXPLORE PEOPLE": "گەڕان بەدوای خەڵکدا",
+        "RECENT POSTS": "پۆستە تازەکان",
+        "EDIT PROFILE": "دەستکاریکردنی پرۆفایل",
+        "MESSAGE": "نامە",
+        "REPORT": "ڕاپۆرت",
+        "Private account": "هەژماری تایبەت",
+        "Write a message…": "نامەیەک بنووسە…",
+        "New password": "وشەی نهێنی نوێ",
+        "New email address": "ناونیشانی ئیمەیڵی نوێ",
+        "Use light appearance": "ڕووکاری ڕوون بەکاربهێنە",
+        "Notifications for likes": "ئاگادارکردنەوە بۆ لایکەکان",
+        "Notifications for comments": "ئاگادارکردنەوە بۆ کۆمێنتەکان",
+        "Notifications for followers": "ئاگادارکردنەوە بۆ شوێنکەوتووان",
+        "Notifications for messages": "ئاگادارکردنەوە بۆ نامەکان",
+        "Sign in to discover people.": "بچۆ ژوورەوە بۆ دۆزینەوەی خەڵک.",
+        "People to discover": "کەسانی پێشنیارکراو",
+        "SHARE": "بڵاوکردنەوە",
+        "Like": "لایک",
+        "Unlike": "لابردنی لایک",
+        "Comment": "کۆمێنت",
+        "Save": "پاشەکەوتکردن",
+        "Saved": "پاشەکەوتکرا",
+        "Share": "هاوبەشکردن",
+        "Report post": "ڕاپۆرتکردنی پۆست",
+        "Delete post": "سڕینەوەی پۆست",
+        "Delete": "سڕینەوە",
+        "Reply": "وەڵامدانەوە",
+        "Send": "ناردن",
+        "SEND": "بنێرە",
+        "CLOSE": "داخستن",
+        "Cancel": "پاشگەزبوونەوە",
+        "Follow": "شوێنکەوتن",
+        "Following": "شوێنی دەکەویت",
+        "Unfollow": "لابردنی شوێنکەوتن",
+        "Accept": "پەسەندکردن",
+        "Reject": "ڕەتکردنەوە",
+        "Delete my story": "سڕینەوەی چیرۆکەکەم",
+        "DAILY FEED": "فیدی ڕۆژانە",
+        "Post options": "هەڵبژاردەکانی پۆست",
+        "Choose feed": "فیدێک هەڵبژێرە",
+        "Your story": "چیرۆکەکەت",
+        "FOLLOW REQUESTS": "داواکارییەکانی شوێنکەوتن",
+        "No suggested accounts right now.": "ئێستا هیچ هەژمارێکی پێشنیارکراو نییە.",
+        "No accounts to explore yet.": "هێشتا هیچ هەژمارێک بۆ گەڕان نییە.",
+        "No posts yet.": "هێشتا هیچ پۆستێک نییە.",
+        "You haven't saved any posts yet.": "هێشتا هیچ پۆستێکت پاشەکەوت نەکردووە.",
+        "You're all caught up.": "هەموو نوێکارییەکانت خوێندووەتەوە.",
+        "No conversations yet. Visit a profile and choose Message.": "هێشتا هیچ گفتوگۆیەک نییە. سەردانی پرۆفایلێک بکە و نامە هەڵبژێرە.",
+        "No users or posts found.": "هیچ بەکارهێنەر یان پۆستێک نەدۆزرایەوە.",
+        "SHARING…": "بڵاوکردنەوە…",
+        "PLEASE WAIT…": "تکایە چاوەڕێ بکە…",
+        "SENDING…": "ناردن…",
+        "Add some text or select media before posting.": "پێش بڵاوکردنەوە دەق بنووسە یان میدیا هەڵبژێرە.",
+        "Sign in to share posts and stories.": "بچۆ ژوورەوە بۆ بڵاوکردنەوەی پۆست و چیرۆک.",
+        "Story text must be 2,000 characters or fewer.": "دەقی چیرۆک نابێت لە ٢٠٠٠ پیت زیاتر بێت.",
+        "Stories support one photo or video. Share audio as a regular post.": "چیرۆک تەنها یەک وێنە یان ڤیدیۆ وەردەگرێت. دەنگ وەک پۆستی ئاسایی بڵاو بکەرەوە.",
+        "Choose supported photo, video, or audio files up to 50 MB each.": "فایلی وێنە، ڤیدیۆ یان دەنگی پشتگیریکراو هەڵبژێرە؛ هەر فایلێک تا ٥٠ مێگابایت.",
+        "Post deleted.": "پۆست سڕایەوە.",
+        "Story deleted.": "چیرۆک سڕایەوە.",
+        "Sign in to open your own profile.": "بچۆ ژوورەوە بۆ کردنەوەی پرۆفایلەکەت.",
+        "Sign in to access your account.": "بچۆ ژوورەوە بۆ چوونە ژوورەوەی هەژمارەکەت.",
+        "Sign in to follow people.": "بچۆ ژوورەوە بۆ شوێنکەوتنی خەڵک.",
+        "Sign in to like posts.": "بچۆ ژوورەوە بۆ لایککردنی پۆستەکان.",
+        "Sign in to save posts.": "بچۆ ژوورەوە بۆ پاشەکەوتکردنی پۆستەکان.",
+        "Post link copied.": "بەستەری پۆست کۆپی کرا.",
+        "Could not share this post.": "نەتوانرا ئەم پۆستە هاوبەش بکرێت.",
+        "Sign in to report content.": "بچۆ ژوورەوە بۆ ڕاپۆرتکردنی ناوەڕۆک.",
+        "Choose a reason from the list.": "هۆکارێک لە لیستەکە هەڵبژێرە.",
+        "Report sent to the moderation team.": "ڕاپۆرتەکە بۆ تیمی چاودێری نێردرا.",
+        "Message deleted.": "نامە سڕایەوە.",
+        "Admin access is restricted.": "دەستگەیشتنی بەڕێوەبەر سنووردارە.",
+        "Password changed. You can now sign in with your new password.": "وشەی نهێنی گۆڕدرا. ئێستا دەتوانیت بە وشەی نهێنی نوێ بچیتە ژوورەوە.",
+        "You are signed out.": "چوویتە دەرەوە.",
+        "Sign in to see posts from people you follow.": "بچۆ ژوورەوە بۆ بینینی پۆستەکانی ئەوانەی شوێنیان دەکەویت.",
+        "Profile photo will be removed when you save.": "وێنەی پرۆفایل کاتێک پاشەکەوت دەکەیت لادەبرێت.",
+        "Username must be 3–24 letters, numbers, or underscores.": "ناوی بەکارهێنەر دەبێت ٣–٢٤ پیت، ژمارە یان هێڵی ژێرەوە بێت.",
+        "Provide both a link name and a full http/https URL.": "ناوی بەستەر و بەستەری تەواوی http/https دابنێ.",
+        "Profile photos must be JPG, PNG, or WebP and smaller than 5 MB.": "وێنەی پرۆفایل دەبێت JPG، PNG یان WebP و کەمتر لە ٥ مێگابایت بێت.",
+        "Profile updated.": "پرۆفایل نوێکرایەوە.",
+        "Password must be at least 8 characters.": "وشەی نهێنی دەبێت لانیکەم ٨ پیت بێت.",
+        "Check your new email to confirm the address change.": "ئیمەیڵە نوێیەکەت بپشکنە بۆ پشتڕاستکردنەوەی گۆڕینی ناونیشان.",
+        "Settings saved.": "ڕێکخستنەکان پاشەکەوت کران.",
+        "Your account and social content were deleted.": "هەژمار و ناوەڕۆکی کۆمەڵایەتییەکەت سڕایەوە.",
+        "Website preferences": "هەڵبژاردەکانی ماڵپەڕ",
+        "Open Daily Post feed": "کردنەوەی فیدی پۆستی ڕۆژانە",
+        "Create your account": "هەژمارەکەت دروست بکە",
+        "Choose a new password": "وشەیەکی نهێنی نوێ هەڵبژێرە",
+        "Choose a unique username and join the community.": "ناوی بەکارهێنەری تایبەت هەڵبژێرە و ببە بە ئەندامی کۆمەڵگا.",
+        "Enter and confirm your new password.": "وشەی نهێنی نوێ بنووسە و پشتڕاستی بکەرەوە.",
+        "CREATE ACCOUNT": "دروستکردنی هەژمار",
+        "SAVE NEW PASSWORD": "پاشەکەوتکردنی وشەی نهێنی نوێ",
+        "Admin": "بەڕێوەبەر",
+        "ADMIN": "بەڕێوەبەر",
+        "BACK": "گەڕانەوە",
+        "Add photos, video, or music": "زیادکردنی وێنە، ڤیدیۆ یان میوزیک",
+        "No notifications yet.": "هێشتا هیچ ئاگادارکردنەوەیەک نییە.",
+        "No messages yet.": "هێشتا هیچ نامەیەک نییە.",
+        "SAVE PROFILE": "پاشەکەوتکردنی پرۆفایل",
+        "POSTS": "پۆستەکان",
+        "SAVED POSTS": "پۆستە پاشەکەوتکراوەکان",
+        "NOTIFICATIONS": "ئاگادارکردنەوەکان",
+        "MESSAGES": "نامەکان",
+        "ACCOUNT SETTINGS": "ڕێکخستنی هەژمار",
+        "SAVE SETTINGS": "پاشەکەوتکردنی ڕێکخستنەکان",
+        "DANGER ZONE": "ناوچەی مەترسیدار",
+        "Deleting your account permanently removes your profile and social content.": "سڕینەوەی هەژمارەکەت پرۆفایل و ناوەڕۆکی کۆمەڵایەتییەکەت بۆ هەمیشە دەسڕێتەوە.",
+        "DELETE MY ACCOUNT": "سڕینەوەی هەژمارەکەم",
+        "ADMIN REPORTS": "ڕاپۆرتەکانی بەڕێوەبەر",
+        "USER DIRECTORY": "لیستی بەکارهێنەران",
+        "Social navigation": "پێڕستی کۆمەڵایەتی",
+        "Story": "چیرۆک",
+        "Close story": "داخستنی چیرۆک",
+        "Previous story": "چیرۆکی پێشوو",
+        "Next story": "چیرۆکی دواتر",
+        "Write a post": "نووسینی پۆست",
+        "Post text": "دەقی پۆست",
+        "Post audience": "بینەرانی پۆست",
+        "Close create post": "داخستنی دروستکردنی پۆست",
+        "ALERTS": "ئاگادارکردنەوەکان",
+        "INBOX": "نامەکان",
+        "CREATE": "دروستکردن",
+        "EXPLORE": "گەڕان",
+        "PROFILE": "پرۆفایل",
+        "SETTINGS": "ڕێکخستنەکان",
+        "SAVED": "پاشەکەوتکراوەکان",
+        "LOG OUT": "چوونەدەرەوە",
+        "Website URL (https://…)": "بەستەری ماڵپەڕ (https://…)",
+        "A little about you": "کەمێک دەربارەی خۆت",
+        "Social link name": "ناوی بەستەری کۆمەڵایەتی",
+        "Social link URL (https://…)": "بەستەری تۆڕی کۆمەڵایەتی (https://…)",
+        "YouTube subscribers. Open YouTube channel": "بەشداربووانی یوتیوب. کردنەوەی کەناڵی یوتیوب",
+        "TikTok followers. Open TikTok profile": "شوێنکەوتووانی تیکتۆک. کردنەوەی پرۆفایلی تیکتۆک",
+        "Instagram followers. Open Instagram profile": "شوێنکەوتووانی ئینستاگرام. کردنەوەی پرۆفایلی ئینستاگرام",
+        "Admin Login": "چوونەژوورەوەی بەڕێوەبەر",
+        "Sign in with the admin email and password created in Supabase.": "بە ئیمەیڵ و وشەی نهێنی بەڕێوەبەر کە لە Supabase دروستکراوە بچۆ ژوورەوە.",
+        "ADMIN EMAIL": "ئیمەیڵی بەڕێوەبەر",
+        "Enter password": "وشەی نهێنی بنووسە",
+        "Sign in with your admin account": "بە هەژماری بەڕێوەبەری خۆت بچۆ ژوورەوە",
+        "Verify your email address from the confirmation email before signing in.": "پێش چوونەژوورەوە، ناونیشانی ئیمەیڵەکەت لە ئیمەیڵی پشتڕاستکردنەوەدا پشتڕاست بکەرەوە.",
+        "This account is private.": "ئەم هەژمارە تایبەتە.",
+        "Follow request sent.": "داواکاری شوێنکەوتن نێردرا.",
+        "Your post is live.": "پۆستەکەت بڵاوکرایەوە.",
+        "Story shared — it will disappear in 24 hours.": "چیرۆکەکەت بڵاوکرایەوە — دوای ٢٤ کاتژمێر دەسڕێتەوە."
+    },
+    ar: {
+        "Language": "اللغة",
+        "Theme": "السمة",
+        "Kurdish (Sorani)": "الكردية (السورانية)",
+        "Crimson": "قرمزي",
+        "Arctic": "جليدي",
+        "Emerald": "زمردي",
+        "Violet": "بنفسجي",
+        "Porcelain": "خزفي",
+        "HOME": "الرئيسية",
+        "VIDEOS": "الفيديوهات",
+        "ABOUT": "نبذة",
+        "SOCIALS": "التواصل",
+        "DAILY POST": "منشورات يومية",
+        "WATCH VIDEOS ↗": "شاهد الفيديوهات ↗",
+        "FOLLOW ME": "تابعني",
+        "KURDISH CREATOR • ERBIL": "صانع محتوى كردي • أربيل",
+        "Challenges, cars, entertainment and crazy ideas. Welcome to the official world of Ali Zewar.": "تحديات وسيارات وترفيه وأفكار مجنونة. أهلاً بك في عالم علي زيوار الرسمي.",
+        "OFFICIAL CREATOR": "صانع محتوى رسمي",
+        "DAILY FEED": "الخلاصة اليومية",
+        "See the feed · Share photos, stories, music & more": "تصفح الخلاصة · شارك الصور والقصص والموسيقى والمزيد",
+        "CHANNEL": "القناة",
+        "CONTENT": "المحتوى",
+        "LATEST CONTENT": "أحدث المحتوى",
+        "WATCH": "شاهد",
+        "SOMETHING.": "شيئاً.",
+        "Explore the latest videos, challenges, cars, entertainment and everything happening on the Ali Zewar channel.": "اكتشف أحدث الفيديوهات والتحديات والسيارات والترفيه وكل ما يحدث على قناة علي زيوار.",
+        "Latest Videos": "أحدث الفيديوهات",
+        "Watch the newest uploads": "شاهد أحدث المنشورات",
+        "Crazy ideas. Real reactions.": "أفكار مجنونة. ردود فعل حقيقية.",
+        "Automotive content and entertainment": "محتوى السيارات والترفيه",
+        "OFFICIAL CHANNEL": "القناة الرسمية",
+        "Subscribe to Ali Zewar on YouTube": "اشترك في قناة علي زيوار على يوتيوب",
+        "SUBSCRIBE ↗": "اشترك ↗",
+        "THIS": "هذا",
+        "IS": "هو",
+        "ALI.": "علي.",
+        "I'm Ali Zewar, a Kurdish creator focused on building entertaining videos, challenges, automotive content and ideas that people actually want to watch.": "أنا علي زيوار، صانع محتوى كردي أقدم فيديوهات ترفيهية وتحديات ومحتوى سيارات وأفكاراً تستحق المشاهدة.",
+        "The goal is simple: create bigger videos, bigger ideas and unforgettable moments while building a community along the way.": "الهدف بسيط: تقديم فيديوهات وأفكار أكبر ولحظات لا تُنسى، وبناء مجتمع رائع في الطريق.",
+        "YOUTUBE SUBSCRIBERS": "مشتركو يوتيوب",
+        "TIKTOK FOLLOWERS": "متابعو تيك توك",
+        "INSTAGRAM FOLLOWERS": "متابعو إنستغرام",
+        "CREATE": "ابتكر",
+        "DREAM": "احلم",
+        "REPEAT": "كرر",
+        "CHALLENGES": "تحديات",
+        "CARS": "سيارات",
+        "ENTERTAINMENT": "ترفيه",
+        "KURDISTAN": "كردستان",
+        "LATEST CONTENT": "أحدث المحتوى",
+        "Cars & More": "سيارات والمزيد",
+        "FIND ME": "تابعني",
+        "FOLLOW": "تابع",
+        "THE JOURNEY.": "الرحلة.",
+        "Follow Ali Zewar across social media and stay connected with new videos, clips and updates.": "تابع علي زيوار على منصات التواصل وابقَ على اطلاع بالفيديوهات والمقاطع والتحديثات الجديدة.",
+        "READY?": "هل أنت مستعد؟",
+        "LET'S": "هيا",
+        "GO.": "ننطلق.",
+        "New videos. Bigger challenges.": "فيديوهات جديدة. تحديات أكبر.",
+        "More crazy ideas.": "أفكار مجنونة أكثر.",
+        "WATCH ON YOUTUBE ↗": "شاهد على يوتيوب ↗",
+        "All rights reserved.": "جميع الحقوق محفوظة.",
+        "← BACK TO WEBSITE": "← العودة إلى الموقع",
+        "Home": "الرئيسية",
+        "Explore": "استكشف",
+        "Notifications": "الإشعارات",
+        "Messages": "الرسائل",
+        "Saved": "المحفوظات",
+        "Create post": "إنشاء منشور",
+        "Profile": "الملف الشخصي",
+        "Settings": "الإعدادات",
+        "Log out": "تسجيل الخروج",
+        "A CREATOR COMMUNITY": "مجتمع صناع المحتوى",
+        "Share your moments, discover creators, and keep up with the people you follow.": "شارك لحظاتك واكتشف المبدعين وتابع آخر أخبار من تتابعهم.",
+        "Welcome to Daily Post": "أهلاً بك في المنشورات اليومية",
+        "Sign in or create an account to follow people and share your posts.": "سجل الدخول أو أنشئ حساباً لمتابعة الأشخاص ومشاركة منشوراتك.",
+        "Username (3–24 letters, numbers, _)": "اسم المستخدم (٣–٢٤ حرفاً أو رقماً أو _)",
+        "Display name": "الاسم المعروض",
+        "Email address": "البريد الإلكتروني",
+        "Password": "كلمة المرور",
+        "Confirm password": "تأكيد كلمة المرور",
+        "SIGN IN": "تسجيل الدخول",
+        "Create account": "إنشاء حساب",
+        "Forgot password?": "هل نسيت كلمة المرور؟",
+        "Resend verification email": "إعادة إرسال رسالة التحقق",
+        "Search people and posts…": "ابحث عن أشخاص ومنشورات…",
+        "Search": "بحث",
+        "Stories": "القصص",
+        "Gone after 24 hours": "تختفي بعد ٢٤ ساعة",
+        "No active stories right now. Check back soon.": "لا توجد قصص نشطة الآن. تفقّد لاحقاً.",
+        "What would you like to share?": "ماذا تريد أن تشارك؟",
+        "PHOTO · VIDEO · AUDIO · STORY": "صور · فيديو · صوت · قصص",
+        "CREATE POST": "إنشاء منشور",
+        "For you": "لك",
+        "Following": "المتابَعون",
+        "Share something new": "شارك شيئاً جديداً",
+        "Your update will be shared with everyone.": "ستتم مشاركة تحديثك مع الجميع.",
+        "What’s on your mind?": "بماذا تفكر؟",
+        "REMOVE SELECTED MEDIA": "إزالة الوسائط المحددة",
+        "Public": "عام",
+        "Followers only": "المتابعون فقط",
+        "Only me": "أنا فقط",
+        "＋ Add photos, video, or music": "＋ أضف صوراً أو فيديو أو موسيقى",
+        "＋ STORY · 24H": "＋ قصة · ٢٤ ساعة",
+        "POST": "نشر",
+        "Latest posts": "أحدث المنشورات",
+        "No posts yet. New updates will show up here.": "لا توجد منشورات بعد. ستظهر التحديثات الجديدة هنا.",
+        "EXPLORE PEOPLE": "اكتشف أشخاصاً",
+        "RECENT POSTS": "أحدث المنشورات",
+        "EDIT PROFILE": "تعديل الملف الشخصي",
+        "MESSAGE": "رسالة",
+        "REPORT": "إبلاغ",
+        "Private account": "حساب خاص",
+        "Write a message…": "اكتب رسالة…",
+        "New password": "كلمة مرور جديدة",
+        "New email address": "بريد إلكتروني جديد",
+        "Use light appearance": "استخدم المظهر الفاتح",
+        "Notifications for likes": "إشعارات الإعجابات",
+        "Notifications for comments": "إشعارات التعليقات",
+        "Notifications for followers": "إشعارات المتابعين",
+        "Notifications for messages": "إشعارات الرسائل",
+        "Sign in to discover people.": "سجل الدخول لاكتشاف الأشخاص.",
+        "People to discover": "أشخاص قد تعرفهم",
+        "SHARE": "مشاركة",
+        "Like": "إعجاب",
+        "Unlike": "إزالة الإعجاب",
+        "Comment": "تعليق",
+        "Save": "حفظ",
+        "Saved": "تم الحفظ",
+        "Share": "مشاركة",
+        "Report post": "الإبلاغ عن المنشور",
+        "Delete post": "حذف المنشور",
+        "Delete": "حذف",
+        "Reply": "رد",
+        "Send": "إرسال",
+        "SEND": "إرسال",
+        "CLOSE": "إغلاق",
+        "Cancel": "إلغاء",
+        "Follow": "متابعة",
+        "Unfollow": "إلغاء المتابعة",
+        "Accept": "قبول",
+        "Reject": "رفض",
+        "Delete my story": "احذف قصتي",
+        "DAILY FEED": "الخلاصة اليومية",
+        "Post options": "خيارات المنشور",
+        "Choose feed": "اختر الخلاصة",
+        "Your story": "قصتك",
+        "FOLLOW REQUESTS": "طلبات المتابعة",
+        "No suggested accounts right now.": "لا توجد حسابات مقترحة الآن.",
+        "No accounts to explore yet.": "لا توجد حسابات لاستكشافها بعد.",
+        "No posts yet.": "لا توجد منشورات بعد.",
+        "You haven't saved any posts yet.": "لم تحفظ أي منشورات بعد.",
+        "You're all caught up.": "لقد اطلعت على كل التحديثات.",
+        "No conversations yet. Visit a profile and choose Message.": "لا توجد محادثات بعد. زر ملفاً شخصياً واختر مراسلة.",
+        "No users or posts found.": "لم يتم العثور على أشخاص أو منشورات.",
+        "SHARING…": "جارٍ النشر…",
+        "PLEASE WAIT…": "يرجى الانتظار…",
+        "SENDING…": "جارٍ الإرسال…",
+        "Add some text or select media before posting.": "أضف نصاً أو اختر وسائط قبل النشر.",
+        "Sign in to share posts and stories.": "سجل الدخول لمشاركة المنشورات والقصص.",
+        "Story text must be 2,000 characters or fewer.": "يجب ألا يتجاوز نص القصة ٢٠٠٠ حرف.",
+        "Stories support one photo or video. Share audio as a regular post.": "تدعم القصص صورة أو فيديو واحداً. شارك الصوت كمنشور عادي.",
+        "Choose supported photo, video, or audio files up to 50 MB each.": "اختر صوراً أو فيديوهات أو ملفات صوت مدعومة، بحد أقصى ٥٠ ميغابايت لكل ملف.",
+        "Post deleted.": "تم حذف المنشور.",
+        "Story deleted.": "تم حذف القصة.",
+        "Sign in to open your own profile.": "سجل الدخول لفتح ملفك الشخصي.",
+        "Sign in to access your account.": "سجل الدخول للوصول إلى حسابك.",
+        "Sign in to follow people.": "سجل الدخول لمتابعة الأشخاص.",
+        "Sign in to like posts.": "سجل الدخول للإعجاب بالمنشورات.",
+        "Sign in to save posts.": "سجل الدخول لحفظ المنشورات.",
+        "Post link copied.": "تم نسخ رابط المنشور.",
+        "Could not share this post.": "تعذرت مشاركة هذا المنشور.",
+        "Sign in to report content.": "سجل الدخول للإبلاغ عن المحتوى.",
+        "Choose a reason from the list.": "اختر سبباً من القائمة.",
+        "Report sent to the moderation team.": "تم إرسال البلاغ إلى فريق الإشراف.",
+        "Message deleted.": "تم حذف الرسالة.",
+        "Admin access is restricted.": "الوصول إلى لوحة الإدارة مقيّد.",
+        "Password changed. You can now sign in with your new password.": "تم تغيير كلمة المرور. يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.",
+        "You are signed out.": "تم تسجيل خروجك.",
+        "Sign in to see posts from people you follow.": "سجل الدخول لمشاهدة منشورات من تتابعهم.",
+        "Profile photo will be removed when you save.": "ستُحذف صورة الملف الشخصي عند الحفظ.",
+        "Username must be 3–24 letters, numbers, or underscores.": "يجب أن يتكون اسم المستخدم من ٣ إلى ٢٤ حرفاً أو رقماً أو شرطة سفلية.",
+        "Provide both a link name and a full http/https URL.": "أدخل اسم الرابط وعنوان URL كاملاً يبدأ بـ http/https.",
+        "Profile photos must be JPG, PNG, or WebP and smaller than 5 MB.": "يجب أن تكون صورة الملف JPG أو PNG أو WebP وأقل من ٥ ميغابايت.",
+        "Profile updated.": "تم تحديث الملف الشخصي.",
+        "Password must be at least 8 characters.": "يجب ألا تقل كلمة المرور عن ٨ أحرف.",
+        "Check your new email to confirm the address change.": "تحقق من بريدك الجديد لتأكيد تغيير العنوان.",
+        "Settings saved.": "تم حفظ الإعدادات.",
+        "Your account and social content were deleted.": "تم حذف حسابك ومحتواك الاجتماعي.",
+        "Website preferences": "تفضيلات الموقع",
+        "Open Daily Post feed": "افتح الخلاصة اليومية",
+        "Create your account": "أنشئ حسابك",
+        "Choose a new password": "اختر كلمة مرور جديدة",
+        "Choose a unique username and join the community.": "اختر اسم مستخدم فريداً وانضم إلى المجتمع.",
+        "Enter and confirm your new password.": "أدخل كلمة المرور الجديدة وأكدها.",
+        "CREATE ACCOUNT": "إنشاء حساب",
+        "SAVE NEW PASSWORD": "حفظ كلمة المرور الجديدة",
+        "Admin": "الإدارة",
+        "ADMIN": "الإدارة",
+        "BACK": "رجوع",
+        "Add photos, video, or music": "أضف صوراً أو فيديو أو موسيقى",
+        "No notifications yet.": "لا توجد إشعارات بعد.",
+        "No messages yet.": "لا توجد رسائل بعد.",
+        "SAVE PROFILE": "حفظ الملف الشخصي",
+        "POSTS": "المنشورات",
+        "SAVED POSTS": "المنشورات المحفوظة",
+        "NOTIFICATIONS": "الإشعارات",
+        "MESSAGES": "الرسائل",
+        "ACCOUNT SETTINGS": "إعدادات الحساب",
+        "SAVE SETTINGS": "حفظ الإعدادات",
+        "DANGER ZONE": "منطقة الخطر",
+        "Deleting your account permanently removes your profile and social content.": "سيؤدي حذف حسابك إلى إزالة ملفك الشخصي ومحتواك الاجتماعي نهائياً.",
+        "DELETE MY ACCOUNT": "احذف حسابي",
+        "ADMIN REPORTS": "بلاغات الإدارة",
+        "USER DIRECTORY": "دليل المستخدمين",
+        "Social navigation": "التنقل الاجتماعي",
+        "Story": "قصة",
+        "Close story": "إغلاق القصة",
+        "Previous story": "القصة السابقة",
+        "Next story": "القصة التالية",
+        "Write a post": "اكتب منشوراً",
+        "Post text": "نص المنشور",
+        "Post audience": "جمهور المنشور",
+        "Close create post": "إغلاق إنشاء المنشور",
+        "ALERTS": "التنبيهات",
+        "INBOX": "الوارد",
+        "CREATE": "إنشاء",
+        "EXPLORE": "استكشف",
+        "PROFILE": "الملف الشخصي",
+        "SETTINGS": "الإعدادات",
+        "SAVED": "المحفوظات",
+        "LOG OUT": "تسجيل الخروج",
+        "Website URL (https://…)": "رابط الموقع (https://…)",
+        "A little about you": "نبذة عنك",
+        "Social link name": "اسم رابط التواصل",
+        "Social link URL (https://…)": "رابط التواصل الاجتماعي (https://…)",
+        "YouTube subscribers. Open YouTube channel": "مشتركو يوتيوب. افتح قناة يوتيوب",
+        "TikTok followers. Open TikTok profile": "متابعو تيك توك. افتح ملف تيك توك",
+        "Instagram followers. Open Instagram profile": "متابعو إنستغرام. افتح ملف إنستغرام",
+        "Admin Login": "تسجيل دخول الإدارة",
+        "Sign in with the admin email and password created in Supabase.": "سجل الدخول ببريد الإدارة وكلمة المرور اللذين أُنشئا في Supabase.",
+        "ADMIN EMAIL": "بريد الإدارة",
+        "Enter password": "أدخل كلمة المرور",
+        "Sign in with your admin account": "سجل الدخول بحساب الإدارة",
+        "Verify your email address from the confirmation email before signing in.": "أكد بريدك الإلكتروني من رسالة التأكيد قبل تسجيل الدخول.",
+        "This account is private.": "هذا الحساب خاص.",
+        "Follow request sent.": "تم إرسال طلب المتابعة.",
+        "Your post is live.": "تم نشر منشورك.",
+        "Story shared — it will disappear in 24 hours.": "تم نشر قصتك — ستختفي بعد ٢٤ ساعة."
+    }
+};
+
+const SITE_THEME_STORAGE_KEY = "aliZewarSiteTheme";
+const SITE_DARK_THEME_STORAGE_KEY = "aliZewarLastDarkTheme";
+const SITE_LANGUAGE_STORAGE_KEY = "aliZewarSiteLanguage";
+const SITE_PAGE_METADATA = {
+    en: {
+        title: "ALI ZEWAR — Official",
+        description: "Ali Zewar — Kurdish creator. Challenges, cars, entertainment and more."
+    },
+    ku: {
+        title: "عەلی زێوار — ماڵپەڕی فەرمی",
+        description: "عەلی زێوار — دروستکەرێکی کورد. تەحەدا، ئۆتۆمبێل، کات‌بەسەربردن و زیاتر."
+    },
+    ar: {
+        title: "علي زيوار — الموقع الرسمي",
+        description: "علي زيوار — صانع محتوى كردي. تحديات وسيارات وترفيه والمزيد."
+    }
+};
+const SITE_THEME_VALUES = new Set(["crimson", "arctic", "emerald", "violet", "porcelain"]);
+const SITE_LANGUAGE_VALUES = new Set(["en", "ku", "ar"]);
+const siteOriginalText = new WeakMap();
+const siteOriginalAttributes = new WeakMap();
+const siteLastTranslatedAttributes = new WeakMap();
+let siteLanguage = "en";
+let siteTheme = "crimson";
+let siteThemePreferenceStored = false;
+const SITE_TRANSLATIONS_EXACT = {
+    ku: Object.assign({}, SITE_TRANSLATIONS.ku),
+    ar: Object.assign({}, SITE_TRANSLATIONS.ar)
+};
+
+Object.keys(SITE_TRANSLATIONS).forEach(function(language) {
+    SITE_TRANSLATIONS[language] = Object.fromEntries(
+        Object.entries(SITE_TRANSLATIONS[language]).map(function(entry) {
+            return [normalizedSiteText(entry[0]), entry[1]];
+        })
+    );
+});
+
+function normalizedSiteText(value) {
+    return value.trim().replace(/\s+/g, " ").toLocaleLowerCase();
+}
+
+function translateSiteText(value, language) {
+    if (language === "en") return value;
+    const exactText = value.trim().replace(/\s+/g, " ");
+    const exactTranslation = SITE_TRANSLATIONS_EXACT[language][exactText];
+    if (exactTranslation) return exactTranslation;
+    const dictionary = SITE_TRANSLATIONS[language];
+    const iconLabel = exactText.match(/^([⌂⌕♡✉▣＋◉⚙↪]\s+)(.+)$/);
+    if (iconLabel) {
+        const label = dictionary[normalizedSiteText(iconLabel[2])];
+        if (label) return iconLabel[1] + label;
+    }
+    const translation = dictionary[normalizedSiteText(value)];
+    return translation || value;
+}
+
+function isUntranslatedUserContent(node) {
+    const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+    return Boolean(element && element.closest("[data-no-translate]"));
+}
+
+function translateSiteNode(node) {
+    if (isUntranslatedUserContent(node)) return;
+    if (node.nodeType === Node.TEXT_NODE) {
+        if (!siteOriginalText.has(node)) siteOriginalText.set(node, node.nodeValue);
+        node.nodeValue = translateSiteText(siteOriginalText.get(node), siteLanguage);
+        return;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+    const textWalker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+    let textNode;
+    while ((textNode = textWalker.nextNode())) {
+        if (isUntranslatedUserContent(textNode)) continue;
+        if (!siteOriginalText.has(textNode)) siteOriginalText.set(textNode, textNode.nodeValue);
+        textNode.nodeValue = translateSiteText(siteOriginalText.get(textNode), siteLanguage);
+    }
+    const translatableAttributes = ["aria-label", "placeholder", "title", "alt"];
+    [node].concat(Array.from(node.querySelectorAll("*"))).forEach(function(element) {
+        if (isUntranslatedUserContent(element)) return;
+        translatableAttributes.forEach(function(attribute) {
+            if (!element.hasAttribute(attribute)) return;
+            let originals = siteOriginalAttributes.get(element);
+            if (!originals) {
+                originals = {};
+                siteOriginalAttributes.set(element, originals);
+            }
+            let lastTranslated = siteLastTranslatedAttributes.get(element);
+            if (!lastTranslated) {
+                lastTranslated = {};
+                siteLastTranslatedAttributes.set(element, lastTranslated);
+            }
+            const currentValue = element.getAttribute(attribute);
+            if (!Object.prototype.hasOwnProperty.call(originals, attribute)) {
+                originals[attribute] = currentValue;
+            } else if (currentValue !== lastTranslated[attribute]) {
+                originals[attribute] = currentValue;
+            }
+            const translatedValue = translateSiteText(originals[attribute], siteLanguage);
+            lastTranslated[attribute] = translatedValue;
+            if (currentValue !== translatedValue) element.setAttribute(attribute, translatedValue);
+        });
+    });
+}
+
+function applySiteLanguage(language, persist) {
+    if (!SITE_LANGUAGE_VALUES.has(language)) language = "en";
+    siteLanguage = language;
+    document.documentElement.lang = language === "ku" ? "ckb" : language;
+    document.documentElement.dir = language === "en" ? "ltr" : "rtl";
+    document.title = language === "en"
+        ? (siteData.siteTitle || `${siteData.firstName} ${siteData.lastName} — Official`)
+        : SITE_PAGE_METADATA[language].title;
+    document.querySelector('meta[name="description"]').content = SITE_PAGE_METADATA[language].description;
+    document.querySelectorAll(".site-language-select").forEach(function(select) {
+        select.value = language;
+    });
+    translateSiteNode(document.body);
+    if (persist) {
+        try {
+            localStorage.setItem(SITE_LANGUAGE_STORAGE_KEY, language);
+        } catch (error) {
+            console.warn("Could not save the language preference on this device.", error);
+        }
+    }
+}
+
+function applySiteTheme(theme, persist) {
+    if (!SITE_THEME_VALUES.has(theme)) theme = "crimson";
+    siteTheme = theme;
+    document.documentElement.dataset.siteTheme = theme;
+    dailyPostPage.classList.toggle("light", theme === "porcelain");
+    if (dailyPostElements.theme) dailyPostElements.theme.checked = theme === "porcelain";
+    document.querySelectorAll(".site-theme-select").forEach(function(select) {
+        select.value = theme;
+    });
+    if (persist) {
+        try {
+            localStorage.setItem(SITE_THEME_STORAGE_KEY, theme);
+            if (theme !== "porcelain") localStorage.setItem(SITE_DARK_THEME_STORAGE_KEY, theme);
+            siteThemePreferenceStored = true;
+        } catch (error) {
+            console.warn("Could not save the theme preference on this device.", error);
+        }
+    }
+}
+
+document.querySelectorAll(".site-language-select").forEach(function(select) {
+    select.addEventListener("change", function() {
+        applySiteLanguage(select.value, true);
+    });
+});
+
+document.querySelectorAll(".site-theme-select").forEach(function(select) {
+    select.addEventListener("change", function() {
+        applySiteTheme(select.value, true);
+    });
+});
+
+const sitePreferenceObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.type === "attributes") {
+            translateSiteNode(mutation.target);
+        } else {
+            mutation.addedNodes.forEach(function(node) {
+                if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
+                    translateSiteNode(node);
+                }
+            });
+        }
+    });
+});
+sitePreferenceObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["aria-label", "placeholder", "title", "alt"]
+});
+
+let storedSiteLanguage = "ku";
+let storedSiteTheme = "crimson";
+try {
+    storedSiteLanguage = localStorage.getItem(SITE_LANGUAGE_STORAGE_KEY) || "ku";
+    storedSiteTheme = localStorage.getItem(SITE_THEME_STORAGE_KEY) || "crimson";
+    siteThemePreferenceStored = localStorage.getItem(SITE_THEME_STORAGE_KEY) !== null;
+} catch (error) {
+    console.warn("Could not load saved language or theme preferences.", error);
+}
+applySiteLanguage(storedSiteLanguage, false);
+applySiteTheme(storedSiteTheme, false);
 
 function setDailyPostPage(isOpen) {
     dailyPostPage.classList.toggle("active", isOpen);
@@ -8926,7 +10420,26 @@ function showDailyPostToast(message) {
 }
 
 function formatDailyPostTime(value) {
-    return new Intl.DateTimeFormat(undefined, {
+    const date = new Date(value);
+    if (siteLanguage === "ku") {
+        const kurdishMonths = [
+            "کانوونی دووەم", "شوبات", "ئادار", "نیسان", "ئایار", "حوزەیران",
+            "تەمموز", "ئاب", "ئەیلوول", "تشرینی یەکەم", "تشرینی دووەم", "کانوونی یەکەم"
+        ];
+        const parts = new Intl.DateTimeFormat("en-US", {
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit"
+        }).formatToParts(date);
+        const part = function(type) {
+            return parts.find(function(item) { return item.type === type; }).value;
+        };
+        return part("day") + "ی " + kurdishMonths[date.getMonth()] + "ی " + part("year") +
+            " · " + part("hour") + ":" + part("minute") + " " + part("dayPeriod");
+    }
+    const locale = siteLanguage === "ku" ? "ckb-IQ" : siteLanguage;
+    return new Intl.DateTimeFormat(locale, {
         dateStyle: "medium",
         timeStyle: "short"
     }).format(new Date(value));
@@ -8934,7 +10447,12 @@ function formatDailyPostTime(value) {
 
 function dailyPostTimeLeft(value) {
     const remaining = 24 * 60 * 60 * 1000 - (Date.now() - new Date(value).getTime());
-    return Math.max(1, Math.ceil(remaining / (60 * 60 * 1000))) + "h left";
+    const hours = Math.max(1, Math.ceil(remaining / (60 * 60 * 1000)));
+    const locale = siteLanguage === "ku" ? "ckb-IQ" : siteLanguage;
+    const formattedHours = new Intl.NumberFormat(locale).format(hours);
+    if (siteLanguage === "ku") return formattedHours + " کاتژمێر ماوە";
+    if (siteLanguage === "ar") return formattedHours + " ساعة متبقية";
+    return formattedHours + "h left";
 }
 
 function createDailyPostMedia(post) {
@@ -8944,10 +10462,13 @@ function createDailyPostMedia(post) {
     if (post.media_type === "image") {
         media = document.createElement("img");
         media.alt = "Photo shared on Daily Post";
+        media.loading = "lazy";
+        media.decoding = "async";
     } else if (post.media_type === "video") {
         media = document.createElement("video");
         media.controls = true;
         media.playsInline = true;
+        media.preload = "metadata";
     } else if (post.media_type === "audio") {
         media = document.createElement("audio");
         media.controls = true;
@@ -8957,6 +10478,79 @@ function createDailyPostMedia(post) {
     media.className = "daily-post-media";
     media.src = source;
     return media;
+}
+
+function createDailyPostCarousel(mediaItems) {
+    const carousel = document.createElement("section");
+    carousel.className = "daily-post-carousel";
+    carousel.setAttribute("aria-label", "Post photos");
+    const track = document.createElement("div");
+    track.className = "daily-post-carousel-track";
+    const dots = document.createElement("div");
+    dots.className = "daily-post-carousel-dots";
+    const slides = [];
+    const dotButtons = [];
+    mediaItems.forEach(function(mediaData, index) {
+        const media = createDailyPostMedia(mediaData);
+        if (!media) return;
+        const slide = document.createElement("div");
+        slide.className = "daily-post-carousel-slide";
+        slide.setAttribute("role", "group");
+        slide.setAttribute("aria-label", (index + 1) + " of " + mediaItems.length);
+        slide.append(media);
+        track.append(slide);
+        slides.push(slide);
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "daily-post-carousel-dot";
+        dot.setAttribute("aria-label", "Show photo " + (index + 1));
+        dot.setAttribute("aria-current", index === 0 ? "true" : "false");
+        dot.addEventListener("click", function() {
+            goToPhoto(index);
+        });
+        dots.append(dot);
+        dotButtons.push(dot);
+    });
+    if (!slides.length) return null;
+
+    let currentIndex = 0;
+    const previous = document.createElement("button");
+    previous.type = "button";
+    previous.className = "daily-post-carousel-arrow previous";
+    previous.textContent = "‹";
+    previous.setAttribute("aria-label", "Previous photo");
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "daily-post-carousel-arrow next";
+    next.textContent = "›";
+    next.setAttribute("aria-label", "Next photo");
+    function setCurrentPhoto(index) {
+        currentIndex = Math.min(slides.length - 1, Math.max(0, index));
+        dotButtons.forEach(function(dot, index) {
+            dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+        });
+        previous.disabled = currentIndex === 0;
+        next.disabled = currentIndex === slides.length - 1;
+    }
+    function updateCarousel() {
+        setCurrentPhoto(Math.round(track.scrollLeft / Math.max(track.clientWidth, 1)));
+    }
+    function goToPhoto(index) {
+        const target = Math.min(slides.length - 1, Math.max(0, index));
+        setCurrentPhoto(target);
+        track.scrollTo({ left: target * track.clientWidth, behavior: "smooth" });
+    }
+    previous.addEventListener("click", function() {
+        goToPhoto(currentIndex - 1);
+    });
+    next.addEventListener("click", function() {
+        goToPhoto(currentIndex + 1);
+    });
+    track.addEventListener("scroll", updateCarousel, { passive: true });
+    carousel.append(track);
+    if (slides.length > 1) carousel.append(previous, next, dots);
+    updateCarousel();
+    return carousel;
 }
 
 function createDailyPostCard(post, isStory) {
@@ -8985,6 +10579,7 @@ function createDailyPostCard(post, isStory) {
     const author = document.createElement("div");
     author.className = "daily-post-author";
     author.textContent = authorProfile.display_name || "Daily Post member";
+    if (authorProfile.display_name) author.dataset.noTranslate = "true";
     author.tabIndex = 0;
     author.setAttribute("role", "link");
     author.addEventListener("click", function() {
@@ -8997,11 +10592,41 @@ function createDailyPostCard(post, isStory) {
         : formatDailyPostTime(post.created_at);
     authorInfo.append(author, time);
     authorRow.append(avatar, authorInfo);
+    if (!isStory) {
+        const menu = document.createElement("details");
+        menu.className = "daily-post-post-menu";
+        const menuToggle = document.createElement("summary");
+        menuToggle.setAttribute("aria-label", "Post options");
+        menuToggle.textContent = "•••";
+        const menuItems = document.createElement("div");
+        menuItems.className = "daily-post-post-menu-items";
+        const report = document.createElement("button");
+        report.type = "button";
+        report.textContent = "Report post";
+        report.addEventListener("click", function() {
+            menu.open = false;
+            reportDailyPost("post", post.id);
+        });
+        menuItems.append(report);
+        if (dailyPostUser && post.author_id === dailyPostUser.id) {
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.textContent = "Delete post";
+            remove.addEventListener("click", function() {
+                menu.open = false;
+                deleteDailyPost(post, remove);
+            });
+            menuItems.append(remove);
+        }
+        menu.append(menuToggle, menuItems);
+        authorRow.append(menu);
+    }
     article.append(authorRow);
     if (post.text_content) {
         const text = document.createElement("p");
         text.className = "daily-post-item-copy";
         text.textContent = post.text_content;
+        text.dataset.noTranslate = "true";
         article.append(text);
     }
     const mediaItems = (post.post_media || []).slice();
@@ -9011,7 +10636,12 @@ function createDailyPostCard(post, isStory) {
             media_type: post.legacy_media_type
         });
     }
-    if (mediaItems.length) {
+    if (mediaItems.length > 1 && mediaItems.every(function(media) {
+        return media.media_type === "image";
+    })) {
+        const carousel = createDailyPostCarousel(mediaItems);
+        if (carousel) article.append(carousel);
+    } else if (mediaItems.length) {
         const gallery = document.createElement("div");
         gallery.className = "daily-post-media-gallery";
         mediaItems.forEach(function(mediaData) {
@@ -9056,24 +10686,6 @@ function createDailyPostCard(post, isStory) {
         });
         actions.append(like, comments, save, share);
         article.append(actions);
-        const report = document.createElement("button");
-        report.type = "button";
-        report.className = "daily-post-delete";
-        report.textContent = "Report";
-        report.addEventListener("click", function() {
-            reportDailyPost("post", post.id);
-        });
-        article.append(report);
-        if (dailyPostUser && post.author_id === dailyPostUser.id) {
-            const remove = document.createElement("button");
-            remove.type = "button";
-            remove.className = "daily-post-delete";
-            remove.textContent = "Delete post";
-            remove.addEventListener("click", function() {
-                deleteDailyPost(post);
-            });
-            article.append(remove);
-        }
     }
     return article;
 }
@@ -9094,6 +10706,7 @@ function openDailyPostStory(post) {
         const text = document.createElement("p");
         text.className = "daily-post-item-copy daily-post-story-content";
         text.textContent = post.text_content;
+        text.dataset.noTranslate = "true";
         dailyPostElements.modalCard.append(text);
     }
     const media = createDailyPostMedia(post);
@@ -9104,12 +10717,27 @@ function openDailyPostStory(post) {
     const time = document.createElement("p");
     time.className = "daily-post-time daily-post-story-content";
     time.textContent = (post.author ? post.author.display_name : "Story") + " · " + dailyPostTimeLeft(post.created_at);
-    dailyPostElements.modalCard.append(time);
+    const storyActions = document.createElement("div");
+    storyActions.className = "daily-post-action-row daily-post-story-content";
+    if (dailyPostUser && post.author_id === dailyPostUser.id) {
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "daily-post-button";
+        remove.textContent = "Delete my story";
+        remove.addEventListener("click", function() {
+            deleteDailyPostStory(post, remove);
+        });
+        storyActions.append(remove);
+        window.clearTimeout(dailyPostStoryTimer);
+    }
+    dailyPostElements.modalCard.append(time, storyActions);
     dailyPostElements.storyModal.classList.remove("daily-post-hidden");
     window.clearTimeout(dailyPostStoryTimer);
-    dailyPostStoryTimer = window.setTimeout(function() {
-        showAdjacentDailyPostStory(1);
-    }, 5000);
+    if (!dailyPostUser || post.author_id !== dailyPostUser.id) {
+        dailyPostStoryTimer = window.setTimeout(function() {
+            showAdjacentDailyPostStory(1);
+        }, 5000);
+    }
     if (dailyPostUser) {
         supabaseClient.from("story_views")
             .upsert({ story_id: post.id, viewer_id: dailyPostUser.id }, { onConflict: "story_id,viewer_id", ignoreDuplicates: true })
@@ -9185,6 +10813,7 @@ function renderDailyPostStories(stories) {
         const label = document.createElement("span");
         label.className = "daily-post-story-label";
         label.textContent = (story.author ? story.author.display_name : "Story") + " · " + dailyPostTimeLeft(story.created_at);
+        label.dataset.noTranslate = "true";
         button.append(ring, label);
         button.addEventListener("click", function() {
             dailyPostStoryIndex = dailyPostStories.findIndex(function(item) {
@@ -9329,6 +10958,7 @@ async function validateDailyPostImage(file) {
 }
 
 async function publishDailyPost(kind) {
+    if (dailyPostPublishInProgress) return;
     const text = dailyPostElements.text.value.trim();
     const files = Array.from(dailyPostElements.mediaInput.files || []);
     if (!text && !files.length) {
@@ -9359,18 +10989,24 @@ async function publishDailyPost(kind) {
         showDailyPostToast("Choose supported photo, video, or audio files up to 50 MB each.");
         return;
     }
+    dailyPostPublishInProgress = true;
+    const originalLabel = dailyPostElements.publish.textContent;
+    dailyPostElements.publish.disabled = true;
+    dailyPostElements.storyButton.disabled = true;
+    dailyPostElements.attach.disabled = true;
+    dailyPostElements.publish.textContent = "SHARING…";
     try {
         for (const file of files) await validateDailyPostImage(file);
     } catch (error) {
         showDailyPostToast(error.message || "Could not validate the selected image.");
+        dailyPostPublishInProgress = false;
+        dailyPostElements.publish.disabled = false;
+        dailyPostElements.storyButton.disabled = false;
+        dailyPostElements.attach.disabled = false;
+        dailyPostElements.publish.textContent = originalLabel;
         return;
     }
 
-    dailyPostElements.publish.disabled = true;
-    dailyPostElements.storyButton.disabled = true;
-    dailyPostElements.attach.disabled = true;
-    const originalLabel = dailyPostElements.publish.textContent;
-    dailyPostElements.publish.textContent = "SHARING…";
     const uploadedObjects = [];
     let postCreated = false;
     let postCommitted = false;
@@ -9492,6 +11128,7 @@ async function publishDailyPost(kind) {
                     " while " + publishStage + ". Run the updated daily-post-publishing-repair.sql in the Supabase SQL Editor, then refresh; keep RLS enabled."
             : (error.message || "Could not share your post. Please try again."));
     } finally {
+        dailyPostPublishInProgress = false;
         dailyPostElements.publish.disabled = false;
         dailyPostElements.storyButton.disabled = false;
         dailyPostElements.attach.disabled = false;
@@ -9501,21 +11138,58 @@ async function publishDailyPost(kind) {
     }
 }
 
-async function deleteDailyPost(post) {
+async function deleteDailyPost(post, button) {
+    if (post.deleteInProgress || !dailyPostUser || post.author_id !== dailyPostUser.id) return;
     if (!window.confirm("Delete this post?")) return;
-    const { error } = await supabaseClient.from("posts").delete().eq("id", post.id);
-    if (error) {
+    post.deleteInProgress = true;
+    if (button) button.disabled = true;
+    try {
+        const { data, error } = await supabaseClient.from("posts").delete()
+            .eq("id", post.id).eq("author_id", dailyPostUser.id).select("id").maybeSingle();
+        if (error) throw error;
+        if (!data) throw new Error("This post could not be deleted. It may already be gone.");
+        const paths = (post.post_media || []).map(function(media) { return media.storage_path; });
+        if (paths.length) {
+            const { error: removeError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove(paths);
+            if (removeError) console.error("Could not delete post media.", removeError);
+        }
+        await loadDailyPostFeed();
+        showDailyPostToast("Post deleted.");
+    } catch (error) {
         console.error("Could not delete creator post.", error);
         showDailyPostToast(error.message || "Could not delete this post.");
-        return;
+    } finally {
+        post.deleteInProgress = false;
+        if (button) button.disabled = false;
     }
-    const paths = (post.post_media || []).map(function(media) { return media.storage_path; });
-    if (paths.length) {
-        const { error: removeError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove(paths);
-        if (removeError) console.error("Could not delete post media.", removeError);
+}
+
+async function deleteDailyPostStory(story, button) {
+    if (dailyPostStoryDeleteInProgress || !dailyPostUser || story.author_id !== dailyPostUser.id) return;
+    if (!window.confirm("Delete your story? This removes it for everyone.")) return;
+    dailyPostStoryDeleteInProgress = true;
+    button.disabled = true;
+    try {
+        const { data, error } = await supabaseClient.from("stories").delete()
+            .eq("id", story.id).eq("author_id", dailyPostUser.id).select("id").maybeSingle();
+        if (error) throw error;
+        if (!data) throw new Error("This story could not be deleted. It may already be gone.");
+        if (story.storage_path && story.storage_bucket) {
+            const { error: storageError } = await supabaseClient.storage
+                .from(story.storage_bucket).remove([story.storage_path]);
+            if (storageError) console.error("Story was deleted, but its media could not be removed.", storageError);
+        }
+        window.clearTimeout(dailyPostStoryTimer);
+        dailyPostElements.storyModal.classList.add("daily-post-hidden");
+        await loadDailyPostFeed();
+        showDailyPostToast("Story deleted.");
+    } catch (error) {
+        console.error("Could not delete your story.", error);
+        showDailyPostToast(error.message || "Could not delete your story.");
+    } finally {
+        dailyPostStoryDeleteInProgress = false;
+        button.disabled = false;
     }
-    await loadDailyPostFeed();
-    showDailyPostToast("Post deleted.");
 }
 
 function setDailyPostView(view) {
@@ -9955,6 +11629,7 @@ async function toggleDailyPostComments(post, article) {
         line.className = "daily-post-comment-line";
         const label = document.createElement("span");
         label.textContent = (comment.author ? comment.author.display_name : "Member") + ": " + comment.content;
+        label.dataset.noTranslate = "true";
         line.append(label);
         const actions = document.createElement("span");
         actions.className = "daily-post-comment-actions";
@@ -10210,26 +11885,54 @@ async function openDailyPostConversation(conversationId, otherProfile) {
     }
     dailyPostElements.chatMessages.replaceChildren();
     (data || []).forEach(function(message) {
-        const line = document.createElement("p");
+        const line = document.createElement("div");
         line.className = "daily-post-comment-line";
-        line.textContent = message.deleted_at
+        const content = document.createElement("span");
+        content.textContent = message.deleted_at
             ? "Message deleted"
             : (message.sender_id === dailyPostUser.id ? "You" : otherProfile.display_name) + ": " + message.content;
+        if (!message.deleted_at) content.dataset.noTranslate = "true";
+        line.append(content);
         if (message.sender_id === dailyPostUser.id && !message.deleted_at) {
-            line.tabIndex = 0;
-            line.title = "Click to delete this message";
-            line.addEventListener("click", async function() {
-                if (!window.confirm("Delete this message?")) return;
-                const { error: deleteError } = await supabaseClient.from("messages")
-                    .update({ deleted_at: new Date().toISOString() }).eq("id", message.id);
-                if (deleteError) showDailyPostToast(deleteError.message);
-                else openDailyPostConversation(conversationId, otherProfile);
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "daily-post-delete";
+            remove.textContent = "Delete";
+            remove.addEventListener("click", function() {
+                deleteDailyPostMessage(message, conversationId, otherProfile, remove);
             });
+            line.append(remove);
         }
         dailyPostElements.chatMessages.append(line);
     });
     await supabaseClient.from("conversation_participants").update({ last_read_at: new Date().toISOString() })
         .eq("conversation_id", conversationId).eq("user_id", dailyPostUser.id);
+}
+
+async function deleteDailyPostMessage(message, conversationId, otherProfile, button) {
+    if (message.deleteInProgress || !dailyPostUser || message.sender_id !== dailyPostUser.id) return;
+    if (!window.confirm("Delete your message?")) return;
+    message.deleteInProgress = true;
+    button.disabled = true;
+    try {
+        const { data, error } = await supabaseClient.from("messages")
+            .update({ deleted_at: new Date().toISOString() })
+            .eq("id", message.id)
+            .eq("sender_id", dailyPostUser.id)
+            .eq("conversation_id", conversationId)
+            .select("id")
+            .maybeSingle();
+        if (error) throw error;
+        if (!data) throw new Error("This message could not be deleted. It may already be gone.");
+        await openDailyPostConversation(conversationId, otherProfile);
+        showDailyPostToast("Message deleted.");
+    } catch (error) {
+        console.error("Could not delete your message.", error);
+        showDailyPostToast(error.message || "Could not delete your message.");
+    } finally {
+        message.deleteInProgress = false;
+        button.disabled = false;
+    }
 }
 
 async function loadDailyPostSettings() {
@@ -10241,8 +11944,17 @@ async function loadDailyPostSettings() {
         return;
     }
     const settings = data || {};
-    dailyPostElements.theme.checked = settings.theme === "light";
-    dailyPostPage.classList.toggle("light", settings.theme === "light");
+    if (!siteThemePreferenceStored && settings.theme === "light") {
+        applySiteTheme("porcelain", false);
+    } else if (!siteThemePreferenceStored && settings.theme === "dark" && siteTheme === "porcelain") {
+        let preferredDarkTheme = "crimson";
+        try {
+            preferredDarkTheme = localStorage.getItem(SITE_DARK_THEME_STORAGE_KEY) || "crimson";
+        } catch (storageError) {
+            console.warn("Could not load the saved color theme.", storageError);
+        }
+        applySiteTheme(preferredDarkTheme === "porcelain" ? "crimson" : preferredDarkTheme, false);
+    }
     dailyPostElements.notifyLikes.checked = settings.notify_likes !== false;
     dailyPostElements.notifyComments.checked = settings.notify_comments !== false;
     dailyPostElements.notifyFollowers.checked = settings.notify_followers !== false;
@@ -11148,7 +12860,17 @@ dailyPostElements.settingsForm.addEventListener("submit", async function(event) 
         showDailyPostToast(error.message || "Could not save settings.");
         return;
     }
-    dailyPostPage.classList.toggle("light", dailyPostElements.theme.checked);
+    if (dailyPostElements.theme.checked) {
+        applySiteTheme("porcelain", true);
+    } else if (siteTheme === "porcelain") {
+        let preferredDarkTheme = "crimson";
+        try {
+            preferredDarkTheme = localStorage.getItem(SITE_DARK_THEME_STORAGE_KEY) || "crimson";
+        } catch (storageError) {
+            console.warn("Could not load the saved color theme.", storageError);
+        }
+        applySiteTheme(preferredDarkTheme === "porcelain" ? "crimson" : preferredDarkTheme, true);
+    }
     showDailyPostToast("Settings saved.");
 });
 
@@ -11176,19 +12898,31 @@ dailyPostElements.deleteAccount.addEventListener("click", async function() {
 
 dailyPostElements.messageForm.addEventListener("submit", async function(event) {
     event.preventDefault();
+    if (dailyPostMessageInProgress) return;
     const content = dailyPostElements.messageText.value.trim();
-    if (!content || !dailyPostConversationId) return;
-    const { error } = await supabaseClient.from("messages").insert({
-        conversation_id: dailyPostConversationId,
-        sender_id: dailyPostUser.id,
-        content: content
-    });
-    if (error) {
+    if (!content || !dailyPostConversationId || !dailyPostUser) return;
+    dailyPostMessageInProgress = true;
+    const sendButton = dailyPostElements.messageForm.querySelector('button[type="submit"]');
+    const originalLabel = sendButton.textContent;
+    sendButton.disabled = true;
+    sendButton.textContent = "SENDING…";
+    try {
+        const { error } = await supabaseClient.from("messages").insert({
+            conversation_id: dailyPostConversationId,
+            sender_id: dailyPostUser.id,
+            content: content
+        });
+        if (error) throw error;
+        dailyPostElements.messageText.value = "";
+        await loadDailyPostConversations();
+    } catch (error) {
+        console.error("Could not send message.", error);
         showDailyPostToast(error.message || "Could not send message.");
-        return;
+    } finally {
+        dailyPostMessageInProgress = false;
+        sendButton.disabled = false;
+        sendButton.textContent = originalLabel;
     }
-    dailyPostElements.messageText.value = "";
-    loadDailyPostConversations();
 });
 
 document.addEventListener("keydown", function(event) {
