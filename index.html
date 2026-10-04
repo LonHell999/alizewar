@@ -9339,6 +9339,10 @@ async function publishDailyPost(kind) {
         showDailyPostToast("Sign in to share posts and stories.");
         return;
     }
+    if (kind === "story" && text.length > 2000) {
+        showDailyPostToast("Story text must be 2,000 characters or fewer.");
+        return;
+    }
     if (files.length > 10 || (kind === "story" && files.length > 1)) {
         showDailyPostToast(kind === "story" ? "A story can include one photo or video." : "Choose up to 10 photos or videos.");
         return;
@@ -9370,7 +9374,19 @@ async function publishDailyPost(kind) {
     const uploadedObjects = [];
     let postCreated = false;
     let postCommitted = false;
+    let publishStage = "checking your profile";
     try {
+        const { data: authorProfile, error: authorProfileError } = await supabaseClient.from("profiles")
+            .select("id,is_banned,is_private").eq("id", dailyPostUser.id).maybeSingle();
+        if (authorProfileError) throw authorProfileError;
+        if (!authorProfile) {
+            throw new Error("Your Daily Post profile is missing. Run daily-post-publishing-repair.sql in Supabase, then refresh.");
+        }
+        if (authorProfile.is_banned) {
+            throw new Error("This account is restricted from publishing. Contact the site administrator.");
+        }
+        dailyPostProfile = Object.assign({}, dailyPostProfile || {}, authorProfile);
+
         let postId;
         const visibility = dailyPostElements.visibility.value;
         if (kind === "story") {
@@ -9379,11 +9395,13 @@ async function publishDailyPost(kind) {
             if (storyFile) {
                 const extension = storyFile.name.split(".").pop().toLowerCase();
                 storagePath = dailyPostUser.id + "/" + crypto.randomUUID() + "." + extension;
+                publishStage = "uploading story media";
                 const { error: uploadError } = await supabaseClient.storage.from(DAILY_STORY_BUCKET)
                     .upload(storagePath, storyFile, { contentType: storyFile.type, upsert: false });
                 if (uploadError) throw uploadError;
                 uploadedObjects.push({ bucket: DAILY_STORY_BUCKET, path: storagePath });
             }
+            publishStage = "saving your story";
             const { error } = await supabaseClient.from("stories").insert({
                 author_id: dailyPostUser.id,
                 text_content: text,
@@ -9395,6 +9413,7 @@ async function publishDailyPost(kind) {
             if (error) throw error;
             postCommitted = true;
         } else {
+            publishStage = "creating your post";
             const { data, error } = await supabaseClient.from("posts").insert({
                 author_id: dailyPostUser.id,
                 text_content: text,
@@ -9408,6 +9427,7 @@ async function publishDailyPost(kind) {
                 const file = files[index];
                 const extension = file.name.split(".").pop().toLowerCase();
                 const path = dailyPostUser.id + "/" + crypto.randomUUID() + "." + extension;
+                publishStage = "uploading post media";
                 const { error: uploadError } = await supabaseClient.storage.from(DAILY_POST_BUCKET)
                     .upload(path, file, { contentType: file.type, upsert: false });
                 if (uploadError) throw uploadError;
@@ -9421,6 +9441,7 @@ async function publishDailyPost(kind) {
                 });
             }
             if (mediaRows.length) {
+                publishStage = "saving post media";
                 const { error: mediaError } = await supabaseClient.from("post_media").insert(mediaRows);
                 if (mediaError) throw mediaError;
             }
@@ -9436,6 +9457,7 @@ async function publishDailyPost(kind) {
         dailyPostElements.clearMedia.classList.add("daily-post-hidden");
         dailyPostElements.preview.replaceChildren();
         setDailyPostStoryMode(false);
+        publishStage = "refreshing your feed";
         await loadDailyPostFeed();
         showDailyPostToast(kind === "story"
             ? "Story shared — it will disappear in 24 hours."
@@ -9455,10 +9477,18 @@ async function publishDailyPost(kind) {
         }
         const isPostsPolicyError = error && error.code === "42501" &&
             /row-level security policy.*posts|posts.*row-level security policy/i.test(error.message || "");
+        const isStoryPolicyError = error && error.code === "42501" &&
+            /row-level security policy.*stories|stories.*row-level security policy/i.test(error.message || "");
+        const isPostMediaPolicyError = error && error.code === "42501" &&
+            /row-level security policy.*post_media|post_media.*row-level security policy/i.test(error.message || "");
+        const isStoragePolicyError = error &&
+            (Number(error.statusCode || error.status) === 403) &&
+            /row-level security|policy/i.test(error.message || "");
         showDailyPostToast(postCommitted
-            ? "Your post was shared, but the feed could not refresh. Reload the page."
-            : isPostsPolicyError
-                ? "Supabase blocked this post. Run daily-post-publishing-repair.sql in the Supabase SQL Editor, then refresh; do not disable RLS."
+            ? "Your " + (kind === "story" ? "story" : "post") + " was shared, but the feed could not refresh. Reload the page."
+            : isPostsPolicyError || isStoryPolicyError || isPostMediaPolicyError || isStoragePolicyError
+                ? "Supabase blocked " + (kind === "story" ? "your story" : "your post") +
+                    " while " + publishStage + ". Run daily-post-publishing-repair.sql in the Supabase SQL Editor, then refresh; keep RLS enabled."
             : (error.message || "Could not share your post. Please try again."));
     } finally {
         dailyPostElements.publish.disabled = false;
@@ -10393,10 +10423,12 @@ async function setDailyPostSession(user) {
     if (!user) dailyPostProfileTarget = null;
     dailyPostIsAdmin = false;
     dailyPostElements.currentUser.textContent = "";
-    dailyPostElements.login.classList.toggle("daily-post-hidden", Boolean(user));
-    dailyPostElements.composer.classList.toggle("daily-post-hidden", !user);
-    dailyPostElements.signOut.classList.toggle("daily-post-hidden", !user);
-    dailyPostElements.mobileSignOut.classList.toggle("daily-post-hidden", !user);
+    if (user) {
+        dailyPostElements.login.classList.remove("daily-post-hidden");
+    }
+    dailyPostElements.composer.classList.add("daily-post-hidden");
+    dailyPostElements.signOut.classList.add("daily-post-hidden");
+    dailyPostElements.mobileSignOut.classList.add("daily-post-hidden");
     dailyPostElements.feed.classList.remove("daily-post-hidden");
     dailyPostElements.recommended.textContent = user ? "Loading suggestions…" : "Sign in to discover people.";
     if (!user && dailyPostFeedMode === "following") dailyPostFeedMode = "for-you";
@@ -10442,6 +10474,8 @@ async function setDailyPostSession(user) {
     dailyPostElements.currentUser.textContent = "@" + dailyPostProfile.username;
     dailyPostElements.login.classList.add("daily-post-hidden");
     dailyPostElements.composer.classList.remove("daily-post-hidden");
+    dailyPostElements.signOut.classList.remove("daily-post-hidden");
+    dailyPostElements.mobileSignOut.classList.remove("daily-post-hidden");
     dailyPostElements.composer.hidden = true;
     dailyPostElements.composer.setAttribute("aria-hidden", "true");
     dailyPostElements.feed.classList.remove("daily-post-hidden");
@@ -10661,7 +10695,12 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
     } catch (error) {
         console.error("Daily Post authentication failed.", error);
         const authErrorText = String(error.code || "") + " " + String(error.message || "");
-        if (/email_not_confirmed|email not confirmed/i.test(authErrorText)) {
+        if (dailyPostUser && dailyPostUser.id) {
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+            dailyPostElements.loginError.textContent =
+                "Your email and password were accepted, but your account profile could not finish loading. The Supabase profile setup needs repair; refresh after applying the latest schema.";
+            dailyPostElements.loginPassword.value = "";
+        } else if (/email_not_confirmed|email not confirmed/i.test(authErrorText)) {
             dailyPostElements.loginError.textContent =
                 "This email is not verified yet. Open the confirmation email, then try signing in again.";
             dailyPostElements.resendVerification.classList.remove("daily-post-hidden");
