@@ -9402,25 +9402,23 @@ async function publishDailyPost(kind) {
                 uploadedObjects.push({ bucket: DAILY_STORY_BUCKET, path: storagePath });
             }
             publishStage = "saving your story";
-            const { error } = await supabaseClient.from("stories").insert({
-                author_id: dailyPostUser.id,
-                text_content: text,
-                storage_bucket: storagePath ? DAILY_STORY_BUCKET : null,
-                storage_path: storagePath,
-                media_type: storyFile ? (storyFile.type.startsWith("image/") ? "image" : "video") : null,
-                visibility: dailyPostProfile && dailyPostProfile.is_private ? "followers" : "public"
+            const { error } = await supabaseClient.rpc("create_daily_story", {
+                p_text_content: text,
+                p_storage_bucket: storagePath ? DAILY_STORY_BUCKET : null,
+                p_storage_path: storagePath,
+                p_media_type: storyFile ? (storyFile.type.startsWith("image/") ? "image" : "video") : null,
+                p_visibility: dailyPostProfile && dailyPostProfile.is_private ? "followers" : "public"
             });
             if (error) throw error;
             postCommitted = true;
         } else {
             publishStage = "creating your post";
-            const { data, error } = await supabaseClient.from("posts").insert({
-                author_id: dailyPostUser.id,
-                text_content: text,
-                visibility: visibility
-            }).select("id").single();
+            const { data, error } = await supabaseClient.rpc("create_daily_post", {
+                p_text_content: text,
+                p_visibility: visibility
+            });
             if (error) throw error;
-            postId = data.id;
+            postId = data;
             postCreated = true;
             const mediaRows = [];
             for (let index = 0; index < files.length; index += 1) {
@@ -9484,11 +9482,14 @@ async function publishDailyPost(kind) {
         const isStoragePolicyError = error &&
             (Number(error.statusCode || error.status) === 403) &&
             /row-level security|policy/i.test(error.message || "");
+        const isPublishFunctionMissing = error && error.code === "42883";
         showDailyPostToast(postCommitted
             ? "Your " + (kind === "story" ? "story" : "post") + " was shared, but the feed could not refresh. Reload the page."
+            : isPublishFunctionMissing
+                ? "Publishing setup is missing. Run the updated daily-post-publishing-repair.sql in Supabase, then refresh."
             : isPostsPolicyError || isStoryPolicyError || isPostMediaPolicyError || isStoragePolicyError
                 ? "Supabase blocked " + (kind === "story" ? "your story" : "your post") +
-                    " while " + publishStage + ". Run daily-post-publishing-repair.sql in the Supabase SQL Editor, then refresh; keep RLS enabled."
+                    " while " + publishStage + ". Run the updated daily-post-publishing-repair.sql in the Supabase SQL Editor, then refresh; keep RLS enabled."
             : (error.message || "Could not share your post. Please try again."));
     } finally {
         dailyPostElements.publish.disabled = false;
