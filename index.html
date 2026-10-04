@@ -1585,6 +1585,10 @@ footer {
     font-weight: 800;
 }
 
+.daily-post-story-ring.read {
+    border-color: #697482;
+}
+
 .admin-action:hover {
     border-color: var(--red);
 }
@@ -2415,8 +2419,287 @@ footer {
 }
 
 .daily-post-main {
-    width: min(760px, 92%);
+    width: min(1320px, 94%);
     margin: 38px auto 80px;
+}
+
+.daily-post-layout {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 760px) 250px;
+    justify-content: center;
+    align-items: start;
+    gap: 22px;
+}
+
+.daily-post-sidebar {
+    position: sticky;
+    top: 88px;
+    display: grid;
+    gap: 7px;
+    padding: 12px;
+}
+
+.daily-post-sidebar button {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 11px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: #cbd2dc;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+}
+
+.daily-post-sidebar button:hover,
+.daily-post-sidebar button.active {
+    border-color: var(--border);
+    background: rgba(255,255,255,.045);
+    color: #fff;
+}
+
+.daily-post-center {
+    min-width: 0;
+}
+
+.daily-post-main .daily-post-intro {
+    margin-bottom: 22px;
+}
+
+.daily-post-search {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 18px;
+}
+
+.daily-post-search input {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(7,10,15,.65);
+    color: white;
+}
+
+.daily-post-center input:not([type="file"]):not([type="checkbox"]),
+.daily-post-center select,
+.daily-post-center textarea {
+    max-width: 100%;
+}
+
+.daily-post-center select,
+.daily-post-profile-form input,
+.daily-post-profile-form textarea,
+#dailyPostProfileForm input:not([type="file"]),
+#dailyPostProfileForm textarea,
+#dailyPostSettingsForm input:not([type="checkbox"]) {
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 9px;
+    padding: 9px 11px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(7,10,15,.65);
+    color: #f4f7ff;
+}
+
+#dailyPostProfileForm textarea {
+    min-height: 85px;
+}
+
+#dailyPostProfileForm label,
+#dailyPostSettingsForm label {
+    display: block;
+    margin: 11px 0;
+    color: #cbd2dc;
+    font-size: 12px;
+}
+
+.daily-post-story-progress {
+    position: absolute;
+    top: 14px;
+    right: 52px;
+    left: 18px;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 9px;
+    background: rgba(255,255,255,.22);
+}
+
+.daily-post-story-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: white;
+}
+
+.daily-post-story-progress span.playing {
+    width: 100%;
+    transition: width 5s linear;
+}
+
+.daily-post-modal-card #dailyPostStoryPrevious,
+.daily-post-modal-card #dailyPostStoryNext {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+
+.daily-post-modal-card #dailyPostStoryPrevious {
+    left: 8px;
+}
+
+.daily-post-modal-card #dailyPostStoryNext {
+    right: 8px;
+}
+
+.daily-post-search-results {
+    position: relative;
+    z-index: 1;
+    margin: -12px 0 15px;
+}
+
+.daily-post-recommendations {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+}
+
+.daily-post-recommendation {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.daily-post-recommendation > div:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.daily-post-recommendation .daily-post-button {
+    min-height: 32px;
+    padding: 0 9px;
+    font-size: 10px;
+}
+
+.daily-post-view[hidden] {
+    display: none;
+}
+
+.daily-post-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 13px;
+}
+
+.daily-post-action-row .daily-post-button {
+    min-height: 34px;
+    padding: 0 10px;
+}
+
+.daily-post-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.daily-post-preview img,
+.daily-post-preview video {
+    width: min(100%, 180px);
+    max-height: 180px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.daily-post-preview audio {
+    width: min(100%, 300px);
+}
+
+.daily-post-page.light {
+    color-scheme: light;
+    color: #1d2633;
+    background: linear-gradient(180deg, #f4f6f9, #e8edf3);
+}
+
+.daily-post-page.light .daily-post-topbar,
+.daily-post-page.light .daily-post-mobile-nav {
+    border-color: rgba(26,39,55,.13);
+    background: rgba(248,250,252,.95);
+}
+
+.daily-post-page.light .daily-post-card,
+.daily-post-page.light .daily-post-modal-card {
+    border-color: rgba(26,39,55,.14);
+    background: rgba(255,255,255,.94);
+    color: #1d2633;
+}
+
+.daily-post-page.light .daily-post-item-copy,
+.daily-post-page.light .daily-post-button,
+.daily-post-page.light .daily-post-sidebar button,
+.daily-post-page.light .daily-post-comment-line,
+.daily-post-page.light .daily-post-login > p {
+    color: #344255;
+}
+
+.daily-post-page.light input:not([type="checkbox"]):not([type="file"]),
+.daily-post-page.light textarea,
+.daily-post-page.light select {
+    border-color: rgba(26,39,55,.2);
+    background: #f5f7fa;
+    color: #1d2633;
+}
+
+.daily-post-comment {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.daily-post-comment input {
+    width: 100%;
+    min-width: 0;
+    min-height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(7,10,15,.65);
+    color: white;
+}
+
+.daily-post-comment-list {
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.daily-post-comment-line {
+    color: #cbd2dc;
+    font-size: 12px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.daily-post-mobile-nav {
+    display: none;
+}
+
+.daily-post-avatar-image {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .daily-post-intro {
@@ -2818,6 +3101,56 @@ audio.daily-post-media {
 
     .daily-post-controls > .daily-post-button {
         align-self: flex-start;
+    }
+}
+
+@media(max-width:1050px) {
+    .daily-post-layout {
+        grid-template-columns: 165px minmax(0, 760px);
+    }
+
+    .daily-post-right-sidebar {
+        display: none;
+    }
+}
+
+@media(max-width:700px) {
+    .daily-post-main {
+        width: 94%;
+        margin-top: 22px;
+        padding-bottom: 70px;
+    }
+
+    .daily-post-layout {
+        display: block;
+    }
+
+    .daily-post-left-sidebar {
+        display: none;
+    }
+
+    .daily-post-mobile-nav {
+        position: fixed;
+        z-index: 3;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--border);
+        background: rgba(10,13,19,.96);
+        backdrop-filter: blur(14px);
+    }
+
+    .daily-post-mobile-nav button {
+        min-width: 48px;
+        min-height: 40px;
+        border: 0;
+        background: transparent;
+        color: #cbd2dc;
+        font-size: 10px;
+        font-weight: 700;
     }
 }
 
@@ -3681,9 +4014,22 @@ audio.daily-post-media {
 <div class="daily-post-page" id="dailyPostPage" aria-hidden="true">
     <header class="daily-post-topbar">
         <a class="daily-post-brand" href="#home">ALI<span>.</span></a>
+        <span id="dailyPostCurrentUser" class="daily-post-author"></span>
         <a class="daily-post-back" id="dailyPostBack" href="#home">← BACK TO WEBSITE</a>
     </header>
     <main class="daily-post-main">
+      <div class="daily-post-layout">
+        <aside class="daily-post-sidebar daily-post-card daily-post-left-sidebar" aria-label="Social navigation">
+            <button type="button" data-daily-view="home" class="active">⌂ &nbsp; Home</button>
+            <button type="button" data-daily-view="explore">⌕ &nbsp; Explore</button>
+            <button type="button" data-daily-view="notifications">♡ &nbsp; Notifications</button>
+            <button type="button" data-daily-view="messages">✉ &nbsp; Messages</button>
+            <button type="button" data-daily-view="saved">▣ &nbsp; Saved</button>
+            <button type="button" data-daily-view="profile">◉ &nbsp; Profile</button>
+            <button type="button" data-daily-view="settings">⚙ &nbsp; Settings</button>
+            <button id="dailyPostSignOut" type="button" class="daily-post-hidden">↪ &nbsp; Log out</button>
+        </aside>
+        <div class="daily-post-center">
         <section class="daily-post-intro">
             <div>
                 <p class="daily-post-eyebrow">YOUR DAILY CREATOR FEED</p>
@@ -3693,16 +4039,28 @@ audio.daily-post-media {
         </section>
         <div id="dailyPostNotice" class="daily-post-notice daily-post-hidden" role="status"></div>
         <section id="dailyPostLogin" class="daily-post-card daily-post-login daily-post-hidden">
-            <h2>Sign in to post</h2>
-            <p>This creator space is managed by Ali. Sign in with the same administrator account used for the website dashboard.</p>
+            <h2 id="dailyPostAuthTitle">Welcome to Daily Post</h2>
+            <p id="dailyPostAuthDescription">Sign in or create an account to follow people and share your posts.</p>
             <form id="dailyPostLoginForm">
-                <input id="dailyPostEmail" type="email" autocomplete="username" placeholder="Admin email" aria-label="Admin email" required>
-                <input id="dailyPostPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>
+                <input id="dailyPostUsername" class="daily-post-hidden" type="text" autocomplete="username" placeholder="Username (3–24 letters, numbers, _)" aria-label="Username" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]{3,24}">
+                <input id="dailyPostDisplayName" class="daily-post-hidden" type="text" autocomplete="name" placeholder="Display name" aria-label="Display name" maxlength="60">
+                <input id="dailyPostEmail" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
+                <input id="dailyPostPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" minlength="8" required>
+                <input id="dailyPostConfirmPassword" class="daily-post-hidden" type="password" autocomplete="new-password" placeholder="Confirm password" aria-label="Confirm password">
                 <button class="daily-post-button primary" type="submit">SIGN IN</button>
                 <div id="dailyPostLoginError" class="daily-post-error" role="alert"></div>
             </form>
+            <div class="daily-post-action-row">
+                <button id="dailyPostToggleAuth" class="daily-post-button" type="button">Create account</button>
+                <button id="dailyPostForgotPassword" class="daily-post-button" type="button">Forgot password?</button>
+            </div>
         </section>
         <div id="dailyPostFeed" class="daily-post-hidden">
+            <form id="dailyPostSearchForm" class="daily-post-search">
+                <input id="dailyPostSearch" type="search" autocomplete="off" placeholder="Search people and posts…" aria-label="Search people and posts">
+                <button class="daily-post-button" type="submit">SEARCH</button>
+            </form>
+            <div id="dailyPostSearchResults" class="daily-post-search-results"></div>
             <section class="daily-post-card daily-post-stories">
                 <h2 class="daily-post-heading">STORIES <small>Disappear after 24 hours</small></h2>
                 <div id="dailyPostStoryList" class="daily-post-story-list"></div>
@@ -3710,7 +4068,7 @@ audio.daily-post-media {
             </section>
             <section id="dailyPostComposer" class="daily-post-card daily-post-composer daily-post-hidden">
                 <div class="daily-post-row">
-                    <div class="daily-post-avatar" aria-hidden="true">A</div>
+                    <div id="dailyPostComposerAvatar" class="daily-post-avatar" aria-hidden="true">A</div>
                     <div>
                         <div class="daily-post-author">Share something new</div>
                         <div id="dailyPostSubtitle" class="daily-post-subtitle">Your update will be shared with everyone.</div>
@@ -3718,10 +4076,17 @@ audio.daily-post-media {
                 </div>
                 <form id="dailyPostForm" class="daily-post-form">
                     <textarea id="dailyPostText" maxlength="5000" placeholder="What’s on your mind?" aria-label="Post text"></textarea>
-                    <input id="dailyPostMediaInput" class="daily-post-hidden" type="file" accept="image/jpeg,image/png,image/webp,image/gif,audio/mpeg,audio/mp4,audio/wav,audio/ogg,audio/webm,audio/aac,video/mp4,video/webm,video/quicktime">
+                    <input id="dailyPostMediaInput" class="daily-post-hidden" type="file" accept="image/jpeg,image/png,image/webp,audio/mpeg,audio/mp4,audio/wav,audio/ogg,audio/webm,video/mp4,video/webm,video/quicktime" multiple>
                     <p id="dailyPostFileName" class="daily-post-file-name daily-post-hidden"></p>
+                    <div id="dailyPostPreview" class="daily-post-preview"></div>
+                    <button id="dailyPostClearMedia" class="daily-post-button daily-post-hidden" type="button">REMOVE SELECTED MEDIA</button>
+                    <select id="dailyPostVisibility" aria-label="Post audience">
+                        <option value="public">Public</option>
+                        <option value="followers">Followers only</option>
+                        <option value="private">Only me</option>
+                    </select>
                     <div class="daily-post-controls">
-                        <button id="dailyPostAttach" class="daily-post-button" type="button">＋ Add photo, voice, or music</button>
+                        <button id="dailyPostAttach" class="daily-post-button" type="button">＋ Add photos, video, or music</button>
                         <div class="daily-post-actions">
                             <button id="dailyPostStoryButton" class="daily-post-button" type="button">＋ STORY · 24H</button>
                             <button id="dailyPostPublish" class="daily-post-button primary" type="submit">POST</button>
@@ -3732,11 +4097,104 @@ audio.daily-post-media {
             <h2 class="daily-post-heading">LATEST POSTS</h2>
             <div id="dailyPostList"></div>
             <div id="dailyPostEmpty" class="daily-post-empty daily-post-hidden">No posts yet. New updates will show up here.</div>
+
+            <section id="dailyPostExploreView" class="daily-post-view" hidden>
+                <h2 class="daily-post-heading">EXPLORE PEOPLE</h2>
+                <div id="dailyPostExploreUsers"></div>
+                <h2 class="daily-post-heading">RECENT POSTS</h2>
+                <div id="dailyPostExplorePosts"></div>
+            </section>
+            <section id="dailyPostProfileView" class="daily-post-view" hidden>
+                <div id="dailyPostProfileCard" class="daily-post-card daily-post-item"></div>
+                <div class="daily-post-action-row">
+                    <button id="dailyPostEditProfile" class="daily-post-button" type="button">EDIT PROFILE</button>
+                    <button id="dailyPostFollow" class="daily-post-button primary daily-post-hidden" type="button">FOLLOW</button>
+                    <button id="dailyPostMessage" class="daily-post-button daily-post-hidden" type="button">MESSAGE</button>
+                    <button id="dailyPostReportProfile" class="daily-post-button daily-post-hidden" type="button">REPORT</button>
+                </div>
+                <div id="dailyPostProfileLinks" class="daily-post-action-row"></div>
+                <div id="dailyPostFollowRequests" class="daily-post-card daily-post-composer daily-post-hidden"></div>
+                <form id="dailyPostProfileForm" class="daily-post-card daily-post-composer daily-post-hidden">
+                    <h2 class="daily-post-heading">EDIT YOUR PROFILE</h2>
+                    <input id="dailyPostProfileName" type="text" maxlength="60" placeholder="Display name">
+                    <input id="dailyPostProfileUsername" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" placeholder="Username">
+                    <textarea id="dailyPostProfileBio" maxlength="300" placeholder="A little about you"></textarea>
+                    <input id="dailyPostProfileWebsite" type="url" placeholder="Website URL (https://…)">
+                    <input id="dailyPostAvatarInput" type="file" accept="image/jpeg,image/png,image/webp">
+                    <button id="dailyPostRemoveAvatar" class="daily-post-button" type="button">REMOVE PROFILE PHOTO</button>
+                    <input id="dailyPostProfileLinkLabel" type="text" maxlength="40" placeholder="Social link name">
+                    <input id="dailyPostProfileLinkUrl" type="url" placeholder="Social link URL (https://…)">
+                    <label><input id="dailyPostPrivate" type="checkbox"> Private account</label>
+                    <button class="daily-post-button primary" type="submit">SAVE PROFILE</button>
+                </form>
+                <h2 class="daily-post-heading">POSTS</h2>
+                <div id="dailyPostProfilePosts"></div>
+            </section>
+            <section id="dailyPostSavedView" class="daily-post-view" hidden>
+                <h2 class="daily-post-heading">SAVED POSTS</h2>
+                <div id="dailyPostSavedList"></div>
+            </section>
+            <section id="dailyPostNotificationsView" class="daily-post-view" hidden>
+                <h2 class="daily-post-heading">NOTIFICATIONS</h2>
+                <div id="dailyPostNotificationsList"></div>
+            </section>
+            <section id="dailyPostMessagesView" class="daily-post-view" hidden>
+                <h2 class="daily-post-heading">MESSAGES</h2>
+                <div id="dailyPostConversationList"></div>
+                <div id="dailyPostChat" class="daily-post-card daily-post-composer daily-post-hidden">
+                    <div id="dailyPostChatMessages"></div>
+                    <form id="dailyPostMessageForm" class="daily-post-comment">
+                        <input id="dailyPostMessageText" maxlength="5000" placeholder="Write a message…" required>
+                        <button class="daily-post-button primary" type="submit">SEND</button>
+                    </form>
+                </div>
+            </section>
+            <section id="dailyPostSettingsView" class="daily-post-view" hidden>
+                <h2 class="daily-post-heading">ACCOUNT SETTINGS</h2>
+                <form id="dailyPostSettingsForm" class="daily-post-card daily-post-composer">
+                    <input id="dailyPostNewPassword" type="password" minlength="8" autocomplete="new-password" placeholder="New password">
+                    <input id="dailyPostNewEmail" type="email" autocomplete="email" placeholder="New email address">
+                    <label><input id="dailyPostTheme" type="checkbox"> Use light appearance</label>
+                    <label><input id="dailyPostNotifyLikes" type="checkbox" checked> Notifications for likes</label>
+                    <label><input id="dailyPostNotifyComments" type="checkbox" checked> Notifications for comments</label>
+                    <label><input id="dailyPostNotifyFollowers" type="checkbox" checked> Notifications for followers</label>
+                    <label><input id="dailyPostNotifyMessages" type="checkbox" checked> Notifications for messages</label>
+                    <button class="daily-post-button primary" type="submit">SAVE SETTINGS</button>
+                </form>
+                <div class="daily-post-card daily-post-composer">
+                    <h3 class="daily-post-heading">DANGER ZONE</h3>
+                    <p class="daily-post-subtitle">Deleting your account permanently removes your profile and social content.</p>
+                    <button id="dailyPostDeleteAccount" class="daily-post-button" type="button">DELETE MY ACCOUNT</button>
+                </div>
+            </section>
+            <section id="dailyPostAdminView" class="daily-post-view" hidden>
+                <h2 class="daily-post-heading">ADMIN REPORTS</h2>
+                <div id="dailyPostAdminReports"></div>
+                <h2 class="daily-post-heading">USER DIRECTORY</h2>
+                <div id="dailyPostAdminUsers"></div>
+            </section>
         </div>
+        </div>
+        <aside class="daily-post-card daily-post-recommendations daily-post-right-sidebar">
+            <h2 class="daily-post-heading">PEOPLE TO FOLLOW</h2>
+            <div id="dailyPostRecommendedUsers" class="daily-post-empty">Sign in to discover people.</div>
+        </aside>
+      </div>
     </main>
+    <nav class="daily-post-mobile-nav" aria-label="Social navigation">
+        <button type="button" data-daily-view="home">HOME</button>
+        <button type="button" data-daily-view="explore">EXPLORE</button>
+        <button type="button" data-daily-view="create">CREATE</button>
+        <button type="button" data-daily-view="notifications">ALERTS</button>
+        <button type="button" data-daily-view="profile">PROFILE</button>
+    </nav>
     <div id="dailyPostStoryModal" class="daily-post-modal daily-post-hidden" role="dialog" aria-modal="true" aria-label="Story">
         <div id="dailyPostModalCard" class="daily-post-modal-card">
             <button id="dailyPostCloseStory" class="daily-post-close" type="button" aria-label="Close story">×</button>
+            <div id="dailyPostStoryProgress" class="daily-post-story-progress"></div>
+            <button id="dailyPostStoryPrevious" class="daily-post-button" type="button" aria-label="Previous story">←</button>
+            <button id="dailyPostStoryNext" class="daily-post-button" type="button" aria-label="Next story">→</button>
+            <div id="dailyPostStoryViews" class="daily-post-time"></div>
         </div>
     </div>
     <div id="dailyPostToast" class="daily-post-toast daily-post-hidden" role="status" aria-live="polite"></div>
@@ -6410,9 +6868,21 @@ const dailyPostElements = {
     notice: document.getElementById("dailyPostNotice"),
     login: document.getElementById("dailyPostLogin"),
     loginForm: document.getElementById("dailyPostLoginForm"),
+    authTitle: document.getElementById("dailyPostAuthTitle"),
+    authDescription: document.getElementById("dailyPostAuthDescription"),
+    usernameInput: document.getElementById("dailyPostUsername"),
+    displayNameInput: document.getElementById("dailyPostDisplayName"),
     loginEmail: document.getElementById("dailyPostEmail"),
     loginPassword: document.getElementById("dailyPostPassword"),
+    confirmPassword: document.getElementById("dailyPostConfirmPassword"),
     loginError: document.getElementById("dailyPostLoginError"),
+    authToggle: document.getElementById("dailyPostToggleAuth"),
+    forgotPassword: document.getElementById("dailyPostForgotPassword"),
+    signOut: document.getElementById("dailyPostSignOut"),
+    currentUser: document.getElementById("dailyPostCurrentUser"),
+    searchForm: document.getElementById("dailyPostSearchForm"),
+    searchInput: document.getElementById("dailyPostSearch"),
+    searchResults: document.getElementById("dailyPostSearchResults"),
     feed: document.getElementById("dailyPostFeed"),
     composer: document.getElementById("dailyPostComposer"),
     subtitle: document.getElementById("dailyPostSubtitle"),
@@ -6420,6 +6890,9 @@ const dailyPostElements = {
     text: document.getElementById("dailyPostText"),
     mediaInput: document.getElementById("dailyPostMediaInput"),
     fileName: document.getElementById("dailyPostFileName"),
+    preview: document.getElementById("dailyPostPreview"),
+    clearMedia: document.getElementById("dailyPostClearMedia"),
+    visibility: document.getElementById("dailyPostVisibility"),
     attach: document.getElementById("dailyPostAttach"),
     storyButton: document.getElementById("dailyPostStoryButton"),
     publish: document.getElementById("dailyPostPublish"),
@@ -6430,26 +6903,89 @@ const dailyPostElements = {
     storyModal: document.getElementById("dailyPostStoryModal"),
     modalCard: document.getElementById("dailyPostModalCard"),
     closeStory: document.getElementById("dailyPostCloseStory"),
-    toast: document.getElementById("dailyPostToast")
+    storyProgress: document.getElementById("dailyPostStoryProgress"),
+    storyPrevious: document.getElementById("dailyPostStoryPrevious"),
+    storyNext: document.getElementById("dailyPostStoryNext"),
+    storyViews: document.getElementById("dailyPostStoryViews"),
+    toast: document.getElementById("dailyPostToast"),
+    recommended: document.getElementById("dailyPostRecommendedUsers"),
+    exploreView: document.getElementById("dailyPostExploreView"),
+    exploreUsers: document.getElementById("dailyPostExploreUsers"),
+    explorePosts: document.getElementById("dailyPostExplorePosts"),
+    profileView: document.getElementById("dailyPostProfileView"),
+    profileCard: document.getElementById("dailyPostProfileCard"),
+    profilePosts: document.getElementById("dailyPostProfilePosts"),
+    profileLinks: document.getElementById("dailyPostProfileLinks"),
+    followRequests: document.getElementById("dailyPostFollowRequests"),
+    profileEditButton: document.getElementById("dailyPostEditProfile"),
+    followButton: document.getElementById("dailyPostFollow"),
+    messageButton: document.getElementById("dailyPostMessage"),
+    reportProfileButton: document.getElementById("dailyPostReportProfile"),
+    profileForm: document.getElementById("dailyPostProfileForm"),
+    profileName: document.getElementById("dailyPostProfileName"),
+    profileUsername: document.getElementById("dailyPostProfileUsername"),
+    profileBio: document.getElementById("dailyPostProfileBio"),
+    profileWebsite: document.getElementById("dailyPostProfileWebsite"),
+    avatarInput: document.getElementById("dailyPostAvatarInput"),
+    removeAvatar: document.getElementById("dailyPostRemoveAvatar"),
+    profileLinkLabel: document.getElementById("dailyPostProfileLinkLabel"),
+    profileLinkUrl: document.getElementById("dailyPostProfileLinkUrl"),
+    privateAccount: document.getElementById("dailyPostPrivate"),
+    savedView: document.getElementById("dailyPostSavedView"),
+    savedList: document.getElementById("dailyPostSavedList"),
+    notificationsView: document.getElementById("dailyPostNotificationsView"),
+    notificationsList: document.getElementById("dailyPostNotificationsList"),
+    messagesView: document.getElementById("dailyPostMessagesView"),
+    conversationList: document.getElementById("dailyPostConversationList"),
+    chat: document.getElementById("dailyPostChat"),
+    chatMessages: document.getElementById("dailyPostChatMessages"),
+    messageForm: document.getElementById("dailyPostMessageForm"),
+    messageText: document.getElementById("dailyPostMessageText"),
+    settingsView: document.getElementById("dailyPostSettingsView"),
+    settingsForm: document.getElementById("dailyPostSettingsForm"),
+    newPassword: document.getElementById("dailyPostNewPassword"),
+    newEmail: document.getElementById("dailyPostNewEmail"),
+    theme: document.getElementById("dailyPostTheme"),
+    notifyLikes: document.getElementById("dailyPostNotifyLikes"),
+    notifyComments: document.getElementById("dailyPostNotifyComments"),
+    notifyFollowers: document.getElementById("dailyPostNotifyFollowers"),
+    notifyMessages: document.getElementById("dailyPostNotifyMessages"),
+    deleteAccount: document.getElementById("dailyPostDeleteAccount"),
+    adminView: document.getElementById("dailyPostAdminView"),
+    adminReports: document.getElementById("dailyPostAdminReports"),
+    adminUsers: document.getElementById("dailyPostAdminUsers")
 };
-const DAILY_POST_BUCKET = "creator-media";
+const DAILY_POST_BUCKET = "posts-media";
+const DAILY_STORY_BUCKET = "stories-media";
+const DAILY_PROFILE_BUCKET = "profile-media";
 const DAILY_POST_MAX_MEDIA_SIZE = 50 * 1024 * 1024;
 const DAILY_POST_ALLOWED_TYPES = new Set([
-    "image/jpeg", "image/png", "image/webp", "image/gif",
-    "audio/mpeg", "audio/mp4", "audio/wav", "audio/ogg", "audio/webm", "audio/aac",
+    "image/jpeg", "image/png", "image/webp",
+    "audio/mpeg", "audio/mp4", "audio/wav", "audio/ogg", "audio/webm",
     "video/mp4", "video/webm", "video/quicktime"
 ]);
 let dailyPostIsAdmin = false;
+let dailyPostUser = null;
+let dailyPostProfile = null;
+let dailyPostProfileTarget = null;
 let dailyPostInitialized = false;
 let dailyPostStoryMode = false;
+let dailyPostStories = [];
+let dailyPostStoryIndex = 0;
+let dailyPostStoryTimer;
+let dailyPostAuthMode = "login";
 let dailyPostToastTimeout;
+let dailyPostRealtimeChannel = null;
+let dailyPostConversationId = null;
+let dailyPostConversationProfile = null;
+let dailyPostCurrentView = "home";
 
 function setDailyPostPage(isOpen) {
     dailyPostPage.classList.toggle("active", isOpen);
     dailyPostPage.setAttribute("aria-hidden", String(!isOpen));
     document.body.style.overflow = isOpen ? "hidden" : "";
     if (isOpen) {
-        if (location.hash !== "#daily-post") {
+        if (!location.hash.startsWith("#daily-post")) {
             history.pushState(null, "", "#daily-post");
         }
         initializeDailyPost();
@@ -6484,7 +7020,8 @@ function dailyPostTimeLeft(value) {
 }
 
 function createDailyPostMedia(post) {
-    if (!post.media_url || !post.media_type) return null;
+    const source = post.signed_url || post.media_url;
+    if (!source || !post.media_type) return null;
     let media;
     if (post.media_type === "image") {
         media = document.createElement("img");
@@ -6500,26 +7037,46 @@ function createDailyPostMedia(post) {
         return null;
     }
     media.className = "daily-post-media";
-    media.src = post.media_url;
+    media.src = source;
     return media;
 }
 
 function createDailyPostCard(post, isStory) {
     const article = document.createElement("article");
     article.className = "daily-post-card daily-post-item";
+    article.dataset.postId = post.id;
     const authorRow = document.createElement("div");
     authorRow.className = "daily-post-row";
-    const avatar = document.createElement("div");
-    avatar.className = "daily-post-avatar";
+    const authorProfile = post.author || post.profiles || {};
+    const avatar = authorProfile.avatar_url
+        ? document.createElement("img")
+        : document.createElement("div");
+    avatar.className = authorProfile.avatar_url ? "daily-post-avatar-image" : "daily-post-avatar";
     avatar.setAttribute("aria-hidden", "true");
-    avatar.textContent = "A";
+    if (authorProfile.avatar_url) {
+        avatar.src = authorProfile.avatar_url;
+        avatar.alt = "";
+    } else {
+        avatar.textContent = (authorProfile.display_name || "A").slice(0, 1).toUpperCase();
+    }
+    avatar.style.cursor = "pointer";
+    avatar.addEventListener("click", function() {
+        navigateDailyPostProfile(authorProfile);
+    });
     const authorInfo = document.createElement("div");
     const author = document.createElement("div");
     author.className = "daily-post-author";
-    author.textContent = "ALI ZEWAR";
+    author.textContent = authorProfile.display_name || "Daily Post member";
+    author.tabIndex = 0;
+    author.setAttribute("role", "link");
+    author.addEventListener("click", function() {
+        navigateDailyPostProfile(authorProfile);
+    });
     const time = document.createElement("div");
     time.className = "daily-post-time";
-    time.textContent = isStory ? dailyPostTimeLeft(post.created_at) : formatDailyPostTime(post.created_at);
+    time.textContent = authorProfile.username
+        ? "@" + authorProfile.username + " · " + formatDailyPostTime(post.created_at)
+        : formatDailyPostTime(post.created_at);
     authorInfo.append(author, time);
     authorRow.append(avatar, authorInfo);
     article.append(authorRow);
@@ -6529,46 +7086,139 @@ function createDailyPostCard(post, isStory) {
         text.textContent = post.text_content;
         article.append(text);
     }
-    const media = createDailyPostMedia(post);
-    if (media) article.append(media);
-    if (dailyPostIsAdmin && !isStory) {
-        const footer = document.createElement("div");
-        footer.className = "daily-post-item-footer";
-        const remove = document.createElement("button");
-        remove.type = "button";
-        remove.className = "daily-post-delete";
-        remove.textContent = "Delete post";
-        remove.addEventListener("click", function() {
-            deleteDailyPost(post);
+    (post.post_media || []).forEach(function(mediaData) {
+        const media = createDailyPostMedia(mediaData);
+        if (media) article.append(media);
+    });
+    if (post.legacy_media_url && post.legacy_media_type) {
+        const legacyMedia = createDailyPostMedia({
+            media_url: post.legacy_media_url,
+            media_type: post.legacy_media_type
         });
-        footer.append(remove);
-        article.append(footer);
+        if (legacyMedia) article.append(legacyMedia);
+    }
+    if (!isStory) {
+        const actions = document.createElement("div");
+        actions.className = "daily-post-action-row";
+        const like = document.createElement("button");
+        like.type = "button";
+        like.className = "daily-post-button";
+        like.textContent = (post.viewer_liked ? "♥ " : "♡ ") + (post.like_count || 0) + " likes";
+        like.addEventListener("click", function() {
+            toggleDailyPostLike(post, like);
+        });
+        const comments = document.createElement("button");
+        comments.type = "button";
+        comments.className = "daily-post-button";
+        comments.textContent = "💬 " + (post.comment_count || 0) + " comments";
+        comments.addEventListener("click", function() {
+            toggleDailyPostComments(post, article);
+        });
+        const save = document.createElement("button");
+        save.type = "button";
+        save.className = "daily-post-button";
+        save.textContent = post.viewer_saved ? "SAVED" : "SAVE";
+        save.addEventListener("click", function() {
+            toggleDailyPostSave(post, save);
+        });
+        const share = document.createElement("button");
+        share.type = "button";
+        share.className = "daily-post-button";
+        share.textContent = "↗ SHARE";
+        share.addEventListener("click", function() {
+            shareDailyPost(post);
+        });
+        actions.append(like, comments, save, share);
+        article.append(actions);
+        const report = document.createElement("button");
+        report.type = "button";
+        report.className = "daily-post-delete";
+        report.textContent = "Report";
+        report.addEventListener("click", function() {
+            reportDailyPost("post", post.id);
+        });
+        article.append(report);
+        if (dailyPostUser && post.author_id === dailyPostUser.id) {
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "daily-post-delete";
+            remove.textContent = "Delete post";
+            remove.addEventListener("click", function() {
+                deleteDailyPost(post);
+            });
+            article.append(remove);
+        }
     }
     return article;
 }
 
 function openDailyPostStory(post) {
-    dailyPostElements.modalCard.querySelectorAll(
-        ".daily-post-item-copy, .daily-post-media, .daily-post-time"
-    ).forEach(function(item) {
+    if (!post) return;
+    dailyPostElements.modalCard.querySelectorAll(".daily-post-story-content").forEach(function(item) {
         item.remove();
     });
-    const time = document.createElement("p");
-    time.className = "daily-post-time";
-    time.textContent = dailyPostTimeLeft(post.created_at);
-    dailyPostElements.modalCard.append(time);
+    dailyPostElements.storyProgress.replaceChildren();
+    const progress = document.createElement("span");
+    dailyPostElements.storyProgress.append(progress);
+    requestAnimationFrame(function() {
+        progress.classList.add("playing");
+    });
+    dailyPostElements.storyViews.textContent = "";
     if (post.text_content) {
         const text = document.createElement("p");
-        text.className = "daily-post-item-copy";
+        text.className = "daily-post-item-copy daily-post-story-content";
         text.textContent = post.text_content;
         dailyPostElements.modalCard.append(text);
     }
     const media = createDailyPostMedia(post);
-    if (media) dailyPostElements.modalCard.append(media);
+    if (media) {
+        media.classList.add("daily-post-story-content");
+        dailyPostElements.modalCard.append(media);
+    }
+    const time = document.createElement("p");
+    time.className = "daily-post-time daily-post-story-content";
+    time.textContent = (post.author ? post.author.display_name : "Story") + " · " + dailyPostTimeLeft(post.created_at);
+    dailyPostElements.modalCard.append(time);
     dailyPostElements.storyModal.classList.remove("daily-post-hidden");
+    window.clearTimeout(dailyPostStoryTimer);
+    dailyPostStoryTimer = window.setTimeout(function() {
+        showAdjacentDailyPostStory(1);
+    }, 5000);
+    if (dailyPostUser) {
+        supabaseClient.from("story_views")
+            .upsert({ story_id: post.id, viewer_id: dailyPostUser.id }, { onConflict: "story_id,viewer_id", ignoreDuplicates: true })
+            .then(function(result) {
+                if (result.error) console.error("Could not record story view.", result.error);
+            });
+    }
+    if (dailyPostUser && post.author_id === dailyPostUser.id) {
+        supabaseClient.from("story_views").select("viewer_id", { count: "exact", head: true })
+            .eq("story_id", post.id).then(function(result) {
+                if (result.error) {
+                    console.error("Could not load story view count.", result.error);
+                    return;
+                }
+                dailyPostElements.storyViews.textContent = (result.count || 0) + " views";
+            });
+    }
+}
+
+function showAdjacentDailyPostStory(direction) {
+    if (!dailyPostStories.length) {
+        dailyPostElements.storyModal.classList.add("daily-post-hidden");
+        return;
+    }
+    dailyPostStoryIndex += direction;
+    if (dailyPostStoryIndex < 0) dailyPostStoryIndex = dailyPostStories.length - 1;
+    if (dailyPostStoryIndex >= dailyPostStories.length) {
+        dailyPostElements.storyModal.classList.add("daily-post-hidden");
+        return;
+    }
+    openDailyPostStory(dailyPostStories[dailyPostStoryIndex]);
 }
 
 function renderDailyPostStories(stories) {
+    dailyPostStories = stories;
     dailyPostElements.storyList.replaceChildren();
     dailyPostElements.emptyStories.classList.toggle("daily-post-hidden", stories.length > 0);
     dailyPostElements.storyList.classList.toggle("daily-post-hidden", stories.length === 0);
@@ -6579,6 +7229,7 @@ function renderDailyPostStories(stories) {
         button.setAttribute("aria-label", "View story posted " + formatDailyPostTime(story.created_at));
         const ring = document.createElement("span");
         ring.className = "daily-post-story-ring";
+        ring.classList.toggle("read", Boolean(story.viewed));
         const image = story.media_type === "image" ? createDailyPostMedia(story) : null;
         if (image) {
             image.removeAttribute("class");
@@ -6589,9 +7240,12 @@ function renderDailyPostStories(stories) {
         }
         const label = document.createElement("span");
         label.className = "daily-post-story-label";
-        label.textContent = "Ali · " + dailyPostTimeLeft(story.created_at);
+        label.textContent = (story.author ? story.author.display_name : "Story") + " · " + dailyPostTimeLeft(story.created_at);
         button.append(ring, label);
         button.addEventListener("click", function() {
+            dailyPostStoryIndex = dailyPostStories.findIndex(function(item) {
+                return item.id === story.id;
+            });
             openDailyPostStory(story);
         });
         dailyPostElements.storyList.append(button);
@@ -6600,40 +7254,151 @@ function renderDailyPostStories(stories) {
 
 async function loadDailyPostFeed() {
     const [postsResult, storiesResult] = await Promise.all([
-        supabaseClient.from("creator_posts")
-            .select("id, kind, text_content, media_url, media_type, created_at")
-            .eq("kind", "post").order("created_at", { ascending: false }).limit(100),
-        supabaseClient.from("creator_posts")
-            .select("id, kind, text_content, media_url, media_type, created_at")
-            .eq("kind", "story").order("created_at", { ascending: false }).limit(100)
+        supabaseClient.from("posts")
+            .select("id, author_id, text_content, visibility, legacy_media_url, legacy_media_type, created_at, author:profiles!posts_author_id_fkey(id,username,display_name,avatar_path), post_media(id,storage_bucket,storage_path,media_type,position)")
+            .order("created_at", { ascending: false }).limit(50),
+        supabaseClient.from("stories")
+            .select("id, author_id, text_content, storage_bucket, storage_path, media_type, created_at, expires_at, author:profiles!stories_author_id_fkey(id,username,display_name,avatar_path)")
+            .gt("expires_at", new Date().toISOString())
+            .order("created_at", { ascending: true }).limit(100)
     ]);
     if (postsResult.error) throw postsResult.error;
     if (storiesResult.error) throw storiesResult.error;
-    const activeStories = storiesResult.data.filter(function(story) {
-        const age = Date.now() - new Date(story.created_at).getTime();
-        return age >= 0 && age < 24 * 60 * 60 * 1000;
-    });
-    renderDailyPostStories(activeStories);
+    const posts = postsResult.data || [];
+    const postIds = posts.map(function(post) { return post.id; });
+    let likes = [];
+    let comments = [];
+    let viewerLikes = [];
+    let viewerSaves = [];
+    if (postIds.length) {
+        const postRequests = [
+            supabaseClient.from("likes").select("post_id").in("post_id", postIds),
+            supabaseClient.from("comments").select("post_id").in("post_id", postIds)
+        ];
+        if (dailyPostUser) {
+            postRequests.push(
+                supabaseClient.from("likes").select("post_id").eq("user_id", dailyPostUser.id).in("post_id", postIds),
+                supabaseClient.from("saved_posts").select("post_id").eq("user_id", dailyPostUser.id).in("post_id", postIds)
+            );
+        }
+        const results = await Promise.all(postRequests);
+        results.forEach(function(result) {
+            if (result.error) throw result.error;
+        });
+        likes = results[0].data || [];
+        comments = results[1].data || [];
+        viewerLikes = dailyPostUser && results[2] ? results[2].data || [] : [];
+        viewerSaves = dailyPostUser && results[3] ? results[3].data || [] : [];
+    }
+    const activeStories = storiesResult.data || [];
+    if (dailyPostUser && activeStories.length) {
+        const { data: viewed, error: viewedError } = await supabaseClient.from("story_views")
+            .select("story_id").eq("viewer_id", dailyPostUser.id)
+            .in("story_id", activeStories.map(function(story) { return story.id; }));
+        if (viewedError) throw viewedError;
+        const viewedIds = new Set((viewed || []).map(function(row) { return row.story_id; }));
+        activeStories.forEach(function(story) {
+            story.viewed = viewedIds.has(story.id);
+        });
+    }
+    const storiesWithMedia = await Promise.all(activeStories.map(async function(story) {
+        if (story.storage_path) {
+            const { data, error } = await supabaseClient.storage
+                .from(story.storage_bucket).createSignedUrl(story.storage_path, 3600);
+            if (error) throw error;
+            story.signed_url = data.signedUrl;
+        }
+        if (story.author && story.author.avatar_path) {
+            const { data } = supabaseClient.storage.from(DAILY_PROFILE_BUCKET)
+                .getPublicUrl(story.author.avatar_path);
+            story.author.avatar_url = data.publicUrl;
+        }
+        return story;
+    }));
+    renderDailyPostStories(storiesWithMedia);
     dailyPostElements.postList.replaceChildren();
-    dailyPostElements.emptyPosts.classList.toggle("daily-post-hidden", postsResult.data.length > 0);
-    postsResult.data.forEach(function(post) {
+    dailyPostElements.emptyPosts.classList.toggle("daily-post-hidden", posts.length > 0);
+    dailyPostElements.emptyPosts.textContent = dailyPostUser
+        ? "Your feed is empty. Follow people to start seeing posts here."
+        : "Sign in or create an account to join the conversation.";
+    await Promise.all(posts.map(async function(post) {
+        post.like_count = likes.filter(function(row) { return row.post_id === post.id; }).length;
+        post.comment_count = comments.filter(function(row) { return row.post_id === post.id; }).length;
+        post.viewer_liked = viewerLikes.some(function(row) { return row.post_id === post.id; });
+        post.viewer_saved = viewerSaves.some(function(row) { return row.post_id === post.id; });
+        if (post.author && post.author.avatar_path) {
+            const { data } = supabaseClient.storage.from(DAILY_PROFILE_BUCKET)
+                .getPublicUrl(post.author.avatar_path);
+            post.author.avatar_url = data.publicUrl;
+        }
+        post.post_media = await Promise.all((post.post_media || []).sort(function(a, b) {
+            return a.position - b.position;
+        }).map(async function(media) {
+            const { data, error } = await supabaseClient.storage
+                .from(media.storage_bucket).createSignedUrl(media.storage_path, 3600);
+            if (error) throw error;
+            return Object.assign({}, media, {
+                signed_url: data.signedUrl,
+                media_type: media.media_type
+            });
+        }));
         dailyPostElements.postList.append(createDailyPostCard(post, false));
-    });
+    }));
+
+    const [suggestionResult] = await Promise.all([
+        supabaseClient.from("profiles")
+            .select("id, username, display_name, avatar_path")
+            .order("created_at", { ascending: false }).limit(6)
+    ]);
+    if (suggestionResult.error) throw suggestionResult.error;
+    const followedIds = new Set();
+    if (dailyPostUser) {
+        const { data: followed, error } = await supabaseClient.from("follows")
+            .select("followed_id").eq("follower_id", dailyPostUser.id);
+        if (error) throw error;
+        (followed || []).forEach(function(row) { followedIds.add(row.followed_id); });
+    }
+    renderDailyPostSuggestions((suggestionResult.data || []).filter(function(profile) {
+        return profile.id !== (dailyPostUser && dailyPostUser.id) && !followedIds.has(profile.id);
+    }));
+}
+
+async function validateDailyPostImage(file) {
+    if (!file.type.startsWith("image/")) return;
+    const bitmap = await createImageBitmap(file);
+    const tooLarge = bitmap.width > 8000 || bitmap.height > 8000 ||
+        bitmap.width * bitmap.height > 40000000;
+    bitmap.close();
+    if (tooLarge) {
+        throw new Error("Images must be no larger than 8,000 × 8,000 pixels or 40 megapixels.");
+    }
 }
 
 async function publishDailyPost(kind) {
     const text = dailyPostElements.text.value.trim();
-    const file = dailyPostElements.mediaInput.files[0];
-    if (!text && !file) {
-        showDailyPostToast("Add text or choose a photo, voice note, or music file.");
+    const files = Array.from(dailyPostElements.mediaInput.files || []);
+    if (!text && !files.length) {
+        showDailyPostToast("Add some text or select media before posting.");
         return;
     }
-    if (file && !DAILY_POST_ALLOWED_TYPES.has(file.type)) {
-        showDailyPostToast("Choose a supported image, audio, or video file.");
+    if (!dailyPostUser) {
+        showDailyPostToast("Sign in to share posts and stories.");
         return;
     }
-    if (file && file.size > DAILY_POST_MAX_MEDIA_SIZE) {
-        showDailyPostToast("Media files must be 50 MB or smaller.");
+    if (files.length > 10 || (kind === "story" && files.length > 1)) {
+        showDailyPostToast(kind === "story" ? "A story can include one photo or video." : "Choose up to 10 photos or videos.");
+        return;
+    }
+    if (files.some(function(file) {
+        return !DAILY_POST_ALLOWED_TYPES.has(file.type) || file.size > DAILY_POST_MAX_MEDIA_SIZE;
+    })) {
+        showDailyPostToast("Choose supported image/video files up to 50 MB each.");
+        return;
+    }
+    try {
+        for (const file of files) await validateDailyPostImage(file);
+    } catch (error) {
+        showDailyPostToast(error.message || "Could not validate the selected image.");
         return;
     }
 
@@ -6642,33 +7407,74 @@ async function publishDailyPost(kind) {
     dailyPostElements.attach.disabled = true;
     const originalLabel = dailyPostElements.publish.textContent;
     dailyPostElements.publish.textContent = "SHARING…";
-    let uploadedPath = null;
-    let mediaUploaded = false;
+    const uploadedObjects = [];
     let postCreated = false;
+    let postCommitted = false;
     try {
-        let mediaUrl = null;
-        let mediaType = null;
-        if (file) {
-            const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "bin";
-            uploadedPath = "uploads/" + crypto.randomUUID() + "." + extension;
-            const { error: uploadError } = await supabaseClient.storage.from(DAILY_POST_BUCKET)
-                .upload(uploadedPath, file, { contentType: file.type, upsert: false });
-            if (uploadError) throw uploadError;
-            mediaUploaded = true;
-            mediaUrl = supabaseClient.storage.from(DAILY_POST_BUCKET).getPublicUrl(uploadedPath).data.publicUrl;
-            mediaType = file.type.startsWith("image/") ? "image" : file.type.startsWith("audio/") ? "audio" : "video";
+        let postId;
+        const visibility = dailyPostElements.visibility.value;
+        if (kind === "story") {
+            let storagePath = null;
+            const storyFile = files[0];
+            if (storyFile) {
+                const extension = storyFile.name.split(".").pop().toLowerCase();
+                storagePath = dailyPostUser.id + "/" + crypto.randomUUID() + "." + extension;
+                const { error: uploadError } = await supabaseClient.storage.from(DAILY_STORY_BUCKET)
+                    .upload(storagePath, storyFile, { contentType: storyFile.type, upsert: false });
+                if (uploadError) throw uploadError;
+                uploadedObjects.push({ bucket: DAILY_STORY_BUCKET, path: storagePath });
+            }
+            const { error } = await supabaseClient.from("stories").insert({
+                author_id: dailyPostUser.id,
+                text_content: text,
+                storage_bucket: storagePath ? DAILY_STORY_BUCKET : null,
+                storage_path: storagePath,
+                media_type: storyFile ? (storyFile.type.startsWith("image/") ? "image" : "video") : null,
+                visibility: dailyPostProfile && dailyPostProfile.is_private ? "followers" : "public"
+            });
+            if (error) throw error;
+            postCommitted = true;
+        } else {
+            const { data, error } = await supabaseClient.from("posts").insert({
+                author_id: dailyPostUser.id,
+                text_content: text,
+                visibility: visibility
+            }).select("id").single();
+            if (error) throw error;
+            postId = data.id;
+            postCreated = true;
+            const mediaRows = [];
+            for (let index = 0; index < files.length; index += 1) {
+                const file = files[index];
+                const extension = file.name.split(".").pop().toLowerCase();
+                const path = dailyPostUser.id + "/" + crypto.randomUUID() + "." + extension;
+                const { error: uploadError } = await supabaseClient.storage.from(DAILY_POST_BUCKET)
+                    .upload(path, file, { contentType: file.type, upsert: false });
+                if (uploadError) throw uploadError;
+                uploadedObjects.push({ bucket: DAILY_POST_BUCKET, path: path });
+                mediaRows.push({
+                    post_id: postId,
+                    storage_bucket: DAILY_POST_BUCKET,
+                    storage_path: path,
+                    media_type: file.type.startsWith("image/") ? "image" : file.type.startsWith("audio/") ? "audio" : "video",
+                    position: index
+                });
+            }
+            if (mediaRows.length) {
+                const { error: mediaError } = await supabaseClient.from("post_media").insert(mediaRows);
+                if (mediaError) throw mediaError;
+            }
+            postCommitted = true;
         }
-        const { error } = await supabaseClient.from("creator_posts").insert({
-            kind: kind,
-            text_content: text,
-            media_url: mediaUrl,
-            media_type: mediaType
-        });
-        if (error) throw error;
         postCreated = true;
         dailyPostElements.postForm.reset();
+        dailyPostElements.preview.querySelectorAll("[data-preview-url]").forEach(function(preview) {
+            URL.revokeObjectURL(preview.dataset.previewUrl);
+        });
         dailyPostElements.fileName.textContent = "";
         dailyPostElements.fileName.classList.add("daily-post-hidden");
+        dailyPostElements.clearMedia.classList.add("daily-post-hidden");
+        dailyPostElements.preview.replaceChildren();
         dailyPostStoryMode = false;
         dailyPostElements.publish.textContent = "POST";
         dailyPostElements.subtitle.textContent = "Your update will be shared with everyone.";
@@ -6678,12 +7484,18 @@ async function publishDailyPost(kind) {
             : "Your post is live.");
     } catch (error) {
         console.error("Could not publish creator post.", error);
-        if (uploadedPath && mediaUploaded && !postCreated) {
-            const { error: cleanupError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove([uploadedPath]);
-            if (cleanupError) console.error("Could not clean up uploaded media.", cleanupError);
+        if (postCreated && kind !== "story" && !postCommitted) {
+            const { error: deleteError } = await supabaseClient.from("posts").delete().eq("id", postId);
+            if (deleteError) console.error("Could not roll back incomplete post.", deleteError);
         }
-        showDailyPostToast(postCreated
-            ? "Your post was shared, but the feed could not refresh. Please reload the page."
+        if (!postCommitted) {
+            for (const object of uploadedObjects) {
+                const { error: cleanupError } = await supabaseClient.storage.from(object.bucket).remove([object.path]);
+                if (cleanupError) console.error("Could not clean up uploaded media.", cleanupError);
+            }
+        }
+        showDailyPostToast(postCommitted
+            ? "Your post was shared, but the feed could not refresh. Reload the page."
             : (error.message || "Could not share your post. Please try again."));
     } finally {
         dailyPostElements.publish.disabled = false;
@@ -6697,29 +7509,755 @@ async function publishDailyPost(kind) {
 
 async function deleteDailyPost(post) {
     if (!window.confirm("Delete this post?")) return;
-    const { error } = await supabaseClient.from("creator_posts").delete().eq("id", post.id);
+    const { error } = await supabaseClient.from("posts").delete().eq("id", post.id);
     if (error) {
         console.error("Could not delete creator post.", error);
         showDailyPostToast(error.message || "Could not delete this post.");
         return;
     }
-    if (post.media_url) {
-        try {
-            const mediaUrl = new URL(post.media_url);
-            const marker = "/" + DAILY_POST_BUCKET + "/";
-            const pathIndex = mediaUrl.pathname.indexOf(marker);
-            if (pathIndex >= 0) {
-                const objectPath = decodeURIComponent(mediaUrl.pathname.slice(pathIndex + marker.length));
-                const { error: removeError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove([objectPath]);
-                if (removeError) console.error("Could not delete post media.", removeError);
-            }
-        } catch (error) {
-            console.error("Could not parse creator media URL for cleanup.", error);
-        }
+    const paths = (post.post_media || []).map(function(media) { return media.storage_path; });
+    if (paths.length) {
+        const { error: removeError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove(paths);
+        if (removeError) console.error("Could not delete post media.", removeError);
     }
     await loadDailyPostFeed();
     showDailyPostToast("Post deleted.");
 }
+
+function setDailyPostView(view) {
+    if (view === "create") {
+        if (!dailyPostUser) {
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+            dailyPostElements.login.scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+        }
+        dailyPostElements.composer.scrollIntoView({ behavior: "smooth", block: "center" });
+        dailyPostElements.text.focus();
+        return;
+    }
+    if (view === "profile" && !dailyPostUser && !dailyPostProfileTarget) {
+        showDailyPostToast("Sign in to open your own profile.");
+        dailyPostElements.login.classList.remove("daily-post-hidden");
+        return;
+    }
+    const panels = {
+        explore: dailyPostElements.exploreView,
+        profile: dailyPostElements.profileView,
+        saved: dailyPostElements.savedView,
+        notifications: dailyPostElements.notificationsView,
+        messages: dailyPostElements.messagesView,
+        settings: dailyPostElements.settingsView,
+        admin: dailyPostElements.adminView
+    };
+    dailyPostCurrentView = view;
+    if (["saved", "notifications", "messages", "settings", "admin"].includes(view) && !dailyPostUser) {
+        showDailyPostToast("Sign in to access your account.");
+        return;
+    }
+    dailyPostElements.storyList.closest(".daily-post-stories").hidden = view !== "home";
+    dailyPostElements.composer.hidden = view !== "home" && view !== "create";
+    dailyPostElements.postList.hidden = view !== "home";
+    dailyPostElements.emptyPosts.hidden = view !== "home";
+    const latestHeading = dailyPostElements.postList.previousElementSibling;
+    if (latestHeading) latestHeading.hidden = view !== "home";
+    Object.keys(panels).forEach(function(key) {
+        panels[key].hidden = key !== view;
+    });
+    document.querySelectorAll("[data-daily-view]").forEach(function(button) {
+        button.classList.toggle("active", button.dataset.dailyView === view);
+    });
+    dailyPostElements.searchResults.replaceChildren();
+    if (view === "explore") loadDailyPostExplore();
+    if (view === "saved") loadDailyPostSaved();
+    if (view === "notifications") loadDailyPostNotifications();
+    if (view === "messages") loadDailyPostConversations();
+    if (view === "settings") loadDailyPostSettings();
+    if (view === "admin") loadDailyPostAdmin();
+}
+
+function navigateDailyPostProfile(profile) {
+    if (!profile) return;
+    dailyPostProfileTarget = profile;
+    if (profile.username) {
+        history.pushState(null, "", "#daily-post/profile/" + encodeURIComponent(profile.username));
+    }
+    setDailyPostView("profile");
+    openDailyPostProfile(profile.id);
+}
+
+function createDailyPostUserRow(profile, buttonLabel) {
+    const row = document.createElement("div");
+    row.className = "daily-post-recommendation";
+    const avatar = profile.avatar_url
+        ? document.createElement("img")
+        : document.createElement("div");
+    avatar.className = profile.avatar_url ? "daily-post-avatar-image" : "daily-post-avatar";
+    if (profile.avatar_url) {
+        avatar.src = profile.avatar_url;
+        avatar.alt = "";
+    } else {
+        avatar.textContent = (profile.display_name || "U").slice(0, 1).toUpperCase();
+    }
+    const identity = document.createElement("div");
+    const name = document.createElement("button");
+    name.type = "button";
+    name.className = "daily-post-author";
+    name.textContent = profile.display_name;
+    name.addEventListener("click", function() {
+        navigateDailyPostProfile(profile);
+    });
+    const username = document.createElement("div");
+    username.className = "daily-post-time";
+    username.textContent = "@" + profile.username;
+    identity.append(name, username);
+    row.append(avatar, identity);
+    if (buttonLabel && dailyPostUser && profile.id !== dailyPostUser.id) {
+        const follow = document.createElement("button");
+        follow.type = "button";
+        follow.className = "daily-post-button";
+        follow.textContent = buttonLabel;
+        follow.addEventListener("click", function() {
+            followDailyPostUser(profile, follow);
+        });
+        row.append(follow);
+    }
+    return row;
+}
+
+function renderDailyPostSuggestions(profiles) {
+    dailyPostElements.recommended.replaceChildren();
+    dailyPostElements.exploreUsers.replaceChildren();
+    if (!profiles.length) {
+        dailyPostElements.recommended.textContent = "No suggested accounts right now.";
+        dailyPostElements.exploreUsers.textContent = "No accounts to explore yet.";
+        return;
+    }
+    profiles.forEach(function(profile) {
+        if (profile.avatar_path) {
+            profile.avatar_url = supabaseClient.storage.from(DAILY_PROFILE_BUCKET)
+                .getPublicUrl(profile.avatar_path).data.publicUrl;
+        }
+        dailyPostElements.recommended.append(createDailyPostUserRow(profile, "FOLLOW"));
+        dailyPostElements.exploreUsers.append(createDailyPostUserRow(profile, "FOLLOW"));
+    });
+}
+
+async function followDailyPostUser(profile, button) {
+    if (!dailyPostUser) {
+        showDailyPostToast("Sign in to follow people.");
+        return;
+    }
+    button.disabled = true;
+    try {
+        const { data: existing, error: lookupError } = await supabaseClient.from("follows")
+            .select("follower_id").eq("follower_id", dailyPostUser.id).eq("followed_id", profile.id).maybeSingle();
+        if (lookupError) throw lookupError;
+        if (existing) {
+            const { error } = await supabaseClient.from("follows").delete()
+                .eq("follower_id", dailyPostUser.id).eq("followed_id", profile.id);
+            if (error) throw error;
+            button.textContent = "FOLLOW";
+            if (dailyPostProfileTarget && dailyPostProfileTarget.id === profile.id) {
+                dailyPostElements.followButton.textContent = "FOLLOW";
+            }
+            showDailyPostToast("You unfollowed @" + profile.username + ".");
+        } else {
+            const { data, error } = await supabaseClient.rpc("request_or_follow", { target_user: profile.id });
+            if (error) throw error;
+            const isRequest = data === "requested";
+            button.textContent = isRequest ? "REQUESTED" : "FOLLOWING";
+            if (dailyPostProfileTarget && dailyPostProfileTarget.id === profile.id) {
+                dailyPostElements.followButton.textContent = isRequest ? "REQUESTED" : "FOLLOWING";
+            }
+            showDailyPostToast(isRequest ? "Follow request sent." : "You are now following @" + profile.username + ".");
+        }
+    } catch (error) {
+        console.error("Could not update follow.", error);
+        showDailyPostToast(error.message || "Could not update follow.");
+    } finally {
+        button.disabled = false;
+    }
+}
+
+async function openDailyPostProfile(profileId) {
+    if (!profileId) return;
+    try {
+        const { data: profile, error } = await supabaseClient.from("profiles")
+            .select("id,username,display_name,bio,avatar_path,website_url,is_private,created_at")
+            .eq("id", profileId).single();
+        if (error) throw error;
+        dailyPostProfileTarget = profile;
+        const counts = await Promise.all([
+            supabaseClient.from("posts").select("id", { count: "exact", head: true }).eq("author_id", profile.id),
+            supabaseClient.from("follows").select("follower_id", { count: "exact", head: true }).eq("followed_id", profile.id),
+            supabaseClient.from("follows").select("followed_id", { count: "exact", head: true }).eq("follower_id", profile.id)
+        ]);
+        counts.forEach(function(result) {
+            if (result.error) throw result.error;
+        });
+        const viewerIsOwner = dailyPostUser && dailyPostUser.id === profile.id;
+        const identity = document.createElement("div");
+        identity.className = "daily-post-row";
+        const avatar = profile.avatar_path
+            ? document.createElement("img")
+            : document.createElement("div");
+        avatar.className = profile.avatar_path ? "daily-post-avatar-image" : "daily-post-avatar";
+        if (profile.avatar_path) {
+            avatar.src = supabaseClient.storage.from(DAILY_PROFILE_BUCKET).getPublicUrl(profile.avatar_path).data.publicUrl;
+            avatar.alt = profile.display_name + " profile picture";
+        } else {
+            avatar.textContent = profile.display_name.slice(0, 1).toUpperCase();
+        }
+        const details = document.createElement("div");
+        const name = document.createElement("h2");
+        name.className = "daily-post-author";
+        name.textContent = profile.display_name;
+        const username = document.createElement("p");
+        username.className = "daily-post-time";
+        username.textContent = "@" + profile.username;
+        details.append(name, username);
+        identity.append(avatar, details);
+        const bio = document.createElement("p");
+        bio.className = "daily-post-item-copy";
+        bio.textContent = profile.bio || "";
+        const stats = document.createElement("p");
+        stats.className = "daily-post-subtitle";
+        stats.textContent = (counts[0].count || 0) + " posts · " +
+            (counts[1].count || 0) + " followers · " + (counts[2].count || 0) + " following · Joined " +
+            new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(profile.created_at));
+        dailyPostElements.profileCard.replaceChildren(identity, bio, stats);
+        dailyPostElements.profileLinks.replaceChildren();
+        const { data: links, error: linksError } = await supabaseClient.from("profile_links")
+            .select("id,label,url,position").eq("profile_id", profile.id).order("position");
+        if (linksError) throw linksError;
+        (links || []).forEach(function(link) {
+            const anchor = document.createElement("a");
+            anchor.className = "daily-post-button";
+            anchor.href = link.url;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+            anchor.textContent = link.label;
+            dailyPostElements.profileLinks.append(anchor);
+        });
+        dailyPostElements.profileEditButton.classList.toggle("daily-post-hidden", !viewerIsOwner);
+        dailyPostElements.profileForm.classList.add("daily-post-hidden");
+        dailyPostElements.followRequests.classList.toggle(
+            "daily-post-hidden",
+            !(viewerIsOwner && profile.is_private)
+        );
+        dailyPostElements.followButton.classList.toggle("daily-post-hidden", viewerIsOwner || !dailyPostUser);
+        dailyPostElements.messageButton.classList.toggle("daily-post-hidden", viewerIsOwner || !dailyPostUser);
+        dailyPostElements.reportProfileButton.classList.toggle("daily-post-hidden", viewerIsOwner || !dailyPostUser);
+        if (!viewerIsOwner && dailyPostUser) {
+            const { data: followed, error: followError } = await supabaseClient.from("follows")
+                .select("follower_id").eq("follower_id", dailyPostUser.id).eq("followed_id", profile.id).maybeSingle();
+            if (followError) throw followError;
+            const { data: request, error: requestError } = await supabaseClient.from("follow_requests")
+                .select("requester_id").eq("requester_id", dailyPostUser.id).eq("target_id", profile.id).maybeSingle();
+            if (requestError) throw requestError;
+            dailyPostElements.followButton.textContent = followed ? "FOLLOWING" : request ? "REQUESTED" : "FOLLOW";
+        }
+        if (viewerIsOwner && profile.is_private) {
+            const { data: requests, error: requestsError } = await supabaseClient.from("follow_requests")
+                .select("requester_id,created_at,requester:profiles!follow_requests_requester_id_fkey(id,username,display_name)")
+                .eq("target_id", profile.id).order("created_at", { ascending: false });
+            if (requestsError) throw requestsError;
+            dailyPostElements.followRequests.replaceChildren();
+            const heading = document.createElement("h3");
+            heading.className = "daily-post-heading";
+            heading.textContent = "FOLLOW REQUESTS";
+            dailyPostElements.followRequests.append(heading);
+            if (!requests.length) {
+                dailyPostElements.followRequests.append(document.createTextNode("No pending requests."));
+            }
+            requests.forEach(function(request) {
+                const row = document.createElement("div");
+                row.className = "daily-post-recommendation";
+                const name = document.createElement("span");
+                name.textContent = request.requester.display_name + " · @" + request.requester.username;
+                ["Accept", "Reject"].forEach(function(action) {
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.className = "daily-post-button";
+                    button.textContent = action.toUpperCase();
+                    button.addEventListener("click", async function() {
+                        const { error: responseError } = await supabaseClient.rpc("respond_to_follow_request", {
+                            requester: request.requester_id,
+                            accept_request: action === "Accept"
+                        });
+                        if (responseError) showDailyPostToast(responseError.message || "Could not update follow request.");
+                        else openDailyPostProfile(profile.id);
+                    });
+                    row.append(button);
+                });
+                row.prepend(name);
+                dailyPostElements.followRequests.append(row);
+            });
+        }
+        const { data: profilePosts, error: postsError } = await supabaseClient.from("posts")
+            .select("id,author_id,text_content,legacy_media_url,legacy_media_type,created_at,post_media(id,storage_bucket,storage_path,media_type,position)")
+            .eq("author_id", profile.id).order("created_at", { ascending: false }).limit(30);
+        if (postsError) throw postsError;
+        dailyPostElements.profilePosts.replaceChildren();
+        if (!profilePosts.length) {
+            dailyPostElements.profilePosts.textContent = "No posts yet.";
+        } else {
+            profilePosts.forEach(function(post) {
+                post.author = profile;
+            });
+            await hydrateDailyPostCards(profilePosts);
+            profilePosts.forEach(function(post) {
+                dailyPostElements.profilePosts.append(createDailyPostCard(post, false));
+            });
+        }
+    } catch (error) {
+        console.error("Could not load user profile.", error);
+        showDailyPostToast(error.message || "Could not load this profile.");
+    }
+}
+
+async function toggleDailyPostLike(post, button) {
+    if (!dailyPostUser) {
+        showDailyPostToast("Sign in to like posts.");
+        return;
+    }
+    const wasLiked = post.viewer_liked;
+    post.viewer_liked = !wasLiked;
+    post.like_count = Math.max(0, (post.like_count || 0) + (wasLiked ? -1 : 1));
+    button.textContent = (post.viewer_liked ? "♥ " : "♡ ") + post.like_count + " likes";
+    button.disabled = true;
+    const result = wasLiked
+        ? await supabaseClient.from("likes").delete().eq("user_id", dailyPostUser.id).eq("post_id", post.id)
+        : await supabaseClient.from("likes").insert({ user_id: dailyPostUser.id, post_id: post.id });
+    if (result.error) {
+        post.viewer_liked = wasLiked;
+        post.like_count = Math.max(0, post.like_count + (wasLiked ? 1 : -1));
+        button.textContent = (wasLiked ? "♥ " : "♡ ") + post.like_count + " likes";
+        showDailyPostToast(result.error.message || "Could not update like.");
+    }
+    button.disabled = false;
+}
+
+async function toggleDailyPostSave(post, button) {
+    if (!dailyPostUser) {
+        showDailyPostToast("Sign in to save posts.");
+        return;
+    }
+    const result = post.viewer_saved
+        ? await supabaseClient.from("saved_posts").delete().eq("user_id", dailyPostUser.id).eq("post_id", post.id)
+        : await supabaseClient.from("saved_posts").insert({ user_id: dailyPostUser.id, post_id: post.id });
+    if (result.error) {
+        showDailyPostToast(result.error.message || "Could not save this post.");
+        return;
+    }
+    post.viewer_saved = !post.viewer_saved;
+    button.textContent = post.viewer_saved ? "SAVED" : "SAVE";
+}
+
+async function toggleDailyPostComments(post, article) {
+    if (article.querySelector(".daily-post-comment-list")) {
+        article.querySelector(".daily-post-comment-list").remove();
+        article.querySelector(".daily-post-comment").remove();
+        return;
+    }
+    const list = document.createElement("div");
+    list.className = "daily-post-comment-list";
+    const form = document.createElement("form");
+    form.className = "daily-post-comment";
+    const input = document.createElement("input");
+    input.maxLength = 2000;
+    input.placeholder = dailyPostUser ? "Write a comment… (use @username to mention)" : "Sign in to comment";
+    input.disabled = !dailyPostUser;
+    const submit = document.createElement("button");
+    submit.type = "submit";
+    submit.className = "daily-post-button primary";
+    submit.textContent = "SEND";
+    submit.disabled = !dailyPostUser;
+    form.append(input, submit);
+    form.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const content = input.value.trim();
+        if (!content || !dailyPostUser) return;
+        submit.disabled = true;
+        const { error } = await supabaseClient.from("comments").insert({
+            post_id: post.id,
+            author_id: dailyPostUser.id,
+            parent_id: form.dataset.parentId || null,
+            content: content
+        });
+        if (error) {
+            showDailyPostToast(error.message || "Could not add comment.");
+            submit.disabled = false;
+            return;
+        }
+        input.value = "";
+        await toggleDailyPostComments(post, article);
+        await toggleDailyPostComments(post, article);
+    });
+    const { data, error } = await supabaseClient.from("comments")
+        .select("id,content,author_id,created_at,author:profiles!comments_author_id_fkey(username,display_name)")
+        .eq("post_id", post.id).is("parent_id", null).order("created_at", { ascending: true }).limit(50);
+    if (error) {
+        showDailyPostToast(error.message || "Could not load comments.");
+        return;
+    }
+    const commentIds = (data || []).map(function(comment) { return comment.id; });
+    let commentLikes = [];
+    let viewerCommentLikes = [];
+    if (commentIds.length) {
+        const queries = [supabaseClient.from("comment_likes").select("comment_id").in("comment_id", commentIds)];
+        if (dailyPostUser) {
+            queries.push(supabaseClient.from("comment_likes").select("comment_id")
+                .eq("user_id", dailyPostUser.id).in("comment_id", commentIds));
+        }
+        const results = await Promise.all(queries);
+        results.forEach(function(result) {
+            if (result.error) throw result.error;
+        });
+        commentLikes = results[0].data || [];
+        viewerCommentLikes = dailyPostUser && results[1] ? results[1].data || [] : [];
+    }
+    (data || []).forEach(function(comment) {
+        const line = document.createElement("div");
+        line.className = "daily-post-comment-line";
+        const label = document.createElement("span");
+        label.textContent = (comment.author ? comment.author.display_name : "Member") + ": " + comment.content;
+        line.append(label);
+        const actions = document.createElement("span");
+        actions.className = "daily-post-comment-actions";
+        const like = document.createElement("button");
+        like.type = "button";
+        like.textContent = (viewerCommentLikes.some(function(row) { return row.comment_id === comment.id; }) ? "♥ " : "♡ ") +
+            commentLikes.filter(function(row) { return row.comment_id === comment.id; }).length;
+        like.disabled = !dailyPostUser;
+        like.addEventListener("click", async function() {
+            const isLiked = viewerCommentLikes.some(function(row) { return row.comment_id === comment.id; });
+            const result = isLiked
+                ? await supabaseClient.from("comment_likes").delete().eq("user_id", dailyPostUser.id).eq("comment_id", comment.id)
+                : await supabaseClient.from("comment_likes").insert({ user_id: dailyPostUser.id, comment_id: comment.id });
+            if (result.error) showDailyPostToast(result.error.message || "Could not like comment.");
+            else {
+                await toggleDailyPostComments(post, article);
+                await toggleDailyPostComments(post, article);
+            }
+        });
+        actions.append(like);
+        if (dailyPostUser) {
+            const reply = document.createElement("button");
+            reply.type = "button";
+            reply.textContent = "Reply";
+            reply.addEventListener("click", function() {
+                form.dataset.parentId = comment.id;
+                input.placeholder = "Reply to " + (comment.author ? comment.author.display_name : "member") + "…";
+                input.focus();
+            });
+            actions.append(reply);
+        }
+        if (dailyPostUser && (comment.author_id === dailyPostUser.id || dailyPostIsAdmin)) {
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.textContent = "Delete";
+            remove.addEventListener("click", async function() {
+                const { error: deleteError } = await supabaseClient.from("comments").delete().eq("id", comment.id);
+                if (deleteError) showDailyPostToast(deleteError.message || "Could not delete comment.");
+                else {
+                    await toggleDailyPostComments(post, article);
+                    await toggleDailyPostComments(post, article);
+                }
+            });
+            actions.append(remove);
+        }
+        line.append(actions);
+        list.append(line);
+    });
+    article.append(list, form);
+}
+
+async function shareDailyPost(post) {
+    const shareData = {
+        title: "Daily Post",
+        text: post.text_content || "See this post on Daily Post",
+        url: location.href.split("#")[0] + "#daily-post"
+    };
+    try {
+        if (navigator.share) await navigator.share(shareData);
+        else {
+            await navigator.clipboard.writeText(shareData.url);
+            showDailyPostToast("Post link copied.");
+        }
+    } catch (error) {
+        if (error.name !== "AbortError") {
+            console.error("Could not share post.", error);
+            showDailyPostToast("Could not share this post.");
+        }
+    }
+}
+
+async function reportDailyPost(targetType, targetId) {
+    if (!dailyPostUser) {
+        showDailyPostToast("Sign in to report content.");
+        return;
+    }
+    const reason = window.prompt("Report reason: spam, harassment, hate, violence, sexual_content, scam, or other");
+    if (!reason) return;
+    const allowedReasons = new Set(["spam", "harassment", "hate", "violence", "sexual_content", "scam", "other"]);
+    if (!allowedReasons.has(reason.trim().toLowerCase())) {
+        showDailyPostToast("Choose a reason from the list.");
+        return;
+    }
+    const report = {
+        reporter_id: dailyPostUser.id,
+        target_type: targetType,
+        reason: reason.trim().toLowerCase()
+    };
+    if (targetType === "post") report.post_id = targetId;
+    else if (targetType === "comment") report.comment_id = targetId;
+    else report.target_user_id = targetId;
+    const { error } = await supabaseClient.from("reports").insert(report);
+    if (error) {
+        console.error("Could not submit report.", error);
+        showDailyPostToast(error.message || "Could not submit report.");
+        return;
+    }
+    showDailyPostToast("Report sent to the moderation team.");
+}
+
+async function loadDailyPostExplore() {
+    const { data, error } = await supabaseClient.from("posts")
+        .select("id,author_id,text_content,legacy_media_url,legacy_media_type,created_at,author:profiles!posts_author_id_fkey(id,username,display_name,avatar_path),post_media(id,storage_bucket,storage_path,media_type,position)")
+        .order("created_at", { ascending: false }).limit(30);
+    if (error) {
+        showDailyPostToast(error.message || "Could not load Explore.");
+        return;
+    }
+    dailyPostElements.explorePosts.replaceChildren();
+    await hydrateDailyPostCards(data || []);
+    (data || []).forEach(function(post) {
+        dailyPostElements.explorePosts.append(createDailyPostCard(post, false));
+    });
+}
+
+async function hydrateDailyPostCards(posts) {
+    if (!posts.length) return;
+    const ids = posts.map(function(post) { return post.id; });
+    const requests = [
+        supabaseClient.from("likes").select("post_id").in("post_id", ids),
+        supabaseClient.from("comments").select("post_id").in("post_id", ids)
+    ];
+    if (dailyPostUser) {
+        requests.push(
+            supabaseClient.from("likes").select("post_id").eq("user_id", dailyPostUser.id).in("post_id", ids),
+            supabaseClient.from("saved_posts").select("post_id").eq("user_id", dailyPostUser.id).in("post_id", ids)
+        );
+    }
+    const results = await Promise.all(requests);
+    results.forEach(function(result) {
+        if (result.error) throw result.error;
+    });
+    posts.forEach(function(post) {
+        post.like_count = results[0].data.filter(function(row) { return row.post_id === post.id; }).length;
+        post.comment_count = results[1].data.filter(function(row) { return row.post_id === post.id; }).length;
+        post.viewer_liked = Boolean(dailyPostUser && results[2] &&
+            results[2].data.some(function(row) { return row.post_id === post.id; }));
+        post.viewer_saved = Boolean(dailyPostUser && results[3] &&
+            results[3].data.some(function(row) { return row.post_id === post.id; }));
+        post.post_media = post.post_media || [];
+    });
+    await Promise.all(posts.map(async function(post) {
+        if (post.author && post.author.avatar_path) {
+            post.author.avatar_url = supabaseClient.storage.from(DAILY_PROFILE_BUCKET)
+                .getPublicUrl(post.author.avatar_path).data.publicUrl;
+        }
+        post.post_media = await Promise.all(post.post_media.map(async function(media) {
+            const { data, error } = await supabaseClient.storage.from(media.storage_bucket)
+                .createSignedUrl(media.storage_path, 300);
+            if (error) throw error;
+            return Object.assign({}, media, { signed_url: data.signedUrl });
+        }));
+    }));
+}
+
+async function loadDailyPostSaved() {
+    const { data, error } = await supabaseClient.from("saved_posts")
+        .select("post:posts(id,author_id,text_content,legacy_media_url,legacy_media_type,created_at,author:profiles!posts_author_id_fkey(id,username,display_name,avatar_path),post_media(id,storage_bucket,storage_path,media_type,position))")
+        .eq("user_id", dailyPostUser.id).order("created_at", { ascending: false }).limit(50);
+    if (error) {
+        showDailyPostToast(error.message || "Could not load saved posts.");
+        return;
+    }
+    dailyPostElements.savedList.replaceChildren();
+    const saved = (data || []).map(function(row) { return row.post; }).filter(Boolean);
+    if (!saved.length) dailyPostElements.savedList.textContent = "You haven't saved any posts yet.";
+    await hydrateDailyPostCards(saved);
+    saved.forEach(function(post) {
+        post.viewer_saved = true;
+        dailyPostElements.savedList.append(createDailyPostCard(post, false));
+    });
+}
+
+async function loadDailyPostNotifications() {
+    const { data, error } = await supabaseClient.from("notifications")
+        .select("id,kind,created_at,read_at,actor:profiles!notifications_actor_id_fkey(username,display_name)")
+        .eq("recipient_id", dailyPostUser.id).order("created_at", { ascending: false }).limit(50);
+    if (error) {
+        showDailyPostToast(error.message || "Could not load notifications.");
+        return;
+    }
+    dailyPostElements.notificationsList.replaceChildren();
+    if (!data.length) {
+        dailyPostElements.notificationsList.textContent = "You're all caught up.";
+        return;
+    }
+    data.forEach(function(notification) {
+        const item = document.createElement("div");
+        item.className = "daily-post-card daily-post-item";
+        const actor = notification.actor ? notification.actor.display_name : "Someone";
+        const actions = {
+            like: "liked your post",
+            comment: "commented on your post",
+            reply: "replied to your comment",
+            mention: "mentioned you",
+            follow: "started following you",
+            follow_request: "requested to follow you",
+            message: "sent you a message"
+        };
+        item.textContent = actor + " " + (actions[notification.kind] || "interacted with you") +
+            " · " + formatDailyPostTime(notification.created_at);
+        dailyPostElements.notificationsList.append(item);
+        if (!notification.read_at) {
+            supabaseClient.from("notifications").update({ read_at: new Date().toISOString() })
+                .eq("id", notification.id).eq("recipient_id", dailyPostUser.id)
+                .then(function(result) {
+                    if (result.error) console.error("Could not mark notification read.", result.error);
+                });
+        }
+    });
+}
+
+async function loadDailyPostConversations() {
+    const { data, error } = await supabaseClient.from("conversation_participants")
+        .select("conversation_id,last_read_at,conversation:conversations(id,updated_at,participants:conversation_participants(user_id,profile:profiles(id,username,display_name,avatar_path)),messages(id,content,sender_id,created_at))")
+        .eq("user_id", dailyPostUser.id).order("last_read_at", { ascending: false }).limit(50);
+    if (error) {
+        showDailyPostToast(error.message || "Could not load conversations.");
+        return;
+    }
+    dailyPostElements.conversationList.replaceChildren();
+    if (!data.length) {
+        dailyPostElements.conversationList.textContent = "No conversations yet. Visit a profile and choose Message.";
+        return;
+    }
+    data.forEach(function(row) {
+        const conversation = row.conversation;
+        const other = (conversation.participants || []).find(function(participant) {
+            return participant.user_id !== dailyPostUser.id;
+        });
+        if (!other || !other.profile) return;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "daily-post-card daily-post-item daily-post-author";
+        button.textContent = other.profile.display_name + " · " + (conversation.messages || []).length + " messages";
+        button.addEventListener("click", function() {
+            openDailyPostConversation(conversation.id, other.profile);
+        });
+        dailyPostElements.conversationList.append(button);
+    });
+}
+
+async function openDailyPostConversation(conversationId, otherProfile) {
+    dailyPostConversationId = conversationId;
+    dailyPostConversationProfile = otherProfile;
+    dailyPostElements.chat.classList.remove("daily-post-hidden");
+    const { data, error } = await supabaseClient.from("messages")
+        .select("id,sender_id,content,created_at,deleted_at")
+        .eq("conversation_id", conversationId).order("created_at", { ascending: true }).limit(100);
+    if (error) {
+        showDailyPostToast(error.message || "Could not load messages.");
+        return;
+    }
+    dailyPostElements.chatMessages.replaceChildren();
+    (data || []).forEach(function(message) {
+        const line = document.createElement("p");
+        line.className = "daily-post-comment-line";
+        line.textContent = message.deleted_at
+            ? "Message deleted"
+            : (message.sender_id === dailyPostUser.id ? "You" : otherProfile.display_name) + ": " + message.content;
+        if (message.sender_id === dailyPostUser.id && !message.deleted_at) {
+            line.tabIndex = 0;
+            line.title = "Click to delete this message";
+            line.addEventListener("click", async function() {
+                if (!window.confirm("Delete this message?")) return;
+                const { error: deleteError } = await supabaseClient.from("messages")
+                    .update({ deleted_at: new Date().toISOString() }).eq("id", message.id);
+                if (deleteError) showDailyPostToast(deleteError.message);
+                else openDailyPostConversation(conversationId, otherProfile);
+            });
+        }
+        dailyPostElements.chatMessages.append(line);
+    });
+    await supabaseClient.from("conversation_participants").update({ last_read_at: new Date().toISOString() })
+        .eq("conversation_id", conversationId).eq("user_id", dailyPostUser.id);
+}
+
+async function loadDailyPostSettings() {
+    const { data, error } = await supabaseClient.from("user_settings")
+        .select("theme,notify_likes,notify_comments,notify_followers,notify_messages")
+        .eq("user_id", dailyPostUser.id).maybeSingle();
+    if (error) {
+        showDailyPostToast(error.message || "Could not load settings.");
+        return;
+    }
+    const settings = data || {};
+    dailyPostElements.theme.checked = settings.theme === "light";
+    dailyPostPage.classList.toggle("light", settings.theme === "light");
+    dailyPostElements.notifyLikes.checked = settings.notify_likes !== false;
+    dailyPostElements.notifyComments.checked = settings.notify_comments !== false;
+    dailyPostElements.notifyFollowers.checked = settings.notify_followers !== false;
+    dailyPostElements.notifyMessages.checked = settings.notify_messages !== false;
+}
+
+async function loadDailyPostAdmin() {
+    const { data: admin, error: adminError } = await supabaseClient.from("admin_profiles")
+        .select("user_id").eq("user_id", dailyPostUser.id).maybeSingle();
+    if (adminError || !admin) {
+        showDailyPostToast("Admin access is restricted.");
+        setDailyPostView("home");
+        return;
+    }
+    const [{ data: reports, error: reportsError }, { data: users, error: usersError }] = await Promise.all([
+        supabaseClient.from("reports").select("id,target_type,reason,status,created_at").order("created_at", { ascending: false }).limit(50),
+        supabaseClient.from("profiles").select("id,username,display_name,is_banned").order("created_at", { ascending: false }).limit(100)
+    ]);
+    if (reportsError) throw reportsError;
+    if (usersError) throw usersError;
+    dailyPostElements.adminReports.replaceChildren();
+    dailyPostElements.adminUsers.replaceChildren();
+    (reports || []).forEach(function(report) {
+        const item = document.createElement("div");
+        item.className = "daily-post-card daily-post-item";
+        item.textContent = report.target_type + " · " + report.reason + " · " + report.status;
+        dailyPostElements.adminReports.append(item);
+    });
+    (users || []).forEach(function(profile) {
+        const item = document.createElement("div");
+        item.className = "daily-post-card daily-post-item daily-post-recommendation";
+        const name = document.createElement("span");
+        name.textContent = profile.display_name + " · @" + profile.username;
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "daily-post-button";
+        toggle.textContent = profile.is_banned ? "UNBAN" : "BAN";
+        toggle.addEventListener("click", async function() {
+            const { error: updateError } = await supabaseClient.from("profiles")
+                .update({ is_banned: !profile.is_banned }).eq("id", profile.id);
+            if (updateError) showDailyPostToast(updateError.message || "Could not update account.");
+            else loadDailyPostAdmin();
+        });
+        item.append(name, toggle);
+        dailyPostElements.adminUsers.append(item);
+    });
+}
+
 
 async function initializeDailyPost() {
     if (dailyPostInitialized) return;
@@ -6733,26 +8271,137 @@ async function initializeDailyPost() {
     try {
         const { data, error } = await supabaseClient.auth.getUser();
         if (error && error.name !== "AuthSessionMissingError") throw error;
-        const user = data.user;
-        if (user && (user.email || "").toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-            await supabaseClient.auth.signOut();
-        }
-        dailyPostIsAdmin = Boolean(
-            user && (user.email || "").toLowerCase() === ADMIN_EMAIL.toLowerCase()
-        );
-        dailyPostElements.login.classList.toggle("daily-post-hidden", dailyPostIsAdmin);
-        dailyPostElements.composer.classList.toggle("daily-post-hidden", !dailyPostIsAdmin);
-        dailyPostElements.feed.classList.remove("daily-post-hidden");
-        await loadDailyPostFeed();
+        await setDailyPostSession(data.user);
+        supabaseClient.auth.onAuthStateChange(function(event, session) {
+            window.setTimeout(function() {
+                if (event === "SIGNED_OUT") setDailyPostSession(null);
+                else if (session && session.user) setDailyPostSession(session.user);
+            }, 0);
+        });
     } catch (error) {
         console.error("Could not initialize Daily Post.", error);
         showDailyPostNotice(
-            "The feed could not load. Apply the creator-posts setup in the Supabase SQL Editor, then refresh this page.",
+            "The social platform database is not ready. Run the full updated supabase-schema.sql in the Supabase SQL Editor, then refresh this page.",
             true
         );
+        dailyPostUser = null;
+        dailyPostProfile = null;
         dailyPostElements.login.classList.remove("daily-post-hidden");
+        dailyPostElements.composer.classList.add("daily-post-hidden");
+        dailyPostElements.signOut.classList.add("daily-post-hidden");
         dailyPostElements.feed.classList.remove("daily-post-hidden");
     }
+}
+
+async function setDailyPostSession(user) {
+    dailyPostUser = user || null;
+    dailyPostProfile = null;
+    if (!user) dailyPostProfileTarget = null;
+    dailyPostIsAdmin = false;
+    dailyPostElements.currentUser.textContent = "";
+    dailyPostElements.login.classList.toggle("daily-post-hidden", Boolean(user));
+    dailyPostElements.composer.classList.toggle("daily-post-hidden", !user);
+    dailyPostElements.signOut.classList.toggle("daily-post-hidden", !user);
+    dailyPostElements.feed.classList.remove("daily-post-hidden");
+    dailyPostElements.recommended.textContent = user ? "Loading suggestions…" : "Sign in to discover people.";
+
+    if (!user) {
+        dailyPostElements.login.classList.toggle("daily-post-hidden", dailyPostAuthMode !== "login");
+        dailyPostElements.composer.classList.add("daily-post-hidden");
+        dailyPostElements.currentUser.textContent = "Guest";
+        if (dailyPostRealtimeChannel) {
+            await supabaseClient.removeChannel(dailyPostRealtimeChannel);
+            dailyPostRealtimeChannel = null;
+        }
+        dailyPostElements.postList.replaceChildren();
+        dailyPostElements.emptyPosts.textContent = "Sign in or create an account to join the conversation.";
+        dailyPostElements.emptyPosts.classList.remove("daily-post-hidden");
+        await loadDailyPostFeed();
+        return;
+    }
+
+    const [profileResult, adminResult] = await Promise.all([
+        supabaseClient.from("profiles").select("*").eq("id", user.id).single(),
+        supabaseClient.from("admin_profiles").select("user_id").eq("user_id", user.id).maybeSingle()
+    ]);
+    if (profileResult.error) throw profileResult.error;
+    if (adminResult.error) throw adminResult.error;
+    dailyPostProfile = profileResult.data;
+    dailyPostIsAdmin = Boolean(adminResult.data);
+    dailyPostElements.currentUser.textContent = "@" + dailyPostProfile.username;
+    dailyPostElements.login.classList.add("daily-post-hidden");
+    dailyPostElements.composer.classList.remove("daily-post-hidden");
+    dailyPostElements.feed.classList.remove("daily-post-hidden");
+    if (!dailyPostRealtimeChannel) {
+        dailyPostRealtimeChannel = supabaseClient.channel("daily-post-social-feed")
+            .on("postgres_changes", { event: "*", schema: "public", table: "posts" }, function() {
+                loadDailyPostFeed().catch(function(error) {
+                    console.error("Could not refresh social feed.", error);
+                });
+            })
+            .on("postgres_changes", { event: "*", schema: "public", table: "likes" }, function() {
+                loadDailyPostFeed().catch(function(error) {
+                    console.error("Could not refresh post likes.", error);
+                });
+            })
+            .on("postgres_changes", { event: "*", schema: "public", table: "comments" }, function() {
+                loadDailyPostFeed().catch(function(error) {
+                    console.error("Could not refresh post comments.", error);
+                });
+            })
+            .on("postgres_changes", { event: "*", schema: "public", table: "stories" }, function() {
+                loadDailyPostFeed().catch(function(error) {
+                    console.error("Could not refresh stories.", error);
+                });
+            })
+            .on("postgres_changes", { event: "INSERT", schema: "public", table: "notifications", filter: "recipient_id=eq." + user.id }, function() {
+                if (dailyPostCurrentView === "notifications") loadDailyPostNotifications();
+            })
+            .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, function() {
+                if (dailyPostCurrentView === "messages") {
+                    loadDailyPostConversations();
+                    if (dailyPostConversationId && dailyPostConversationProfile) {
+                        openDailyPostConversation(dailyPostConversationId, dailyPostConversationProfile);
+                    }
+                }
+            })
+            .subscribe(function(status) {
+                if (status === "CHANNEL_ERROR") {
+                    console.error("Daily Post realtime subscription could not connect.");
+                }
+            });
+    }
+    await loadDailyPostFeed();
+    if (dailyPostIsAdmin && !document.getElementById("dailyPostAdminNav")) {
+        const adminButton = document.createElement("button");
+        adminButton.id = "dailyPostAdminNav";
+        adminButton.type = "button";
+        adminButton.dataset.dailyView = "admin";
+        adminButton.textContent = "⚑  Admin";
+        document.querySelector(".daily-post-left-sidebar").append(adminButton);
+        adminButton.addEventListener("click", function() { setDailyPostView("admin"); });
+    }
+    const adminButton = document.getElementById("dailyPostAdminNav");
+    if (adminButton) adminButton.classList.toggle("daily-post-hidden", !dailyPostIsAdmin);
+}
+
+function setDailyPostAuthMode(mode) {
+    dailyPostAuthMode = mode;
+    const isSignup = mode === "signup";
+    dailyPostElements.authTitle.textContent = isSignup ? "Create your account" : "Welcome to Daily Post";
+    dailyPostElements.authDescription.textContent = isSignup
+        ? "Choose a unique username and join the community."
+        : "Sign in or create an account to follow people and share your posts.";
+    dailyPostElements.usernameInput.classList.toggle("daily-post-hidden", !isSignup);
+    dailyPostElements.displayNameInput.classList.toggle("daily-post-hidden", !isSignup);
+    dailyPostElements.confirmPassword.classList.toggle("daily-post-hidden", !isSignup);
+    dailyPostElements.usernameInput.required = isSignup;
+    dailyPostElements.displayNameInput.required = isSignup;
+    dailyPostElements.confirmPassword.required = isSignup;
+    dailyPostElements.authToggle.textContent = isSignup ? "I already have an account" : "Create account";
+    dailyPostElements.forgotPassword.classList.toggle("daily-post-hidden", isSignup);
+    dailyPostElements.loginForm.querySelector("button[type='submit']").textContent = isSignup ? "CREATE ACCOUNT" : "SIGN IN";
+    dailyPostElements.loginError.textContent = "";
 }
 
 dailyPostElements.loginForm.addEventListener("submit", async function(event) {
@@ -6761,28 +8410,96 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
     const button = dailyPostElements.loginForm.querySelector("button[type='submit']");
     button.disabled = true;
     try {
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email: dailyPostElements.loginEmail.value.trim(),
-            password: dailyPostElements.loginPassword.value
-        });
-        if (error) throw error;
-        if (!data.user || (data.user.email || "").toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-            await supabaseClient.auth.signOut();
-            throw new Error("This account is not the configured website administrator.");
+        const email = dailyPostElements.loginEmail.value.trim();
+        const password = dailyPostElements.loginPassword.value;
+        let data;
+        if (dailyPostAuthMode === "signup") {
+            const username = dailyPostElements.usernameInput.value.trim().toLowerCase();
+            const displayName = dailyPostElements.displayNameInput.value.trim();
+            if (!/^[a-z0-9_]{3,24}$/.test(username)) {
+                throw new Error("Username must be 3–24 characters using letters, numbers, or underscores.");
+            }
+            if (!displayName || displayName.length > 60) {
+                throw new Error("Display name must be between 1 and 60 characters.");
+            }
+            const { data: usernameMatch, error: usernameError } = await supabaseClient.from("profiles")
+                .select("id").eq("username", username).maybeSingle();
+            if (usernameError) throw usernameError;
+            if (usernameMatch) throw new Error("That username is already taken. Try another.");
+            if (password.length < 8) throw new Error("Password must be at least 8 characters.");
+            if (password !== dailyPostElements.confirmPassword.value) {
+                throw new Error("Passwords do not match.");
+            }
+            const result = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: { username: username, display_name: displayName }
+                }
+            });
+            if (result.error) throw result.error;
+            data = result.data;
+            if (!data.session) {
+                dailyPostElements.loginError.textContent =
+                    "Check your email to verify your account, then sign in.";
+                setDailyPostAuthMode("login");
+                dailyPostElements.loginPassword.value = "";
+                return;
+            }
+        } else {
+            const result = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            if (result.error) throw result.error;
+            data = result.data;
         }
-        dailyPostIsAdmin = true;
+        const didSignup = dailyPostAuthMode === "signup";
         dailyPostElements.loginForm.reset();
-        dailyPostElements.login.classList.add("daily-post-hidden");
-        dailyPostElements.composer.classList.remove("daily-post-hidden");
-        await loadDailyPostFeed();
-        showDailyPostToast("Signed in. You can now share posts and stories.");
+        setDailyPostAuthMode("login");
+        await setDailyPostSession(data.user);
+        showDailyPostToast(didSignup ? "Your account is ready." : "Signed in.");
     } catch (error) {
-        console.error("Daily Post sign-in failed.", error);
+        console.error("Daily Post authentication failed.", error);
         dailyPostElements.loginError.textContent =
-            error.message || "Could not sign in. Check your email and password.";
+            error.message || "Could not authenticate. Check your details and try again.";
     } finally {
         button.disabled = false;
     }
+});
+
+dailyPostElements.authToggle.addEventListener("click", function() {
+    setDailyPostAuthMode(dailyPostAuthMode === "signup" ? "login" : "signup");
+});
+
+dailyPostElements.forgotPassword.addEventListener("click", async function() {
+    const email = dailyPostElements.loginEmail.value.trim();
+    if (!email) {
+        dailyPostElements.loginError.textContent = "Enter your email address first.";
+        dailyPostElements.loginEmail.focus();
+        return;
+    }
+    const redirectTo = location.origin + location.pathname + "#daily-post";
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
+    if (error) {
+        console.error("Could not send password reset email.", error);
+        dailyPostElements.loginError.textContent = error.message || "Could not send the reset email.";
+        return;
+    }
+    showDailyPostToast("If an account exists for that email, a reset link has been sent.");
+});
+
+dailyPostElements.signOut.addEventListener("click", async function() {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error) {
+        console.error("Could not sign out.", error);
+        showDailyPostToast(error.message || "Could not sign out.");
+        return;
+    }
+    dailyPostElements.adminView.hidden = true;
+    dailyPostElements.login.classList.remove("daily-post-hidden");
+    setDailyPostAuthMode("login");
+    showDailyPostToast("You are signed out.");
 });
 
 dailyPostElements.attach.addEventListener("click", function() {
@@ -6790,9 +8507,41 @@ dailyPostElements.attach.addEventListener("click", function() {
 });
 
 dailyPostElements.mediaInput.addEventListener("change", function() {
-    const file = dailyPostElements.mediaInput.files[0];
-    dailyPostElements.fileName.textContent = file ? file.name : "";
-    dailyPostElements.fileName.classList.toggle("daily-post-hidden", !file);
+    const files = Array.from(dailyPostElements.mediaInput.files || []);
+    dailyPostElements.fileName.textContent = files.map(function(file) { return file.name; }).join(", ");
+    dailyPostElements.fileName.classList.toggle("daily-post-hidden", !files.length);
+    dailyPostElements.clearMedia.classList.toggle("daily-post-hidden", !files.length);
+    dailyPostElements.preview.querySelectorAll("[data-preview-url]").forEach(function(preview) {
+        URL.revokeObjectURL(preview.dataset.previewUrl);
+    });
+    dailyPostElements.preview.replaceChildren();
+    files.slice(0, 10).forEach(function(file) {
+        if (!DAILY_POST_ALLOWED_TYPES.has(file.type)) return;
+        const preview = file.type.startsWith("image/")
+            ? document.createElement("img")
+            : file.type.startsWith("audio/")
+                ? document.createElement("audio")
+                : document.createElement("video");
+        preview.src = URL.createObjectURL(file);
+        preview.dataset.previewUrl = preview.src;
+        preview.alt = file.type.startsWith("image/") ? "Selected photo preview" : "";
+        if (preview.tagName === "VIDEO" || preview.tagName === "AUDIO") {
+            preview.controls = true;
+            if (preview.tagName === "VIDEO") preview.muted = true;
+        }
+        dailyPostElements.preview.append(preview);
+    });
+});
+
+dailyPostElements.clearMedia.addEventListener("click", function() {
+    dailyPostElements.preview.querySelectorAll("[data-preview-url]").forEach(function(preview) {
+        URL.revokeObjectURL(preview.dataset.previewUrl);
+    });
+    dailyPostElements.mediaInput.value = "";
+    dailyPostElements.fileName.textContent = "";
+    dailyPostElements.fileName.classList.add("daily-post-hidden");
+    dailyPostElements.clearMedia.classList.add("daily-post-hidden");
+    dailyPostElements.preview.replaceChildren();
 });
 
 dailyPostElements.storyButton.addEventListener("click", function() {
@@ -6810,7 +8559,16 @@ dailyPostElements.postForm.addEventListener("submit", function(event) {
 });
 
 dailyPostElements.closeStory.addEventListener("click", function() {
+    window.clearTimeout(dailyPostStoryTimer);
     dailyPostElements.storyModal.classList.add("daily-post-hidden");
+});
+
+dailyPostElements.storyNext.addEventListener("click", function() {
+    showAdjacentDailyPostStory(1);
+});
+
+dailyPostElements.storyPrevious.addEventListener("click", function() {
+    showAdjacentDailyPostStory(-1);
 });
 
 dailyPostElements.storyModal.addEventListener("click", function(event) {
@@ -6819,8 +8577,281 @@ dailyPostElements.storyModal.addEventListener("click", function(event) {
     }
 });
 
+document.querySelectorAll("[data-daily-view]").forEach(function(button) {
+    button.addEventListener("click", function() {
+        if (button.dataset.dailyView === "profile" && dailyPostProfile) {
+            navigateDailyPostProfile(dailyPostProfile);
+        } else {
+            setDailyPostView(button.dataset.dailyView);
+        }
+    });
+});
+
+dailyPostElements.searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    searchDailyPost(dailyPostElements.searchInput.value);
+});
+
+let dailyPostSearchTimer;
+dailyPostElements.searchInput.addEventListener("input", function() {
+    window.clearTimeout(dailyPostSearchTimer);
+    const query = dailyPostElements.searchInput.value.trim();
+    if (query.length < 2) {
+        dailyPostElements.searchResults.replaceChildren();
+        return;
+    }
+    dailyPostSearchTimer = window.setTimeout(function() {
+        searchDailyPost(query);
+    }, 250);
+});
+
+async function searchDailyPost(rawQuery) {
+    const query = rawQuery.trim().replace(/[^a-zA-Z0-9_ ]/g, "").slice(0, 80);
+    if (query.length < 2) return;
+    const [profiles, posts] = await Promise.all([
+        supabaseClient.from("profiles")
+            .select("id,username,display_name,avatar_path")
+            .or("username.ilike.%" + query + "%,display_name.ilike.%" + query + "%").limit(10),
+        supabaseClient.from("posts")
+            .select("id,author_id,text_content,legacy_media_url,legacy_media_type,created_at,author:profiles!posts_author_id_fkey(id,username,display_name,avatar_path),post_media(id,storage_bucket,storage_path,media_type,position)")
+            .ilike("text_content", "%" + query + "%").order("created_at", { ascending: false }).limit(10)
+    ]);
+    if (profiles.error) {
+        showDailyPostToast(profiles.error.message || "Could not search profiles.");
+        return;
+    }
+    if (posts.error) {
+        showDailyPostToast(posts.error.message || "Could not search posts.");
+        return;
+    }
+    dailyPostElements.searchResults.replaceChildren();
+    (profiles.data || []).forEach(function(profile) {
+        dailyPostElements.searchResults.append(createDailyPostUserRow(profile, dailyPostUser ? "FOLLOW" : ""));
+    });
+    await hydrateDailyPostCards(posts.data || []);
+    (posts.data || []).forEach(function(post) {
+        dailyPostElements.searchResults.append(createDailyPostCard(post, false));
+    });
+    if (!profiles.data.length && !posts.data.length) {
+        dailyPostElements.searchResults.textContent = "No users or posts found.";
+    }
+}
+
+dailyPostElements.followButton.addEventListener("click", async function() {
+    if (!dailyPostProfileTarget || !dailyPostUser) return;
+    const { data: followed, error } = await supabaseClient.from("follows")
+        .select("follower_id").eq("follower_id", dailyPostUser.id)
+        .eq("followed_id", dailyPostProfileTarget.id).maybeSingle();
+    if (error) {
+        showDailyPostToast(error.message || "Could not check follow status.");
+        return;
+    }
+    if (followed) {
+        const { error: deleteError } = await supabaseClient.from("follows").delete()
+            .eq("follower_id", dailyPostUser.id).eq("followed_id", dailyPostProfileTarget.id);
+        if (deleteError) showDailyPostToast(deleteError.message || "Could not unfollow.");
+        else dailyPostElements.followButton.textContent = "FOLLOW";
+    } else {
+        const { data: result, error: followError } = await supabaseClient.rpc("request_or_follow", {
+            target_user: dailyPostProfileTarget.id
+        });
+        if (followError) showDailyPostToast(followError.message || "Could not follow this account.");
+        else dailyPostElements.followButton.textContent = result === "requested" ? "REQUESTED" : "FOLLOWING";
+    }
+    openDailyPostProfile(dailyPostProfileTarget.id);
+});
+
+dailyPostElements.messageButton.addEventListener("click", async function() {
+    if (!dailyPostProfileTarget) return;
+    const { data, error } = await supabaseClient.rpc("start_conversation", {
+        other_user: dailyPostProfileTarget.id
+    });
+    if (error) {
+        showDailyPostToast(error.message || "Could not start conversation.");
+        return;
+    }
+    setDailyPostView("messages");
+    openDailyPostConversation(data, dailyPostProfileTarget);
+});
+
+dailyPostElements.reportProfileButton.addEventListener("click", function() {
+    if (dailyPostProfileTarget) reportDailyPost("user", dailyPostProfileTarget.id);
+});
+
+dailyPostElements.profileEditButton.addEventListener("click", function() {
+    if (!dailyPostProfile || !dailyPostUser || dailyPostProfile.id !== dailyPostUser.id) return;
+    const form = dailyPostElements.profileForm;
+    form.classList.toggle("daily-post-hidden");
+    dailyPostElements.profileName.value = dailyPostProfile.display_name;
+    dailyPostElements.profileUsername.value = dailyPostProfile.username;
+    dailyPostElements.profileBio.value = dailyPostProfile.bio || "";
+    dailyPostElements.profileWebsite.value = dailyPostProfile.website_url || "";
+    dailyPostElements.privateAccount.checked = dailyPostProfile.is_private;
+});
+
+dailyPostElements.removeAvatar.addEventListener("click", function() {
+    dailyPostElements.avatarInput.value = "";
+    dailyPostElements.removeAvatar.dataset.removeAvatar = "true";
+    showDailyPostToast("Profile photo will be removed when you save.");
+});
+
+dailyPostElements.profileForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const username = dailyPostElements.profileUsername.value.trim().toLowerCase();
+    if (!/^[a-z0-9_]{3,24}$/.test(username)) {
+        showDailyPostToast("Username must be 3–24 letters, numbers, or underscores.");
+        return;
+    }
+    const linkLabel = dailyPostElements.profileLinkLabel.value.trim();
+    const linkUrl = dailyPostElements.profileLinkUrl.value.trim();
+    if ((linkLabel || linkUrl) && (!linkLabel || !/^https?:\/\//i.test(linkUrl))) {
+        showDailyPostToast("Provide both a link name and a full http/https URL.");
+        return;
+    }
+    let avatarPath = dailyPostElements.removeAvatar.dataset.removeAvatar === "true"
+        ? null
+        : dailyPostProfile.avatar_path;
+    const previousAvatarPath = dailyPostProfile.avatar_path;
+    const avatarFile = dailyPostElements.avatarInput.files[0];
+    if (avatarFile) {
+        if (!["image/jpeg", "image/png", "image/webp"].includes(avatarFile.type) || avatarFile.size > 5 * 1024 * 1024) {
+            showDailyPostToast("Profile photos must be JPG, PNG, or WebP and smaller than 5 MB.");
+            return;
+        }
+        avatarPath = dailyPostUser.id + "/" + crypto.randomUUID() + "." + avatarFile.name.split(".").pop().toLowerCase();
+        const { error: uploadError } = await supabaseClient.storage.from(DAILY_PROFILE_BUCKET)
+            .upload(avatarPath, avatarFile, { contentType: avatarFile.type, upsert: false });
+        if (uploadError) {
+            showDailyPostToast(uploadError.message || "Could not upload profile photo.");
+            return;
+        }
+    }
+    const { error } = await supabaseClient.from("profiles").update({
+        display_name: dailyPostElements.profileName.value.trim(),
+        username: username,
+        bio: dailyPostElements.profileBio.value.trim(),
+        website_url: dailyPostElements.profileWebsite.value.trim() || null,
+        is_private: dailyPostElements.privateAccount.checked,
+        avatar_path: avatarPath
+    }).eq("id", dailyPostUser.id);
+    if (error) {
+        if (avatarFile && avatarPath !== previousAvatarPath) {
+            await supabaseClient.storage.from(DAILY_PROFILE_BUCKET).remove([avatarPath]);
+        }
+        showDailyPostToast(error.message || "Could not update profile.");
+        return;
+    }
+    dailyPostElements.removeAvatar.dataset.removeAvatar = "false";
+    if (previousAvatarPath && avatarPath !== previousAvatarPath) {
+        const { error: oldAvatarError } = await supabaseClient.storage.from(DAILY_PROFILE_BUCKET)
+            .remove([previousAvatarPath]);
+        if (oldAvatarError) console.error("Could not remove previous avatar.", oldAvatarError);
+    }
+    if (linkLabel || linkUrl) {
+        const { error: linkError } = await supabaseClient.from("profile_links").insert({
+            profile_id: dailyPostUser.id,
+            label: linkLabel,
+            url: linkUrl
+        });
+        if (linkError) {
+            showDailyPostToast(linkError.message || "Profile saved, but the social link could not be added.");
+            return;
+        }
+        dailyPostElements.profileLinkLabel.value = "";
+        dailyPostElements.profileLinkUrl.value = "";
+    }
+    const { data: refreshed, error: profileError } = await supabaseClient.from("profiles")
+        .select("*").eq("id", dailyPostUser.id).single();
+    if (profileError) {
+        showDailyPostToast(profileError.message || "Profile was saved, but could not reload.");
+        return;
+    }
+    dailyPostProfile = refreshed;
+    await openDailyPostProfile(dailyPostUser.id);
+    showDailyPostToast("Profile updated.");
+});
+
+dailyPostElements.settingsForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    if (dailyPostElements.newPassword.value) {
+        if (dailyPostElements.newPassword.value.length < 8) {
+            showDailyPostToast("Password must be at least 8 characters.");
+            return;
+        }
+        const { error } = await supabaseClient.auth.updateUser({ password: dailyPostElements.newPassword.value });
+        if (error) {
+            showDailyPostToast(error.message || "Could not update password.");
+            return;
+        }
+        dailyPostElements.newPassword.value = "";
+    }
+    if (dailyPostElements.newEmail.value.trim()) {
+        const { error } = await supabaseClient.auth.updateUser({ email: dailyPostElements.newEmail.value.trim() });
+        if (error) {
+            showDailyPostToast(error.message || "Could not update email.");
+            return;
+        }
+        dailyPostElements.newEmail.value = "";
+        showDailyPostToast("Check your new email to confirm the address change.");
+    }
+    const { error } = await supabaseClient.from("user_settings").upsert({
+        user_id: dailyPostUser.id,
+        theme: dailyPostElements.theme.checked ? "light" : "dark",
+        notify_likes: dailyPostElements.notifyLikes.checked,
+        notify_comments: dailyPostElements.notifyComments.checked,
+        notify_followers: dailyPostElements.notifyFollowers.checked,
+        notify_messages: dailyPostElements.notifyMessages.checked
+    });
+    if (error) {
+        showDailyPostToast(error.message || "Could not save settings.");
+        return;
+    }
+    dailyPostPage.classList.toggle("light", dailyPostElements.theme.checked);
+    showDailyPostToast("Settings saved.");
+});
+
+dailyPostElements.deleteAccount.addEventListener("click", async function() {
+    if (!dailyPostUser || !window.confirm("Permanently delete your account and social content? This cannot be undone.")) return;
+    dailyPostElements.deleteAccount.disabled = true;
+    try {
+        const { error } = await supabaseClient.functions.invoke("delete-account", { method: "POST" });
+        if (error) throw error;
+        dailyPostUser = null;
+        dailyPostProfile = null;
+        dailyPostInitialized = false;
+        const { error: signOutError } = await supabaseClient.auth.signOut({ scope: "local" });
+        if (signOutError) console.error("Account was deleted, but local sign-out failed.", signOutError);
+        setDailyPostAuthMode("login");
+        setDailyPostView("home");
+        showDailyPostToast("Your account and social content were deleted.");
+    } catch (error) {
+        console.error("Could not delete account.", error);
+        showDailyPostToast(error.message || "Account deletion is unavailable until the delete-account Edge Function is deployed.");
+    } finally {
+        dailyPostElements.deleteAccount.disabled = false;
+    }
+});
+
+dailyPostElements.messageForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const content = dailyPostElements.messageText.value.trim();
+    if (!content || !dailyPostConversationId) return;
+    const { error } = await supabaseClient.from("messages").insert({
+        conversation_id: dailyPostConversationId,
+        sender_id: dailyPostUser.id,
+        content: content
+    });
+    if (error) {
+        showDailyPostToast(error.message || "Could not send message.");
+        return;
+    }
+    dailyPostElements.messageText.value = "";
+    loadDailyPostConversations();
+});
+
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
+        window.clearTimeout(dailyPostStoryTimer);
         dailyPostElements.storyModal.classList.add("daily-post-hidden");
         if (dailyPostPage.classList.contains("active")) {
             history.pushState(null, "", "#home");
@@ -6830,11 +8861,38 @@ document.addEventListener("keydown", function(event) {
 });
 
 window.addEventListener("popstate", function() {
-    setDailyPostPage(location.hash === "#daily-post");
+    const isDailyPost = location.hash.startsWith("#daily-post");
+    setDailyPostPage(isDailyPost);
+    if (isDailyPost && location.hash.startsWith("#daily-post/profile/")) {
+        const username = decodeURIComponent(location.hash.slice("#daily-post/profile/".length));
+        supabaseClient.from("profiles").select("id").eq("username", username).single()
+            .then(function(result) {
+                if (result.error) {
+                    showDailyPostToast(result.error.message || "Profile not found.");
+                    return;
+                }
+                setDailyPostView("profile");
+                openDailyPostProfile(result.data.id);
+            });
+    } else if (isDailyPost) {
+        setDailyPostView("home");
+    }
 });
 
-if (location.hash === "#daily-post") {
+if (location.hash.startsWith("#daily-post")) {
     setDailyPostPage(true);
+    if (location.hash.startsWith("#daily-post/profile/")) {
+        window.addEventListener("load", function() {
+            const username = decodeURIComponent(location.hash.slice("#daily-post/profile/".length));
+            supabaseClient.from("profiles").select("id").eq("username", username).single()
+                .then(function(result) {
+                    if (!result.error) {
+                        setDailyPostView("profile");
+                        openDailyPostProfile(result.data.id);
+                    }
+                });
+        }, { once: true });
+    }
 }
 
 
