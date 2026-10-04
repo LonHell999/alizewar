@@ -4053,6 +4053,7 @@ audio.daily-post-media {
             <div class="daily-post-action-row">
                 <button id="dailyPostToggleAuth" class="daily-post-button" type="button">Create account</button>
                 <button id="dailyPostForgotPassword" class="daily-post-button" type="button">Forgot password?</button>
+                <button id="dailyPostResendVerification" class="daily-post-button daily-post-hidden" type="button">Resend verification email</button>
             </div>
         </section>
         <div id="dailyPostFeed" class="daily-post-hidden">
@@ -6878,6 +6879,7 @@ const dailyPostElements = {
     loginError: document.getElementById("dailyPostLoginError"),
     authToggle: document.getElementById("dailyPostToggleAuth"),
     forgotPassword: document.getElementById("dailyPostForgotPassword"),
+    resendVerification: document.getElementById("dailyPostResendVerification"),
     signOut: document.getElementById("dailyPostSignOut"),
     currentUser: document.getElementById("dailyPostCurrentUser"),
     searchForm: document.getElementById("dailyPostSearchForm"),
@@ -6985,11 +6987,24 @@ function setDailyPostPage(isOpen) {
     dailyPostPage.setAttribute("aria-hidden", String(!isOpen));
     document.body.style.overflow = isOpen ? "hidden" : "";
     if (isOpen) {
-        if (!location.hash.startsWith("#daily-post")) {
+        if (!location.hash.startsWith("#daily-post") && !isDailyPostPasswordRecoveryUrl()) {
             history.pushState(null, "", "#daily-post");
         }
         initializeDailyPost();
     }
+}
+
+function isDailyPostPasswordRecoveryUrl() {
+    const hashParams = new URLSearchParams(location.hash.replace(/^#/, ""));
+    const queryParams = new URLSearchParams(location.search);
+    return hashParams.get("type") === "recovery" || queryParams.get("type") === "recovery";
+}
+
+function getDailyPostAuthRedirectUrl() {
+    if (location.protocol === "file:" || location.origin === "null") {
+        throw new Error("Open Daily Post from your published website to use email verification and password reset.");
+    }
+    return location.origin + location.pathname + "#daily-post";
 }
 
 function showDailyPostNotice(message, isError) {
@@ -8269,15 +8284,58 @@ async function initializeDailyPost() {
         return;
     }
     try {
-        const { data, error } = await supabaseClient.auth.getUser();
-        if (error && error.name !== "AuthSessionMissingError") throw error;
-        await setDailyPostSession(data.user);
         supabaseClient.auth.onAuthStateChange(function(event, session) {
             window.setTimeout(function() {
-                if (event === "SIGNED_OUT") setDailyPostSession(null);
-                else if (session && session.user) setDailyPostSession(session.user);
+                if (event === "PASSWORD_RECOVERY") {
+                    setDailyPostAuthMode("recovery");
+                    dailyPostElements.login.classList.remove("daily-post-hidden");
+                } else if (event === "SIGNED_OUT") {
+                    setDailyPostSession(null).catch(function(error) {
+                        console.error("Could not clear the Daily Post session.", error);
+                    });
+                } else if (session && session.user) {
+                    if (!session.user.email_confirmed_at) {
+                        dailyPostElements.login.classList.remove("daily-post-hidden");
+                        dailyPostElements.loginError.textContent =
+                            "Verify your email address from the confirmation email before signing in.";
+                        supabaseClient.auth.signOut({ scope: "local" }).then(function(result) {
+                            if (result.error) console.error("Could not clear the unverified session.", result.error);
+                        });
+                        return;
+                    }
+                    setDailyPostSession(session.user).catch(function(error) {
+                        console.error("Could not load the signed-in Daily Post account.", error);
+                        showDailyPostNotice(
+                            "You are signed in, but your Daily Post profile could not load. Confirm that the latest Supabase schema has been applied.",
+                            true
+                        );
+                    });
+                }
             }, 0);
         });
+
+        if (isDailyPostPasswordRecoveryUrl()) {
+            setDailyPostAuthMode("recovery");
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+            dailyPostElements.feed.classList.remove("daily-post-hidden");
+            return;
+        }
+
+        const { data, error } = await supabaseClient.auth.getUser();
+        if (error && error.name !== "AuthSessionMissingError") throw error;
+        if (data.user && !data.user.email_confirmed_at) {
+            const { error: signOutError } = await supabaseClient.auth.signOut({ scope: "local" });
+            if (signOutError) console.error("Could not clear the unverified session.", signOutError);
+            setDailyPostAuthMode("login");
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+            dailyPostElements.loginError.textContent =
+                "Verify your email address from the confirmation email before signing in.";
+        } else {
+            await setDailyPostSession(data.user);
+        }
+        if (dailyPostAuthMode === "recovery") {
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+        }
     } catch (error) {
         console.error("Could not initialize Daily Post.", error);
         showDailyPostNotice(
@@ -8388,19 +8446,31 @@ async function setDailyPostSession(user) {
 function setDailyPostAuthMode(mode) {
     dailyPostAuthMode = mode;
     const isSignup = mode === "signup";
-    dailyPostElements.authTitle.textContent = isSignup ? "Create your account" : "Welcome to Daily Post";
+    const isRecovery = mode === "recovery";
+    dailyPostElements.authTitle.textContent = isSignup
+        ? "Create your account"
+        : isRecovery ? "Choose a new password" : "Welcome to Daily Post";
     dailyPostElements.authDescription.textContent = isSignup
         ? "Choose a unique username and join the community."
-        : "Sign in or create an account to follow people and share your posts.";
+        : isRecovery
+            ? "Enter and confirm your new password."
+            : "Sign in or create an account to follow people and share your posts.";
     dailyPostElements.usernameInput.classList.toggle("daily-post-hidden", !isSignup);
     dailyPostElements.displayNameInput.classList.toggle("daily-post-hidden", !isSignup);
-    dailyPostElements.confirmPassword.classList.toggle("daily-post-hidden", !isSignup);
+    dailyPostElements.loginEmail.classList.toggle("daily-post-hidden", isRecovery);
+    dailyPostElements.loginEmail.required = !isRecovery;
+    dailyPostElements.loginPassword.autocomplete = isRecovery ? "new-password" : "current-password";
+    dailyPostElements.loginPassword.placeholder = isRecovery ? "New password" : "Password";
+    dailyPostElements.confirmPassword.classList.toggle("daily-post-hidden", !isSignup && !isRecovery);
     dailyPostElements.usernameInput.required = isSignup;
     dailyPostElements.displayNameInput.required = isSignup;
-    dailyPostElements.confirmPassword.required = isSignup;
-    dailyPostElements.authToggle.textContent = isSignup ? "I already have an account" : "Create account";
-    dailyPostElements.forgotPassword.classList.toggle("daily-post-hidden", isSignup);
-    dailyPostElements.loginForm.querySelector("button[type='submit']").textContent = isSignup ? "CREATE ACCOUNT" : "SIGN IN";
+    dailyPostElements.confirmPassword.required = isSignup || isRecovery;
+    dailyPostElements.authToggle.classList.toggle("daily-post-hidden", isRecovery);
+    dailyPostElements.forgotPassword.classList.toggle("daily-post-hidden", isSignup || isRecovery);
+    dailyPostElements.resendVerification.classList.add("daily-post-hidden");
+    dailyPostElements.loginForm.querySelector("button[type='submit']").textContent = isSignup
+        ? "CREATE ACCOUNT"
+        : isRecovery ? "SAVE NEW PASSWORD" : "SIGN IN";
     dailyPostElements.loginError.textContent = "";
 }
 
@@ -8410,9 +8480,25 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
     const button = dailyPostElements.loginForm.querySelector("button[type='submit']");
     button.disabled = true;
     try {
-        const email = dailyPostElements.loginEmail.value.trim();
         const password = dailyPostElements.loginPassword.value;
         let data;
+        if (dailyPostAuthMode === "recovery") {
+            if (password.length < 8) throw new Error("Password must be at least 8 characters.");
+            if (password !== dailyPostElements.confirmPassword.value) {
+                throw new Error("Passwords do not match.");
+            }
+            const { error } = await supabaseClient.auth.updateUser({ password: password });
+            if (error) throw error;
+            const { error: signOutError } = await supabaseClient.auth.signOut({ scope: "local" });
+            if (signOutError) console.error("Password was changed, but local sign-out failed.", signOutError);
+            dailyPostElements.loginForm.reset();
+            setDailyPostAuthMode("login");
+            dailyPostElements.login.classList.remove("daily-post-hidden");
+            showDailyPostToast("Password changed. You can now sign in with your new password.");
+            return;
+        }
+
+        const email = dailyPostElements.loginEmail.value.trim();
         if (dailyPostAuthMode === "signup") {
             const username = dailyPostElements.usernameInput.value.trim().toLowerCase();
             const displayName = dailyPostElements.displayNameInput.value.trim();
@@ -8430,20 +8516,28 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
             if (password !== dailyPostElements.confirmPassword.value) {
                 throw new Error("Passwords do not match.");
             }
+            const emailRedirectTo = getDailyPostAuthRedirectUrl();
             const result = await supabaseClient.auth.signUp({
                 email: email,
                 password: password,
                 options: {
-                    data: { username: username, display_name: displayName }
+                    data: { username: username, display_name: displayName },
+                    emailRedirectTo: emailRedirectTo
                 }
             });
             if (result.error) throw result.error;
             data = result.data;
-            if (!data.session) {
-                dailyPostElements.loginError.textContent =
-                    "Check your email to verify your account, then sign in.";
+            if (!data.session || !data.user.email_confirmed_at) {
+                if (data.session) {
+                    const { error: signOutError } = await supabaseClient.auth.signOut({ scope: "local" });
+                    if (signOutError) console.error("Could not clear the unverified signup session.", signOutError);
+                }
                 setDailyPostAuthMode("login");
+                dailyPostElements.loginError.textContent =
+                    "Check your inbox and verify your email address before signing in. Check spam or request another confirmation email if needed.";
                 dailyPostElements.loginPassword.value = "";
+                dailyPostElements.loginEmail.value = email;
+                dailyPostElements.resendVerification.classList.remove("daily-post-hidden");
                 return;
             }
         } else {
@@ -8453,6 +8547,11 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
             });
             if (result.error) throw result.error;
             data = result.data;
+            if (!data.user.email_confirmed_at) {
+                const { error: signOutError } = await supabaseClient.auth.signOut({ scope: "local" });
+                if (signOutError) console.error("Could not clear the unverified login session.", signOutError);
+                throw new Error("Verify your email address from the confirmation email before signing in.");
+            }
         }
         const didSignup = dailyPostAuthMode === "signup";
         dailyPostElements.loginForm.reset();
@@ -8463,6 +8562,10 @@ dailyPostElements.loginForm.addEventListener("submit", async function(event) {
         console.error("Daily Post authentication failed.", error);
         dailyPostElements.loginError.textContent =
             error.message || "Could not authenticate. Check your details and try again.";
+        const authErrorText = String(error.code || "") + " " + String(error.message || "");
+        if (/email_not_confirmed|email not confirmed/i.test(authErrorText)) {
+            dailyPostElements.resendVerification.classList.remove("daily-post-hidden");
+        }
     } finally {
         button.disabled = false;
     }
@@ -8479,14 +8582,49 @@ dailyPostElements.forgotPassword.addEventListener("click", async function() {
         dailyPostElements.loginEmail.focus();
         return;
     }
-    const redirectTo = location.origin + location.pathname + "#daily-post";
-    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
-    if (error) {
+    const button = dailyPostElements.forgotPassword;
+    button.disabled = true;
+    dailyPostElements.loginError.textContent = "";
+    try {
+        const redirectTo = getDailyPostAuthRedirectUrl();
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
+        if (error) throw error;
+        dailyPostElements.loginError.textContent =
+            "If an account exists for that email, a password reset link has been sent. Check your inbox and spam folder.";
+    } catch (error) {
         console.error("Could not send password reset email.", error);
         dailyPostElements.loginError.textContent = error.message || "Could not send the reset email.";
+    } finally {
+        button.disabled = false;
+    }
+});
+
+dailyPostElements.resendVerification.addEventListener("click", async function() {
+    const email = dailyPostElements.loginEmail.value.trim();
+    if (!email) {
+        dailyPostElements.loginError.textContent = "Enter your email address first.";
+        dailyPostElements.loginEmail.focus();
         return;
     }
-    showDailyPostToast("If an account exists for that email, a reset link has been sent.");
+    const button = dailyPostElements.resendVerification;
+    button.disabled = true;
+    dailyPostElements.loginError.textContent = "";
+    try {
+        const emailRedirectTo = getDailyPostAuthRedirectUrl();
+        const { error } = await supabaseClient.auth.resend({
+            type: "signup",
+            email: email,
+            options: { emailRedirectTo: emailRedirectTo }
+        });
+        if (error) throw error;
+        dailyPostElements.loginError.textContent =
+            "If this account still needs verification, a new confirmation email has been sent. Check your inbox and spam folder.";
+    } catch (error) {
+        console.error("Could not resend the verification email.", error);
+        dailyPostElements.loginError.textContent = error.message || "Could not resend the verification email.";
+    } finally {
+        button.disabled = false;
+    }
 });
 
 dailyPostElements.signOut.addEventListener("click", async function() {
@@ -8861,9 +8999,12 @@ document.addEventListener("keydown", function(event) {
 });
 
 window.addEventListener("popstate", function() {
-    const isDailyPost = location.hash.startsWith("#daily-post");
+    const isDailyPost = location.hash.startsWith("#daily-post") || isDailyPostPasswordRecoveryUrl();
     setDailyPostPage(isDailyPost);
-    if (isDailyPost && location.hash.startsWith("#daily-post/profile/")) {
+    if (isDailyPost && isDailyPostPasswordRecoveryUrl()) {
+        setDailyPostAuthMode("recovery");
+        dailyPostElements.login.classList.remove("daily-post-hidden");
+    } else if (isDailyPost && location.hash.startsWith("#daily-post/profile/")) {
         const username = decodeURIComponent(location.hash.slice("#daily-post/profile/".length));
         supabaseClient.from("profiles").select("id").eq("username", username).single()
             .then(function(result) {
@@ -8879,9 +9020,12 @@ window.addEventListener("popstate", function() {
     }
 });
 
-if (location.hash.startsWith("#daily-post")) {
+if (location.hash.startsWith("#daily-post") || isDailyPostPasswordRecoveryUrl()) {
     setDailyPostPage(true);
-    if (location.hash.startsWith("#daily-post/profile/")) {
+    if (isDailyPostPasswordRecoveryUrl()) {
+        setDailyPostAuthMode("recovery");
+        dailyPostElements.login.classList.remove("daily-post-hidden");
+    } else if (location.hash.startsWith("#daily-post/profile/")) {
         window.addEventListener("load", function() {
             const username = decodeURIComponent(location.hash.slice("#daily-post/profile/".length));
             supabaseClient.from("profiles").select("id").eq("username", username).single()
