@@ -8749,35 +8749,33 @@ function navigateDailyPostProfile(profile) {
     if (profile.username) {
         history.pushState(null, "", "#daily-post/profile/" + encodeURIComponent(profile.username));
     }
-
-    function openDailyPostComposer() {
-        dailyPostComposerTrigger = document.activeElement;
-        setDailyPostView("home");
-        dailyPostElements.composer.hidden = false;
-        dailyPostElements.composer.classList.remove("daily-post-hidden");
-        dailyPostElements.composer.setAttribute("aria-hidden", "false");
-        dailyPostPage.classList.add("composer-open");
-        dailyPostCurrentView = "create";
-        document.querySelectorAll("[data-daily-view]").forEach(function(button) {
-            button.classList.toggle("active", button.dataset.dailyView === "create");
-        });
-        dailyPostElements.text.focus();
-    }
-
-    function closeDailyPostComposer(restoreFocus) {
-        dailyPostPage.classList.remove("composer-open");
-        dailyPostElements.composer.setAttribute("aria-hidden", "true");
-        dailyPostElements.composer.hidden = true;
-        setDailyPostView("home");
-        if (restoreFocus) {
-            if (dailyPostComposerTrigger && dailyPostComposerTrigger.isConnected) {
-                dailyPostComposerTrigger.focus();
-            }
-        }
-        dailyPostComposerTrigger = null;
-    }
     setDailyPostView("profile");
     openDailyPostProfile(profile.id);
+}
+
+function openDailyPostComposer() {
+    dailyPostComposerTrigger = document.activeElement;
+    setDailyPostView("home");
+    dailyPostElements.composer.hidden = false;
+    dailyPostElements.composer.classList.remove("daily-post-hidden");
+    dailyPostElements.composer.setAttribute("aria-hidden", "false");
+    dailyPostPage.classList.add("composer-open");
+    dailyPostCurrentView = "create";
+    document.querySelectorAll("[data-daily-view]").forEach(function(button) {
+        button.classList.toggle("active", button.dataset.dailyView === "create");
+    });
+    dailyPostElements.text.focus();
+}
+
+function closeDailyPostComposer(restoreFocus) {
+    dailyPostPage.classList.remove("composer-open");
+    dailyPostElements.composer.setAttribute("aria-hidden", "true");
+    dailyPostElements.composer.hidden = true;
+    setDailyPostView("home");
+    if (restoreFocus && dailyPostComposerTrigger && dailyPostComposerTrigger.isConnected) {
+        dailyPostComposerTrigger.focus();
+    }
+    dailyPostComposerTrigger = null;
 }
 
 function createDailyPostUserRow(profile, buttonLabel) {
