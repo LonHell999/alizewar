@@ -2365,6 +2365,462 @@ footer {
     }
 }
 
+.daily-post-page {
+    position: fixed;
+    z-index: 1100;
+    inset: 0;
+    display: none;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at 78% 8%, rgba(140,150,172,.08), transparent 28%),
+        linear-gradient(180deg, #0a0d13 0%, #0d1118 48%, #0a0d13 100%);
+}
+
+.daily-post-page.active {
+    display: block;
+}
+
+.daily-post-page *,
+.daily-post-page *::before,
+.daily-post-page *::after {
+    box-sizing: border-box;
+}
+
+.daily-post-topbar {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    height: 68px;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,13,19,.92);
+    backdrop-filter: blur(16px);
+}
+
+.daily-post-brand {
+    font: 30px "Bebas Neue", sans-serif;
+}
+
+.daily-post-brand span {
+    color: var(--red);
+}
+
+.daily-post-back {
+    color: #c4ccd6;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.daily-post-main {
+    width: min(760px, 92%);
+    margin: 38px auto 80px;
+}
+
+.daily-post-intro {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.daily-post-eyebrow {
+    margin: 0 0 8px;
+    color: var(--red2);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .18em;
+}
+
+.daily-post-intro h1 {
+    margin: 0;
+    font: clamp(45px, 9vw, 68px)/.95 "Bebas Neue", sans-serif;
+}
+
+.daily-post-intro > p {
+    max-width: 260px;
+    margin: 0;
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.daily-post-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: rgba(20,25,33,.96);
+    box-shadow: 0 18px 45px rgba(0,0,0,.2);
+}
+
+.daily-post-stories,
+.daily-post-composer,
+.daily-post-item {
+    margin-bottom: 18px;
+    padding: 20px;
+}
+
+.daily-post-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 14px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.daily-post-heading small {
+    color: var(--gray);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.daily-post-story-list {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+}
+
+.daily-post-story {
+    flex: 0 0 74px;
+    width: 74px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: center;
+}
+
+.daily-post-story-ring {
+    display: grid;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 7px;
+    place-items: center;
+    overflow: hidden;
+    border: 2px solid var(--red2);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #252d3a, #11151c);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.daily-post-story-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.daily-post-story-label {
+    display: block;
+    overflow: hidden;
+    color: #cbd2dc;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.daily-post-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 15px;
+}
+
+.daily-post-avatar {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--red2), #782231);
+    font-weight: 800;
+}
+
+.daily-post-author {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.daily-post-subtitle,
+.daily-post-time {
+    margin-top: 4px;
+    color: var(--gray);
+    font-size: 10px;
+}
+
+.daily-post-form textarea {
+    display: block;
+    width: 100%;
+    min-height: 105px;
+    resize: vertical;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    outline: none;
+    background: rgba(7,10,15,.65);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.daily-post-form textarea:focus,
+.daily-post-login input:focus {
+    border-color: rgba(225,75,93,.65);
+    box-shadow: 0 0 0 3px rgba(225,75,93,.1);
+}
+
+.daily-post-form textarea::placeholder,
+.daily-post-login input::placeholder {
+    color: #737e8b;
+}
+
+.daily-post-controls,
+.daily-post-actions,
+.daily-post-item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.daily-post-actions {
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.daily-post-button {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: rgba(255,255,255,.035);
+    color: #d9dfe8;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.daily-post-button:hover {
+    border-color: #77818d;
+}
+
+.daily-post-button.primary {
+    border: 0;
+    background: linear-gradient(135deg, var(--red2), var(--red));
+    color: #fff;
+}
+
+.daily-post-button:disabled {
+    cursor: wait;
+    opacity: .55;
+}
+
+.daily-post-file-name {
+    overflow: hidden;
+    margin: 9px 0 0;
+    color: var(--gray);
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.daily-post-item-copy {
+    margin: 15px 0 0;
+    color: #e4e8ef;
+    font-size: 14px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.daily-post-media {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    margin-top: 14px;
+    border-radius: 11px;
+    background: #06080c;
+}
+
+img.daily-post-media {
+    object-fit: contain;
+}
+
+audio.daily-post-media {
+    padding: 9px;
+}
+
+.daily-post-empty,
+.daily-post-notice {
+    padding: 20px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: var(--gray);
+    font-size: 12px;
+    line-height: 1.65;
+    text-align: center;
+}
+
+.daily-post-notice {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.daily-post-notice.error,
+.daily-post-error {
+    color: #ffabb4;
+}
+
+.daily-post-login {
+    max-width: 440px;
+    margin: 45px auto;
+    padding: 24px;
+}
+
+.daily-post-login h2 {
+    margin: 0 0 9px;
+    font-size: 19px;
+}
+
+.daily-post-login > p {
+    color: var(--gray);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.daily-post-login form {
+    display: grid;
+    gap: 11px;
+    margin-top: 18px;
+}
+
+.daily-post-login input {
+    width: 100%;
+    min-height: 43px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(7,10,15,.65);
+    color: white;
+}
+
+.daily-post-error {
+    min-height: 16px;
+    font-size: 11px;
+}
+
+.daily-post-modal {
+    position: fixed;
+    z-index: 2;
+    inset: 0;
+    display: grid;
+    padding: 20px;
+    place-items: center;
+    background: rgba(0,0,0,.88);
+}
+
+.daily-post-modal-card {
+    position: relative;
+    display: grid;
+    width: min(480px, 100%);
+    min-height: 220px;
+    max-height: 85vh;
+    padding: 28px;
+    place-items: center;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #10141c;
+}
+
+.daily-post-modal-card .daily-post-media {
+    max-height: 62vh;
+    margin: 0;
+}
+
+.daily-post-close {
+    position: absolute;
+    z-index: 1;
+    top: 9px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(5,7,11,.8);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.daily-post-delete {
+    padding: 5px 0;
+    border: 0;
+    background: transparent;
+    color: #e48791;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.daily-post-toast {
+    position: fixed;
+    z-index: 3;
+    right: 20px;
+    bottom: 20px;
+    max-width: min(420px, calc(100% - 40px));
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #171d27;
+    color: #f4f7ff;
+    font-size: 12px;
+    box-shadow: 0 14px 40px rgba(0,0,0,.3);
+}
+
+.daily-post-hidden {
+    display: none !important;
+}
+
+@media(max-width:600px) {
+    .daily-post-main {
+        margin-top: 28px;
+    }
+
+    .daily-post-intro {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .daily-post-stories,
+    .daily-post-composer,
+    .daily-post-item {
+        padding: 15px;
+    }
+
+    .daily-post-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .daily-post-controls > .daily-post-button {
+        align-self: flex-start;
+    }
+}
+
 </style>
 
 </head>
@@ -2408,7 +2864,7 @@ footer {
             SOCIALS
         </a>
 
-        <a href="social.html">
+        <a href="#daily-post">
             DAILY POST
         </a>
 
@@ -3222,6 +3678,69 @@ footer {
 
 </footer>
 
+<div class="daily-post-page" id="dailyPostPage" aria-hidden="true">
+    <header class="daily-post-topbar">
+        <a class="daily-post-brand" href="#home">ALI<span>.</span></a>
+        <a class="daily-post-back" id="dailyPostBack" href="#home">← BACK TO WEBSITE</a>
+    </header>
+    <main class="daily-post-main">
+        <section class="daily-post-intro">
+            <div>
+                <p class="daily-post-eyebrow">YOUR DAILY CREATOR FEED</p>
+                <h1>DAILY POST</h1>
+            </div>
+            <p>Little moments, new music, photos, and updates — straight from me.</p>
+        </section>
+        <div id="dailyPostNotice" class="daily-post-notice daily-post-hidden" role="status"></div>
+        <section id="dailyPostLogin" class="daily-post-card daily-post-login daily-post-hidden">
+            <h2>Sign in to post</h2>
+            <p>This creator space is managed by Ali. Sign in with the same administrator account used for the website dashboard.</p>
+            <form id="dailyPostLoginForm">
+                <input id="dailyPostEmail" type="email" autocomplete="username" placeholder="Admin email" aria-label="Admin email" required>
+                <input id="dailyPostPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>
+                <button class="daily-post-button primary" type="submit">SIGN IN</button>
+                <div id="dailyPostLoginError" class="daily-post-error" role="alert"></div>
+            </form>
+        </section>
+        <div id="dailyPostFeed" class="daily-post-hidden">
+            <section class="daily-post-card daily-post-stories">
+                <h2 class="daily-post-heading">STORIES <small>Disappear after 24 hours</small></h2>
+                <div id="dailyPostStoryList" class="daily-post-story-list"></div>
+                <div id="dailyPostEmptyStories" class="daily-post-empty daily-post-hidden">No active stories right now. Check back soon.</div>
+            </section>
+            <section id="dailyPostComposer" class="daily-post-card daily-post-composer daily-post-hidden">
+                <div class="daily-post-row">
+                    <div class="daily-post-avatar" aria-hidden="true">A</div>
+                    <div>
+                        <div class="daily-post-author">Share something new</div>
+                        <div id="dailyPostSubtitle" class="daily-post-subtitle">Your update will be shared with everyone.</div>
+                    </div>
+                </div>
+                <form id="dailyPostForm" class="daily-post-form">
+                    <textarea id="dailyPostText" maxlength="5000" placeholder="What’s on your mind?" aria-label="Post text"></textarea>
+                    <input id="dailyPostMediaInput" class="daily-post-hidden" type="file" accept="image/jpeg,image/png,image/webp,image/gif,audio/mpeg,audio/mp4,audio/wav,audio/ogg,audio/webm,audio/aac,video/mp4,video/webm,video/quicktime">
+                    <p id="dailyPostFileName" class="daily-post-file-name daily-post-hidden"></p>
+                    <div class="daily-post-controls">
+                        <button id="dailyPostAttach" class="daily-post-button" type="button">＋ Add photo, voice, or music</button>
+                        <div class="daily-post-actions">
+                            <button id="dailyPostStoryButton" class="daily-post-button" type="button">＋ STORY · 24H</button>
+                            <button id="dailyPostPublish" class="daily-post-button primary" type="submit">POST</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <h2 class="daily-post-heading">LATEST POSTS</h2>
+            <div id="dailyPostList"></div>
+            <div id="dailyPostEmpty" class="daily-post-empty daily-post-hidden">No posts yet. New updates will show up here.</div>
+        </div>
+    </main>
+    <div id="dailyPostStoryModal" class="daily-post-modal daily-post-hidden" role="dialog" aria-modal="true" aria-label="Story">
+        <div id="dailyPostModalCard" class="daily-post-modal-card">
+            <button id="dailyPostCloseStory" class="daily-post-close" type="button" aria-label="Close story">×</button>
+        </div>
+    </div>
+    <div id="dailyPostToast" class="daily-post-toast daily-post-hidden" role="status" aria-live="polite"></div>
+</div>
 
 <!-- =====================================================
      ADMIN LOGIN
@@ -5883,6 +6402,443 @@ if (heroCard) {
 
 
 /* =========================================================
+   DAILY POST
+========================================================= */
+
+const dailyPostPage = document.getElementById("dailyPostPage");
+const dailyPostElements = {
+    notice: document.getElementById("dailyPostNotice"),
+    login: document.getElementById("dailyPostLogin"),
+    loginForm: document.getElementById("dailyPostLoginForm"),
+    loginEmail: document.getElementById("dailyPostEmail"),
+    loginPassword: document.getElementById("dailyPostPassword"),
+    loginError: document.getElementById("dailyPostLoginError"),
+    feed: document.getElementById("dailyPostFeed"),
+    composer: document.getElementById("dailyPostComposer"),
+    subtitle: document.getElementById("dailyPostSubtitle"),
+    postForm: document.getElementById("dailyPostForm"),
+    text: document.getElementById("dailyPostText"),
+    mediaInput: document.getElementById("dailyPostMediaInput"),
+    fileName: document.getElementById("dailyPostFileName"),
+    attach: document.getElementById("dailyPostAttach"),
+    storyButton: document.getElementById("dailyPostStoryButton"),
+    publish: document.getElementById("dailyPostPublish"),
+    storyList: document.getElementById("dailyPostStoryList"),
+    emptyStories: document.getElementById("dailyPostEmptyStories"),
+    postList: document.getElementById("dailyPostList"),
+    emptyPosts: document.getElementById("dailyPostEmpty"),
+    storyModal: document.getElementById("dailyPostStoryModal"),
+    modalCard: document.getElementById("dailyPostModalCard"),
+    closeStory: document.getElementById("dailyPostCloseStory"),
+    toast: document.getElementById("dailyPostToast")
+};
+const DAILY_POST_BUCKET = "creator-media";
+const DAILY_POST_MAX_MEDIA_SIZE = 50 * 1024 * 1024;
+const DAILY_POST_ALLOWED_TYPES = new Set([
+    "image/jpeg", "image/png", "image/webp", "image/gif",
+    "audio/mpeg", "audio/mp4", "audio/wav", "audio/ogg", "audio/webm", "audio/aac",
+    "video/mp4", "video/webm", "video/quicktime"
+]);
+let dailyPostIsAdmin = false;
+let dailyPostInitialized = false;
+let dailyPostStoryMode = false;
+let dailyPostToastTimeout;
+
+function setDailyPostPage(isOpen) {
+    dailyPostPage.classList.toggle("active", isOpen);
+    dailyPostPage.setAttribute("aria-hidden", String(!isOpen));
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) {
+        if (location.hash !== "#daily-post") {
+            history.pushState(null, "", "#daily-post");
+        }
+        initializeDailyPost();
+    }
+}
+
+function showDailyPostNotice(message, isError) {
+    dailyPostElements.notice.textContent = message;
+    dailyPostElements.notice.classList.toggle("error", Boolean(isError));
+    dailyPostElements.notice.classList.remove("daily-post-hidden");
+}
+
+function showDailyPostToast(message) {
+    dailyPostElements.toast.textContent = message;
+    dailyPostElements.toast.classList.remove("daily-post-hidden");
+    window.clearTimeout(dailyPostToastTimeout);
+    dailyPostToastTimeout = window.setTimeout(function() {
+        dailyPostElements.toast.classList.add("daily-post-hidden");
+    }, 4000);
+}
+
+function formatDailyPostTime(value) {
+    return new Intl.DateTimeFormat(undefined, {
+        dateStyle: "medium",
+        timeStyle: "short"
+    }).format(new Date(value));
+}
+
+function dailyPostTimeLeft(value) {
+    const remaining = 24 * 60 * 60 * 1000 - (Date.now() - new Date(value).getTime());
+    return Math.max(1, Math.ceil(remaining / (60 * 60 * 1000))) + "h left";
+}
+
+function createDailyPostMedia(post) {
+    if (!post.media_url || !post.media_type) return null;
+    let media;
+    if (post.media_type === "image") {
+        media = document.createElement("img");
+        media.alt = "Photo shared by Ali";
+    } else if (post.media_type === "video") {
+        media = document.createElement("video");
+        media.controls = true;
+        media.playsInline = true;
+    } else if (post.media_type === "audio") {
+        media = document.createElement("audio");
+        media.controls = true;
+    } else {
+        return null;
+    }
+    media.className = "daily-post-media";
+    media.src = post.media_url;
+    return media;
+}
+
+function createDailyPostCard(post, isStory) {
+    const article = document.createElement("article");
+    article.className = "daily-post-card daily-post-item";
+    const authorRow = document.createElement("div");
+    authorRow.className = "daily-post-row";
+    const avatar = document.createElement("div");
+    avatar.className = "daily-post-avatar";
+    avatar.setAttribute("aria-hidden", "true");
+    avatar.textContent = "A";
+    const authorInfo = document.createElement("div");
+    const author = document.createElement("div");
+    author.className = "daily-post-author";
+    author.textContent = "ALI ZEWAR";
+    const time = document.createElement("div");
+    time.className = "daily-post-time";
+    time.textContent = isStory ? dailyPostTimeLeft(post.created_at) : formatDailyPostTime(post.created_at);
+    authorInfo.append(author, time);
+    authorRow.append(avatar, authorInfo);
+    article.append(authorRow);
+    if (post.text_content) {
+        const text = document.createElement("p");
+        text.className = "daily-post-item-copy";
+        text.textContent = post.text_content;
+        article.append(text);
+    }
+    const media = createDailyPostMedia(post);
+    if (media) article.append(media);
+    if (dailyPostIsAdmin && !isStory) {
+        const footer = document.createElement("div");
+        footer.className = "daily-post-item-footer";
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "daily-post-delete";
+        remove.textContent = "Delete post";
+        remove.addEventListener("click", function() {
+            deleteDailyPost(post);
+        });
+        footer.append(remove);
+        article.append(footer);
+    }
+    return article;
+}
+
+function openDailyPostStory(post) {
+    dailyPostElements.modalCard.querySelectorAll(
+        ".daily-post-item-copy, .daily-post-media, .daily-post-time"
+    ).forEach(function(item) {
+        item.remove();
+    });
+    const time = document.createElement("p");
+    time.className = "daily-post-time";
+    time.textContent = dailyPostTimeLeft(post.created_at);
+    dailyPostElements.modalCard.append(time);
+    if (post.text_content) {
+        const text = document.createElement("p");
+        text.className = "daily-post-item-copy";
+        text.textContent = post.text_content;
+        dailyPostElements.modalCard.append(text);
+    }
+    const media = createDailyPostMedia(post);
+    if (media) dailyPostElements.modalCard.append(media);
+    dailyPostElements.storyModal.classList.remove("daily-post-hidden");
+}
+
+function renderDailyPostStories(stories) {
+    dailyPostElements.storyList.replaceChildren();
+    dailyPostElements.emptyStories.classList.toggle("daily-post-hidden", stories.length > 0);
+    dailyPostElements.storyList.classList.toggle("daily-post-hidden", stories.length === 0);
+    stories.forEach(function(story) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "daily-post-story";
+        button.setAttribute("aria-label", "View story posted " + formatDailyPostTime(story.created_at));
+        const ring = document.createElement("span");
+        ring.className = "daily-post-story-ring";
+        const image = story.media_type === "image" ? createDailyPostMedia(story) : null;
+        if (image) {
+            image.removeAttribute("class");
+            image.alt = "";
+            ring.append(image);
+        } else {
+            ring.textContent = "A";
+        }
+        const label = document.createElement("span");
+        label.className = "daily-post-story-label";
+        label.textContent = "Ali · " + dailyPostTimeLeft(story.created_at);
+        button.append(ring, label);
+        button.addEventListener("click", function() {
+            openDailyPostStory(story);
+        });
+        dailyPostElements.storyList.append(button);
+    });
+}
+
+async function loadDailyPostFeed() {
+    const [postsResult, storiesResult] = await Promise.all([
+        supabaseClient.from("creator_posts")
+            .select("id, kind, text_content, media_url, media_type, created_at")
+            .eq("kind", "post").order("created_at", { ascending: false }).limit(100),
+        supabaseClient.from("creator_posts")
+            .select("id, kind, text_content, media_url, media_type, created_at")
+            .eq("kind", "story").order("created_at", { ascending: false }).limit(100)
+    ]);
+    if (postsResult.error) throw postsResult.error;
+    if (storiesResult.error) throw storiesResult.error;
+    const activeStories = storiesResult.data.filter(function(story) {
+        const age = Date.now() - new Date(story.created_at).getTime();
+        return age >= 0 && age < 24 * 60 * 60 * 1000;
+    });
+    renderDailyPostStories(activeStories);
+    dailyPostElements.postList.replaceChildren();
+    dailyPostElements.emptyPosts.classList.toggle("daily-post-hidden", postsResult.data.length > 0);
+    postsResult.data.forEach(function(post) {
+        dailyPostElements.postList.append(createDailyPostCard(post, false));
+    });
+}
+
+async function publishDailyPost(kind) {
+    const text = dailyPostElements.text.value.trim();
+    const file = dailyPostElements.mediaInput.files[0];
+    if (!text && !file) {
+        showDailyPostToast("Add text or choose a photo, voice note, or music file.");
+        return;
+    }
+    if (file && !DAILY_POST_ALLOWED_TYPES.has(file.type)) {
+        showDailyPostToast("Choose a supported image, audio, or video file.");
+        return;
+    }
+    if (file && file.size > DAILY_POST_MAX_MEDIA_SIZE) {
+        showDailyPostToast("Media files must be 50 MB or smaller.");
+        return;
+    }
+
+    dailyPostElements.publish.disabled = true;
+    dailyPostElements.storyButton.disabled = true;
+    dailyPostElements.attach.disabled = true;
+    const originalLabel = dailyPostElements.publish.textContent;
+    dailyPostElements.publish.textContent = "SHARING…";
+    let uploadedPath = null;
+    let mediaUploaded = false;
+    let postCreated = false;
+    try {
+        let mediaUrl = null;
+        let mediaType = null;
+        if (file) {
+            const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "bin";
+            uploadedPath = "uploads/" + crypto.randomUUID() + "." + extension;
+            const { error: uploadError } = await supabaseClient.storage.from(DAILY_POST_BUCKET)
+                .upload(uploadedPath, file, { contentType: file.type, upsert: false });
+            if (uploadError) throw uploadError;
+            mediaUploaded = true;
+            mediaUrl = supabaseClient.storage.from(DAILY_POST_BUCKET).getPublicUrl(uploadedPath).data.publicUrl;
+            mediaType = file.type.startsWith("image/") ? "image" : file.type.startsWith("audio/") ? "audio" : "video";
+        }
+        const { error } = await supabaseClient.from("creator_posts").insert({
+            kind: kind,
+            text_content: text,
+            media_url: mediaUrl,
+            media_type: mediaType
+        });
+        if (error) throw error;
+        postCreated = true;
+        dailyPostElements.postForm.reset();
+        dailyPostElements.fileName.textContent = "";
+        dailyPostElements.fileName.classList.add("daily-post-hidden");
+        dailyPostStoryMode = false;
+        dailyPostElements.publish.textContent = "POST";
+        dailyPostElements.subtitle.textContent = "Your update will be shared with everyone.";
+        await loadDailyPostFeed();
+        showDailyPostToast(kind === "story"
+            ? "Story shared — it will disappear in 24 hours."
+            : "Your post is live.");
+    } catch (error) {
+        console.error("Could not publish creator post.", error);
+        if (uploadedPath && mediaUploaded && !postCreated) {
+            const { error: cleanupError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove([uploadedPath]);
+            if (cleanupError) console.error("Could not clean up uploaded media.", cleanupError);
+        }
+        showDailyPostToast(postCreated
+            ? "Your post was shared, but the feed could not refresh. Please reload the page."
+            : (error.message || "Could not share your post. Please try again."));
+    } finally {
+        dailyPostElements.publish.disabled = false;
+        dailyPostElements.storyButton.disabled = false;
+        dailyPostElements.attach.disabled = false;
+        if (dailyPostElements.publish.textContent === "SHARING…") {
+            dailyPostElements.publish.textContent = originalLabel;
+        }
+    }
+}
+
+async function deleteDailyPost(post) {
+    if (!window.confirm("Delete this post?")) return;
+    const { error } = await supabaseClient.from("creator_posts").delete().eq("id", post.id);
+    if (error) {
+        console.error("Could not delete creator post.", error);
+        showDailyPostToast(error.message || "Could not delete this post.");
+        return;
+    }
+    if (post.media_url) {
+        try {
+            const mediaUrl = new URL(post.media_url);
+            const marker = "/" + DAILY_POST_BUCKET + "/";
+            const pathIndex = mediaUrl.pathname.indexOf(marker);
+            if (pathIndex >= 0) {
+                const objectPath = decodeURIComponent(mediaUrl.pathname.slice(pathIndex + marker.length));
+                const { error: removeError } = await supabaseClient.storage.from(DAILY_POST_BUCKET).remove([objectPath]);
+                if (removeError) console.error("Could not delete post media.", removeError);
+            }
+        } catch (error) {
+            console.error("Could not parse creator media URL for cleanup.", error);
+        }
+    }
+    await loadDailyPostFeed();
+    showDailyPostToast("Post deleted.");
+}
+
+async function initializeDailyPost() {
+    if (dailyPostInitialized) return;
+    dailyPostInitialized = true;
+    if (!supabaseClient) {
+        showDailyPostNotice("The sign-in service could not start. Check that the Supabase client is available.", true);
+        dailyPostElements.feed.classList.remove("daily-post-hidden");
+        dailyPostElements.login.classList.remove("daily-post-hidden");
+        return;
+    }
+    try {
+        const { data, error } = await supabaseClient.auth.getUser();
+        if (error && error.name !== "AuthSessionMissingError") throw error;
+        const user = data.user;
+        if (user && (user.email || "").toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+            await supabaseClient.auth.signOut();
+        }
+        dailyPostIsAdmin = Boolean(
+            user && (user.email || "").toLowerCase() === ADMIN_EMAIL.toLowerCase()
+        );
+        dailyPostElements.login.classList.toggle("daily-post-hidden", dailyPostIsAdmin);
+        dailyPostElements.composer.classList.toggle("daily-post-hidden", !dailyPostIsAdmin);
+        dailyPostElements.feed.classList.remove("daily-post-hidden");
+        await loadDailyPostFeed();
+    } catch (error) {
+        console.error("Could not initialize Daily Post.", error);
+        showDailyPostNotice(
+            "The feed could not load. Apply the creator-posts setup in the Supabase SQL Editor, then refresh this page.",
+            true
+        );
+        dailyPostElements.login.classList.remove("daily-post-hidden");
+        dailyPostElements.feed.classList.remove("daily-post-hidden");
+    }
+}
+
+dailyPostElements.loginForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    dailyPostElements.loginError.textContent = "";
+    const button = dailyPostElements.loginForm.querySelector("button[type='submit']");
+    button.disabled = true;
+    try {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: dailyPostElements.loginEmail.value.trim(),
+            password: dailyPostElements.loginPassword.value
+        });
+        if (error) throw error;
+        if (!data.user || (data.user.email || "").toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+            await supabaseClient.auth.signOut();
+            throw new Error("This account is not the configured website administrator.");
+        }
+        dailyPostIsAdmin = true;
+        dailyPostElements.loginForm.reset();
+        dailyPostElements.login.classList.add("daily-post-hidden");
+        dailyPostElements.composer.classList.remove("daily-post-hidden");
+        await loadDailyPostFeed();
+        showDailyPostToast("Signed in. You can now share posts and stories.");
+    } catch (error) {
+        console.error("Daily Post sign-in failed.", error);
+        dailyPostElements.loginError.textContent =
+            error.message || "Could not sign in. Check your email and password.";
+    } finally {
+        button.disabled = false;
+    }
+});
+
+dailyPostElements.attach.addEventListener("click", function() {
+    dailyPostElements.mediaInput.click();
+});
+
+dailyPostElements.mediaInput.addEventListener("change", function() {
+    const file = dailyPostElements.mediaInput.files[0];
+    dailyPostElements.fileName.textContent = file ? file.name : "";
+    dailyPostElements.fileName.classList.toggle("daily-post-hidden", !file);
+});
+
+dailyPostElements.storyButton.addEventListener("click", function() {
+    dailyPostStoryMode = !dailyPostStoryMode;
+    dailyPostElements.subtitle.textContent = dailyPostStoryMode
+        ? "Stories are public and disappear after 24 hours."
+        : "Your update will be shared with everyone.";
+    dailyPostElements.publish.textContent = dailyPostStoryMode ? "SHARE STORY" : "POST";
+    dailyPostElements.text.focus();
+});
+
+dailyPostElements.postForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    publishDailyPost(dailyPostStoryMode ? "story" : "post");
+});
+
+dailyPostElements.closeStory.addEventListener("click", function() {
+    dailyPostElements.storyModal.classList.add("daily-post-hidden");
+});
+
+dailyPostElements.storyModal.addEventListener("click", function(event) {
+    if (event.target === dailyPostElements.storyModal) {
+        dailyPostElements.storyModal.classList.add("daily-post-hidden");
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        dailyPostElements.storyModal.classList.add("daily-post-hidden");
+        if (dailyPostPage.classList.contains("active")) {
+            history.pushState(null, "", "#home");
+            setDailyPostPage(false);
+        }
+    }
+});
+
+window.addEventListener("popstate", function() {
+    setDailyPostPage(location.hash === "#daily-post");
+});
+
+if (location.hash === "#daily-post") {
+    setDailyPostPage(true);
+}
+
+
+/* =========================================================
    SMOOTH SCROLL
 ========================================================= */
 
@@ -5895,16 +6851,28 @@ document.querySelectorAll(
             "click",
             function(event) {
 
+                const href = this.getAttribute("href");
+
+                if (href === "#daily-post") {
+                    event.preventDefault();
+                    navLinks.classList.remove("active");
+                    setDailyPostPage(true);
+                    return;
+                }
+
                 const target =
                     document.querySelector(
-                        this.getAttribute(
-                            "href"
-                        )
+                        href
                     );
 
                 if (target) {
 
                     event.preventDefault();
+
+                    if (dailyPostPage.classList.contains("active")) {
+                        history.pushState(null, "", href);
+                        setDailyPostPage(false);
+                    }
 
                     target.scrollIntoView({
                         behavior: "smooth"
